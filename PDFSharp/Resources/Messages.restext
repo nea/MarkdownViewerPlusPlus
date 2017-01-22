@@ -1,0 +1,20 @@
+; PDFsharp string resources (English)
+;
+;
+
+; ----- General Messages --------------------------------------------------------------------------
+
+SampleMessage1 = This is sample message 1 (2.0).
+SampleMessage2 = This is sample message 2: {0}.
+
+; ----- XGraphics Messages ------------------------------------------------------------------------
+
+; ----- Pdf Messages ------------------------------------------------------------------------------
+
+NameMustStartWithSlash = A PDF name must start with a slash ('/').
+UserOrOwnerPasswordRequired = At least a user or an owner password is required to encrypt the document.
+
+; ----- PdfParser Messages ------------------------------------------------------------------------
+
+UnexpectedToken = Token '{0}' was not expected.
+UnknownEncryption = The PDF document is protected with an encryption not supported by PDFsharp.

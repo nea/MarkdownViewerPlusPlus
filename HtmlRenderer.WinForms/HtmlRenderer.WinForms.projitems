@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>7585ab4f-5591-423a-9f30-c96ff55b9f89</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>HtmlRenderer.WinForms</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\BrushAdapter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\ContextMenuAdapter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\ControlAdapter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\FontAdapter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\FontFamilyAdapter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\GraphicsAdapter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\GraphicsPathAdapter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\ImageAdapter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\PenAdapter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\WinFormsAdapter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HtmlContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HtmlLabel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HtmlPanel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HtmlRender.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HtmlToolTip.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MetafileExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\ClipboardHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\Utils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\Win32Utils.cs" />
+  </ItemGroup>
+</Project>

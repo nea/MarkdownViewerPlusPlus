@@ -1,0 +1,30 @@
+﻿<Project
+  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <UsingTask TaskName="NppPlugin.DllExport.MSBuild.DllExportTask"
+             AssemblyFile="NppPlugin.DllExport.MSBuild.dll"/>
+  <Target Name="AfterBuild"
+          DependsOnTargets="GetFrameworkPaths"
+          >
+    <DllExportTask Platform="$(Platform)"
+                   PlatformTarget="$(PlatformTarget)"
+                   CpuType="$(CpuType)"
+                   EmitDebugSymbols="$(DebugSymbols)"
+                   DllExportAttributeAssemblyName="$(DllExportAttributeAssemblyName)"
+                   DllExportAttributeFullName="$(DllExportAttributeFullName)"
+                   Timeout="$(DllExportTimeout)"
+                   KeyContainer="$(KeyContainerName)$(AssemblyKeyContainerName)"
+                   KeyFile="$(KeyOriginatorFile)"
+                   ProjectDirectory="$(MSBuildProjectDirectory)"
+                   InputFileName="$(TargetPath)"
+                   FrameworkPath="$(TargetedFrameworkDir);$(TargetFrameworkDirectory)"
+                   LibToolPath="$(DevEnvDir)\..\..\VC\bin"
+                   LibToolDllPath="$(DevEnvDir)"
+                   SdkPath="$(SDK40ToolsPath)"/>
+ 
+    <Copy 
+        SourceFiles="$(TargetPath)" 
+        DestinationFolder="C:\Program Files (x86)\Notepad++\plugins\" 
+        Condition="Exists('C:\Program Files (x86)\Notepad++\plugins\')"
+        ContinueOnError="false" />
+  </Target>
+</Project>

@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>ee121d2e-60d5-43d5-8fe4-22e232c72c25</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>HTMLRenderer</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\Entities\RColor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\Entities\RDashStyle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\Entities\RFontStyle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\Entities\RKeyEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\Entities\RMouseEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\Entities\RPoint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\Entities\RRect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\Entities\RSize.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\RAdapter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\RBrush.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\RContextMenu.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\RControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\RFont.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\RFontFamily.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\RGraphics.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\RGraphicsPath.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\RImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adapters\RPen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\CssData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\CssDefaults.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Dom\Border.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Dom\CssBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Dom\CssBoxFrame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Dom\CssBoxHr.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Dom\CssBoxImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Dom\CssBoxProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Dom\CssLayoutEngine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Dom\CssLayoutEngineTable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Dom\CssLength.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Dom\CssLineBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Dom\CssRect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Dom\CssRectImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Dom\CssRectWord.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Dom\CssSpacingBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Dom\CssUnit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Dom\HoverBoxBlock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Dom\HtmlTag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Entities\CssBlock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Entities\CssBlockSelectorItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Entities\HtmlGenerationStyle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Entities\HtmlImageLoadEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Entities\HtmlLinkClickedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Entities\HtmlLinkClickedException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Entities\HtmlRefreshEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Entities\HtmlRenderErrorEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Entities\HtmlRenderErrorType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Entities\HtmlScrollEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Entities\HtmlStylesheetLoadEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Entities\LinkElementData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Handlers\BackgroundImageDrawHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Handlers\BordersDrawHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Handlers\ContextMenuHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Handlers\FontsHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Handlers\ImageDownloader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Handlers\ImageLoadHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Handlers\SelectionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Handlers\StylesheetLoadHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\HtmlContainerInt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\HtmlRendererUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Parse\CssParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Parse\CssValueParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Parse\DomParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Parse\HtmlParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Parse\RegexParserHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Parse\RegexParserUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Utils\ArgChecker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Utils\CommonUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Utils\CssConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Utils\CssUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Utils\DomUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Utils\HtmlConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Utils\HtmlUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Utils\RenderUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Utils\SubString.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Core\Utils\ImageError.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Core\Utils\ImageLoad.png" />
+  </ItemGroup>
+</Project>
