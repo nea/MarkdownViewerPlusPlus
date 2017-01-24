@@ -30,6 +30,11 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// <summary>
         /// 
         /// </summary>
+        protected bool rendererVisible = false;
+
+        /// <summary>
+        /// 
+        /// </summary>
         protected int markdownViewerCommandId = 0;
 
         /// <summary>
@@ -66,6 +71,11 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             {
                 UpdateMarkdownViewer();
             }
+            //Check if panel is shown and update toolbar icon if necessary
+            if (this.renderer.Visible != this.rendererVisible)
+            {
+                ToggleToolbarIcon(this.renderer.Visible);
+            }
         }
 
         /// <summary>
@@ -100,15 +110,25 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             //Show
             if (!this.renderer.Visible)
             {
-                Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_DMMSHOW, 0, this.renderer.Handle);
-                Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_SETMENUITEMCHECK, PluginBase._funcItems.Items[this.markdownViewerCommandId]._cmdID, 1);
                 UpdateMarkdownViewer();
             }
-            else //Hide
-            {
-                Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_DMMHIDE, 0, this.renderer.Handle);
-                Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_SETMENUITEMCHECK, PluginBase._funcItems.Items[this.markdownViewerCommandId]._cmdID, 0);
-            }
+            ToggleToolbarIcon(!this.renderer.Visible);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="show"></param>
+        /// <returns></returns>
+        public void ToggleToolbarIcon(bool show = true)
+        {
+            //To show or not to show
+            NppMsg msg = show ? NppMsg.NPPM_DMMSHOW : NppMsg.NPPM_DMMHIDE;
+            //
+            Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)msg, 0, this.renderer.Handle);
+            Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_SETMENUITEMCHECK, PluginBase._funcItems.Items[this.markdownViewerCommandId]._cmdID, show ? 1 : 0);
+            //
+            this.rendererVisible = this.renderer.Visible;
         }
 
         /// <summary>
