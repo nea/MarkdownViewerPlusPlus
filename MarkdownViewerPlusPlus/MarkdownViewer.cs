@@ -74,11 +74,6 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             {
                 UpdateMarkdownViewer();
             }
-            //Check if panel is shown and update toolbar icon if necessary
-            if (this.renderer.Visible != this.rendererVisible)
-            {
-                ToggleToolbarIcon(this.renderer.Visible);
-            }
         }
 
         /// <summary>

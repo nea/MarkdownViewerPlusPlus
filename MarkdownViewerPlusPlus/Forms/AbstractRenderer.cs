@@ -1,4 +1,5 @@
 ﻿using com.insanitydesign.MarkdownViewerPlusPlus.Properties;
+using com.insanitydesign.MarkdownViewerPlusPlus.Windows;
 using Kbg.NppPluginNET;
 using Kbg.NppPluginNET.PluginInfrastructure;
 using System;
@@ -7,6 +8,7 @@ using System.Drawing.Imaging;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using static com.insanitydesign.MarkdownViewerPlusPlus.Windows.WindowsMessage;
 
 /// <summary>
 /// 
@@ -82,6 +84,27 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="m"></param>
+        protected override void WndProc(ref Message m)
+        {
+            //Listen for the closing of the dockable panel to toggle the toolbar icon
+            switch (m.Msg)
+            {
+                case (int)WM_NOTIFY:
+                    var notify = (NMHDR)Marshal.PtrToStructure(m.LParam, typeof(NMHDR));
+                    if (notify.code == (int)DockMgrMsg.DMN_CLOSE)
+                    {
+                        this.markdownViewer.ToggleToolbarIcon(false);
+                    }
+                    break;
+            }
+            //Continue the processing, as we only toggle
+            base.WndProc(ref m);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="html"></param>
         public abstract void Render(string html);
 
@@ -125,7 +148,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         protected string BuildHtml(string html = "", string title = "")
         {
             //
-            if(title == "") title = this.assemblyTitle;
+            if (title == "") title = this.assemblyTitle;
             //
             return $@"
 <!DOCTYPE html>
