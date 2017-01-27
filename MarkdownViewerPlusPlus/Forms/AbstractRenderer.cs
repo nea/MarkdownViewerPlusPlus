@@ -111,9 +111,39 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
 
         /// <summary>
         /// 
+        /// </summary>>
+        /// <returns></returns>
+        public abstract string GetText();
+
+
+        /// <summary>
+        /// 
         /// </summary>
+        /// <param name="html"></param>
         /// <param name="title"></param>
         /// <returns></returns>
-        public abstract string GetHtml(string title = "", string html = null);
+        protected string BuildHtml(string html = "", string title = "")
+        {
+            //
+            if(title == "") title = this.assemblyTitle;
+            //
+            return $@"
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name='author' content='{this.assemblyTitle}'>
+        <title>{title}</title>
+        <style type='text/css'> 
+            td, h1, h2, h3, h4, h5, p {{
+                page-break-inside: avoid; 
+            }} 
+        </style>
+      </head>
+    <body>
+        {html}
+    </body>
+</html>
+                    ";
+        }
     }
 }

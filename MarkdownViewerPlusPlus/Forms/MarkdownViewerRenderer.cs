@@ -16,7 +16,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
     /// <summary>
     /// 
     /// </summary>
-    public partial class MarkdownViewerRenderer : AbstractRenderer
+    public class MarkdownViewerRenderer : AbstractRenderer
     {
         /// <summary>
         /// 
@@ -54,41 +54,19 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="title"></param>
         /// <param name="html"></param>
-        /// <returns></returns>
-        public override string GetHtml(string title = "", string html = null)
+        public override void Render(string html)
         {
-            if (html == null)
-            {
-                html = this.markdownViewerHtmlPanel.Text;
-            }
-            return $@"
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name='author' content='{this.assemblyTitle}'>
-        <title>{title}</title>
-        <style type='text/css'> 
-            td, h1, h2, h3, h4, h5, p {{
-                page-break-inside: avoid; 
-            }} 
-        </style>
-      </head>
-    <body>
-        {html}
-    </body>
-</html>
-                    ";
+            this.markdownViewerHtmlPanel.Text = BuildHtml(html);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="html"></param>
-        public override void Render(string html)
+        /// <returns></returns>
+        public override string GetText()
         {
-            this.markdownViewerHtmlPanel.Text = GetHtml("", html);
+            return this.markdownViewerHtmlPanel.Text;
         }
 
         /// <summary>
@@ -117,7 +95,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             {
                 using (StreamWriter sw = new StreamWriter(saveFileDialog.FileName))
                 {
-                    sw.WriteLine(this.GetHtml(fileName.ToString()));
+                    sw.WriteLine(BuildHtml(GetText(), fileName.ToString()));
                 }
             }
         }
@@ -146,7 +124,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             //
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                PdfDocument pdf = PdfGenerator.GeneratePdf(this.GetHtml(filename.ToString()), PageSize.A4);
+                PdfDocument pdf = PdfGenerator.GeneratePdf(BuildHtml(GetText(), filename.ToString()), PageSize.A4);
                 pdf.Save(saveFileDialog.FileName);
             }
         }        

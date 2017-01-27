@@ -58,9 +58,6 @@
     <Compile Include="Forms\MarkdownViewerBrowser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MarkdownViewerBrowser.Designer.cs">
-      <DependentUpon>MarkdownViewerBrowser.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\MarkdownViewerRenderer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,9 +88,6 @@
     <Compile Include="PluginInfrastructure\UnmanagedExports.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\MarkdownViewerBrowser.resx">
-      <DependentUpon>MarkdownViewerBrowser.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
