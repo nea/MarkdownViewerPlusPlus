@@ -28,6 +28,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         {
             base.Init();
             //
+            this.markdownViewerWebBrowser = new System.Windows.Forms.WebBrowser();
             this.markdownViewerWebBrowser.AllowWebBrowserDrop = false;
             this.markdownViewerWebBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.markdownViewerWebBrowser.IsWebBrowserContextMenuEnabled = false;
