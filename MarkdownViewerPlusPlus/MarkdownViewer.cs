@@ -20,12 +20,15 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// 
         /// </summary>
         public IScintillaGateway Editor { get; protected set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public INotepadPPGateway Notepad { get; protected set; }
 
         /// <summary>
         /// 
         /// </summary>
-        protected MarkdownViewerBrowser renderer;
+        protected AbstractRenderer renderer;
 
         /// <summary>
         /// 
@@ -55,7 +58,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             this.Editor = new ScintillaGateway(PluginBase.GetCurrentScintilla());
             this.Notepad = new NotepadPPGateway();
             //Init the actual renderer
-            this.renderer = new MarkdownViewerBrowser(this);
+            this.renderer = new MarkdownViewerRenderer(this);
             //Set our custom formatter
             CommonMarkSettings.Default.OutputDelegate = (doc, output, settings) => new MarkdownViewerFormatter(output, settings).WriteDocument(doc);
         }

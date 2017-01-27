@@ -49,11 +49,20 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\AbstractRenderer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AbstractRenderer.Designer.cs">
+      <DependentUpon>AbstractRenderer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MarkdownViewerBrowser.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MarkdownViewerBrowser.Designer.cs">
       <DependentUpon>MarkdownViewerBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MarkdownViewerRenderer.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="MarkdownViewer.cs" />
     <Compile Include="MarkdownViewerFormatter.cs" />
