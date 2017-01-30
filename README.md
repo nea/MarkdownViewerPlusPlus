@@ -18,13 +18,13 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 * BugFixes ^^'
 
 ## Latest Versions
+* 0.2.1
+  * Updated CommonMark to version 0.15
 * 0.2.0
   * Changed the rendered view from a WinForms.WebBrowser to the [HTMLRenderer][6].HtmlPanel
   * Fixed an issue of the toolbar icon not toggling correctly via 'x' and multiple docked panels
 * 0.1.1
   * Fixed an issue of the toolbar icon not toggling when closing the panel directly via 'x'
-* 0.1.0
-  * Initial plugin commit with basic features
 
 ## Compatibility
 This plugin requires 
