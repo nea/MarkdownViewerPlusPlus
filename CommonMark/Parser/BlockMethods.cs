@@ -637,7 +637,7 @@ namespace CommonMark.Parser
 
                 FindFirstNonspace(ln, offset, column, out first_nonspace, out first_nonspace_column, out curChar);
 
-                indent = first_nonspace_column - column;
+                indent = first_nonspace_column - column + remainingSpaces;
                 blank = curChar == '\n';
 
                 var indented = indent >= CODE_INDENT;
