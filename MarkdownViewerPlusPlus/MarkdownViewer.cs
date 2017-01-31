@@ -49,7 +49,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// <summary>
         /// 
         /// </summary>
-        public int commandIdSynchronize = 1;
+        public int commandIdSynchronize = 2;
 
         /// <summary>
         /// 
@@ -116,9 +116,9 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             //Register our commands
             PluginBase.SetCommand(this.commandId, Main.PluginName, MarkdownViewerCommand, new ShortcutKey(true, false, true, System.Windows.Forms.Keys.M));
             //Separator
-            PluginBase.SetCommand(666, "---", null);
+            PluginBase.SetCommand(this.commandId + 1, "---", null);
             //Synchronized scrolling
-            PluginBase.SetCommand(this.commandIdSynchronize, "Synchronize scrolling", SynchronizeScrollingCommand, this.configuration.SynchronizeScrolling);
+            PluginBase.SetCommand(this.commandIdSynchronize, "Synchronize scrolling (Editor -> Viewer)", SynchronizeScrollingCommand, this.configuration.SynchronizeScrolling);
         }
 
         /// <summary>
@@ -128,6 +128,10 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         {
             this.configuration.SynchronizeScrolling = !this.configuration.SynchronizeScrolling;
             Win32.CheckMenuItem(Win32.GetMenu(PluginBase.nppData._nppHandle), PluginBase._funcItems.Items[this.commandIdSynchronize]._cmdID, Win32.MF_BYCOMMAND | (this.configuration.SynchronizeScrolling ? Win32.MF_CHECKED : Win32.MF_UNCHECKED));
+            if(this.configuration.SynchronizeScrolling)
+            {
+                UpdateScrollBar();
+            }
         }
 
         /// <summary>

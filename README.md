@@ -20,7 +20,7 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 
 ## Latest Versions
 * 0.3.0
-  * Added an option to synchronize the vertical scroll bars based on the scrolled ratio (not content)
+  * Added an option to synchronize vertical scrolling from the editor to the viewer (based on the scrolled ratio, not content)
 * 0.2.2
   * Changed *GetText* method to support growing text lengths (lead to crashes)
 * 0.2.1
