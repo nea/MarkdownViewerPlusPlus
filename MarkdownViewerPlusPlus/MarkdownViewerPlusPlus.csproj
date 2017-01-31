@@ -58,6 +58,9 @@
     <Compile Include="Forms\MarkdownViewerBrowser.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\MarkdownViewerHtmlPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\MarkdownViewerRenderer.cs">
       <SubType>Form</SubType>
     </Compile>

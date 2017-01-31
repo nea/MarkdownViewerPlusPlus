@@ -138,6 +138,12 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <returns></returns>
         public abstract string GetText();
 
+        /// <summary>
+        /// Scroll the rendered panel vertically based on the given ration
+        /// taken from Notepad++
+        /// </summary>
+        /// <param name="scrollRatio"></param>
+        public abstract void ScrollByRatioVertically(double scrollRatio);
 
         /// <summary>
         /// 

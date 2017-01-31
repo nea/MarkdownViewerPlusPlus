@@ -12,20 +12,19 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 ### Planned
 * Highlight the current cursor row
 * Export as PDF with properties/templates
-* Synchronizing scroll between Markdown file and rendered view
 * ILMerge support
 * x64 support
 * Improved performance with large documents
+* Scroll to selected content
 * BugFixes ^^'
 
 ## Latest Versions
+* 0.3.0
+  * Added an option to synchronize the vertical scroll bars based on the scrolled ratio (not content)
 * 0.2.2
   * Changed *GetText* method to support growing text lengths (lead to crashes)
 * 0.2.1
   * Updated CommonMark to version 0.15
-* 0.2.0
-  * Changed the rendered view from a WinForms.WebBrowser to the [HTMLRenderer][6].HtmlPanel
-  * Fixed an issue of the toolbar icon not toggling correctly via 'x' and multiple docked panels
   
 Download the latest [release here][9]. For a full version history go [here][10].
 

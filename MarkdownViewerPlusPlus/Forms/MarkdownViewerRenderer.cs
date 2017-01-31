@@ -6,7 +6,6 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using TheArtOfDev.HtmlRenderer.PdfSharp;
-using TheArtOfDev.HtmlRenderer.WinForms;
 
 /// <summary>
 /// 
@@ -21,7 +20,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <summary>
         /// 
         /// </summary>
-        protected HtmlPanel markdownViewerHtmlPanel;
+        public MarkdownViewerHtmlPanel markdownViewerHtmlPanel;
 
         /// <summary>
         /// 
@@ -38,7 +37,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         {
             base.Init();
             //
-            this.markdownViewerHtmlPanel = new HtmlPanel();
+            this.markdownViewerHtmlPanel = new MarkdownViewerHtmlPanel();
             this.markdownViewerHtmlPanel.AllowDrop = false;
             this.markdownViewerHtmlPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.markdownViewerHtmlPanel.IsContextMenuEnabled = false;
@@ -58,6 +57,16 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         public override void Render(string html)
         {
             this.markdownViewerHtmlPanel.Text = BuildHtml(html);
+        }
+
+        /// <summary>
+        /// Scroll the rendered panel vertically based on the given ration
+        /// taken from Notepad++
+        /// </summary>
+        /// <param name="scrollRatio"></param>
+        public override void ScrollByRatioVertically(double scrollRatio)
+        {
+            this.markdownViewerHtmlPanel.ScrollByRatioVertically(scrollRatio);
         }
 
         /// <summary>

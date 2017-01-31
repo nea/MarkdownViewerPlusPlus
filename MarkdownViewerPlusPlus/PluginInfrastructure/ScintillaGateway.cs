@@ -71,10 +71,10 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
         /// <summary>
         /// Get the scroll information for the current Scintilla window.
         /// </summary>
-        /// <param name="mask">Argumetns for the scroll information such as tracking</param>
+        /// <param name="mask">Arguments for the scroll information such as tracking</param>
         /// <param name="scrollBar">Which scroll bar information are you looking for</param>
         /// <returns>A ScrollInfo struct with information of the current scroll state</returns>
-        public ScrollInfo GetScrollInfo(ScrollInfoMask mask, ScrollInfoBar scrollBar)
+        public ScrollInfo GetScrollInfo(ScrollInfoMask mask = ScrollInfoMask.SIF_ALL, ScrollInfoBar scrollBar = ScrollInfoBar.SB_BOTH)
         {
             ScrollInfo scrollInfo = new ScrollInfo();
             scrollInfo.cbSize = (uint)Marshal.SizeOf(scrollInfo);

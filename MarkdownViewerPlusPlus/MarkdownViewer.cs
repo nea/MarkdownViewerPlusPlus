@@ -5,6 +5,7 @@ using Kbg.NppPluginNET.PluginInfrastructure;
 using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using static Kbg.NppPluginNET.PluginInfrastructure.Win32;
 
 /// <summary>
 /// 
@@ -34,6 +35,11 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// 
         /// </summary>
         protected bool rendererVisible = false;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected string oldEditorText = "";
 
         /// <summary>
         /// 
@@ -78,18 +84,27 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                 if (notification.Header.Code == (uint)SciMsg.SCN_UPDATEUI)
                 {
                     UpdateMarkdownViewer();
-
+                    //Update the scroll bar of the Viewer Panel only in case of vertical scrolls
+                    if (notification.Updated == (uint)SciMsg.SC_UPDATE_V_SCROLL)
+                    {
+                        UpdateScrollBar();
+                    }                    
                 }
                 //else if (notification.Header.Code == (uint)SciMsg.SCN_MODIFIED)
                 //{
                 //    UpdateMarkdownViewer();
                 //}
-                //else if (notification.Header.Code == (uint)SciMsg.SCN_UPDATEUI && notification.Updated == (uint)SciMsg.SC_UPDATE_V_SCROLL)
-                //{
-                //    //Update scroll bar
-                //}
             }
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        protected void UpdateScrollBar()
+        {
+            ScrollInfo scrollInfo = this.Editor.GetScrollInfo(ScrollInfoMask.SIF_RANGE | ScrollInfoMask.SIF_TRACKPOS | ScrollInfoMask.SIF_PAGE, ScrollInfoBar.SB_VERT);            
+            var scrollRatio = (double)scrollInfo.nTrackPos / (scrollInfo.nMax - scrollInfo.nPage);
+            this.renderer.ScrollByRatioVertically(scrollRatio);
         }
 
         /// <summary>
@@ -125,6 +140,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             if (!this.renderer.Visible)
             {
                 UpdateMarkdownViewer();
+                UpdateScrollBar();
             }
             ToggleToolbarIcon(!this.renderer.Visible);
         }
@@ -152,7 +168,12 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         {
             try
             {
-                this.renderer.Render(CommonMarkConverter.Convert(this.Editor.GetText(this.Editor.GetLength())));
+                string editorText = this.Editor.GetText(this.Editor.GetLength());
+                if(editorText != this.oldEditorText)
+                {
+                    this.oldEditorText = editorText;
+                    this.renderer.Render(CommonMarkConverter.Convert(editorText));
+                }                
             }
             catch
             {
