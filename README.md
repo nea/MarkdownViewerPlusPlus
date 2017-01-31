@@ -27,7 +27,7 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
   * Changed the rendered view from a WinForms.WebBrowser to the [HTMLRenderer][6].HtmlPanel
   * Fixed an issue of the toolbar icon not toggling correctly via 'x' and multiple docked panels
   
-Download the latest [release here][9].
+Download the latest [release here][9]. For a full version history go [here][10].
 
 ## Compatibility
 This plugin requires 
@@ -69,3 +69,4 @@ This source and the whole package comes without warranty. It may or may not harm
   [7]: http://fontawesome.io/
   [8]: https://github.com/dcurtis/markdown-mark
   [9]: https://github.com/nea/MarkdownViewerPlusPlus/releases
+  [10]: https://github.com/nea/MarkdownViewerPlusPlus/wiki/Version-History
