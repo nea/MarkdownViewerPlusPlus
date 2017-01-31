@@ -57,6 +57,8 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             //Get some global references to the editor and Notepad++ engines
             this.Editor = new ScintillaGateway(PluginBase.GetCurrentScintilla());
             this.Notepad = new NotepadPPGateway();
+            //
+            //this.Editor.SetModEventMask((int)(SciMsg.SC_MOD_INSERTTEXT | SciMsg.SC_MOD_DELETETEXT));
             //Init the actual renderer
             this.renderer = new MarkdownViewerRenderer(this);
             //Set our custom formatter
@@ -70,10 +72,24 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         public void OnNotification(ScNotification notification)
         {
             //Listen to any UI update to get informed about all file changes, chars added/removed etc.
-            if (this.renderer.Visible && notification.Header.Code == (uint)SciMsg.SCN_UPDATEUI)
+            if (this.renderer.Visible)
             {
-                UpdateMarkdownViewer();
+                //TODO: Limit to certain events
+                if (notification.Header.Code == (uint)SciMsg.SCN_UPDATEUI)
+                {
+                    UpdateMarkdownViewer();
+
+                }
+                //else if (notification.Header.Code == (uint)SciMsg.SCN_MODIFIED)
+                //{
+                //    UpdateMarkdownViewer();
+                //}
+                //else if (notification.Header.Code == (uint)SciMsg.SCN_UPDATEUI && notification.Updated == (uint)SciMsg.SC_UPDATE_V_SCROLL)
+                //{
+                //    //Update scroll bar
+                //}
             }
+
         }
 
         /// <summary>
@@ -136,9 +152,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         {
             try
             {
-                string editorText = this.Editor.GetText(this.Editor.GetLength());
-                string convertedText = CommonMarkConverter.Convert(editorText);
-                this.renderer.Render(convertedText);
+                this.renderer.Render(CommonMarkConverter.Convert(this.Editor.GetText(this.Editor.GetLength())));
             }
             catch
             {
