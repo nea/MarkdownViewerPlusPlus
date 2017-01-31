@@ -1,9 +1,9 @@
 ﻿using com.insanitydesign.MarkdownViewerPlusPlus.Forms;
 using com.insanitydesign.MarkdownViewerPlusPlus.Properties;
 using CommonMark;
+using Kbg.NppPluginNET;
 using Kbg.NppPluginNET.PluginInfrastructure;
 using System;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using static Kbg.NppPluginNET.PluginInfrastructure.Win32;
 
@@ -44,16 +44,17 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// <summary>
         /// 
         /// </summary>
-        protected int markdownViewerCommandId = 0;
+        public int commandId = 0;
 
         /// <summary>
         /// 
         /// </summary>
-        public int CommandId {
-            get {
-                return this.markdownViewerCommandId;
-            }
-        }
+        public int commandIdSynchronize = 1;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected MarkdownViewerConfiguration configuration;
 
         /// <summary>
         /// 
@@ -63,8 +64,6 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             //Get some global references to the editor and Notepad++ engines
             this.Editor = new ScintillaGateway(PluginBase.GetCurrentScintilla());
             this.Notepad = new NotepadPPGateway();
-            //
-            //this.Editor.SetModEventMask((int)(SciMsg.SC_MOD_INSERTTEXT | SciMsg.SC_MOD_DELETETEXT));
             //Init the actual renderer
             this.renderer = new MarkdownViewerRenderer(this);
             //Set our custom formatter
@@ -85,10 +84,10 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                 {
                     UpdateMarkdownViewer();
                     //Update the scroll bar of the Viewer Panel only in case of vertical scrolls
-                    if (notification.Updated == (uint)SciMsg.SC_UPDATE_V_SCROLL)
+                    if (this.configuration.SynchronizeScrolling && notification.Updated == (uint)SciMsg.SC_UPDATE_V_SCROLL)
                     {
                         UpdateScrollBar();
-                    }                    
+                    }
                 }
                 //else if (notification.Header.Code == (uint)SciMsg.SCN_MODIFIED)
                 //{
@@ -102,7 +101,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// </summary>
         protected void UpdateScrollBar()
         {
-            ScrollInfo scrollInfo = this.Editor.GetScrollInfo(ScrollInfoMask.SIF_RANGE | ScrollInfoMask.SIF_TRACKPOS | ScrollInfoMask.SIF_PAGE, ScrollInfoBar.SB_VERT);            
+            ScrollInfo scrollInfo = this.Editor.GetScrollInfo(ScrollInfoMask.SIF_RANGE | ScrollInfoMask.SIF_TRACKPOS | ScrollInfoMask.SIF_PAGE, ScrollInfoBar.SB_VERT);
             var scrollRatio = (double)scrollInfo.nTrackPos / (scrollInfo.nMax - scrollInfo.nPage);
             this.renderer.ScrollByRatioVertically(scrollRatio);
         }
@@ -112,10 +111,23 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// </summary>
         public void CommandMenuInit()
         {
-            //Get the AssemblyTitle
-            string assemblyTitle = ((AssemblyTitleAttribute)Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyTitleAttribute), false)).Title;
-            //Register our command
-            PluginBase.SetCommand(this.markdownViewerCommandId, assemblyTitle, MarkdownViewerCommand);
+            this.configuration = new MarkdownViewerConfiguration();
+
+            //Register our commands
+            PluginBase.SetCommand(this.commandId, Main.PluginName, MarkdownViewerCommand, new ShortcutKey(true, false, true, System.Windows.Forms.Keys.M));
+            //Separator
+            PluginBase.SetCommand(666, "---", null);
+            //Synchronized scrolling
+            PluginBase.SetCommand(this.commandIdSynchronize, "Synchronize scrolling", SynchronizeScrollingCommand, this.configuration.SynchronizeScrolling);
+        }
+
+        /// <summary>
+        /// Check/Uncheck the configuration item
+        /// </summary>
+        protected void SynchronizeScrollingCommand()
+        {
+            this.configuration.SynchronizeScrolling = !this.configuration.SynchronizeScrolling;
+            Win32.CheckMenuItem(Win32.GetMenu(PluginBase.nppData._nppHandle), PluginBase._funcItems.Items[this.commandIdSynchronize]._cmdID, Win32.MF_BYCOMMAND | (this.configuration.SynchronizeScrolling ? Win32.MF_CHECKED : Win32.MF_UNCHECKED));
         }
 
         /// <summary>
@@ -127,7 +139,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             toolbarIcons.hToolbarBmp = Resources.markdown_16x16_solid.GetHbitmap();
             IntPtr pTbIcons = Marshal.AllocHGlobal(Marshal.SizeOf(toolbarIcons));
             Marshal.StructureToPtr(toolbarIcons, pTbIcons, false);
-            Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_ADDTOOLBARICON, PluginBase._funcItems.Items[this.markdownViewerCommandId]._cmdID, pTbIcons);
+            Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_ADDTOOLBARICON, PluginBase._funcItems.Items[this.commandId]._cmdID, pTbIcons);
             Marshal.FreeHGlobal(pTbIcons);
         }
 
@@ -156,7 +168,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             NppMsg msg = show ? NppMsg.NPPM_DMMSHOW : NppMsg.NPPM_DMMHIDE;
             //
             Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)msg, 0, this.renderer.Handle);
-            Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_SETMENUITEMCHECK, PluginBase._funcItems.Items[this.markdownViewerCommandId]._cmdID, show ? 1 : 0);
+            Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_SETMENUITEMCHECK, PluginBase._funcItems.Items[this.commandId]._cmdID, show ? 1 : 0);
             //
             this.rendererVisible = this.renderer.Visible;
         }
@@ -169,16 +181,24 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             try
             {
                 string editorText = this.Editor.GetText(this.Editor.GetLength());
-                if(editorText != this.oldEditorText)
+                if (editorText != this.oldEditorText)
                 {
                     this.oldEditorText = editorText;
                     this.renderer.Render(CommonMarkConverter.Convert(editorText));
-                }                
+                }
             }
             catch
             {
                 this.renderer.Render("Couldn't render the currently selected file!");
             }
+        }
+
+        /// <summary>
+        /// Save the configuration
+        /// </summary>
+        public void PluginCleanUp()
+        {
+            this.configuration.Save();
         }
     }
 }

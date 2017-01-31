@@ -1,12 +1,5 @@
-﻿using System;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Windows.Forms;
+﻿using com.insanitydesign.MarkdownViewerPlusPlus;
 using Kbg.NppPluginNET.PluginInfrastructure;
-using com.insanitydesign.MarkdownViewerPlusPlus;
 
 /// <summary>
 /// 
@@ -21,7 +14,7 @@ namespace Kbg.NppPluginNET
         /// <summary>
         /// 
         /// </summary>
-        public const string PluginName = "MarkdownViewerPlusPlus";
+        public const string PluginName = "MarkdownViewer++";
 
         /// <summary>
         /// "Singleton" for this plugin of the actual implementation
@@ -65,7 +58,7 @@ namespace Kbg.NppPluginNET
         /// </summary>
         internal static void PluginCleanUp()
         {
-            //Nothing to see here... go on ^^
+            MarkdownViewer.PluginCleanUp();
         }
     }
 }

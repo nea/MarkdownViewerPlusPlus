@@ -70,7 +70,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             NppTbData _nppTbData = new NppTbData();
             _nppTbData.hClient = this.Handle;
             _nppTbData.pszName = this.assemblyTitle;
-            _nppTbData.dlgID = this.markdownViewer.CommandId;
+            _nppTbData.dlgID = this.markdownViewer.commandId;
             _nppTbData.uMask = NppTbMsg.DWS_DF_CONT_RIGHT | NppTbMsg.DWS_ICONTAB | NppTbMsg.DWS_ICONBAR;
             _nppTbData.hIconTab = (uint)toolbarIcon.Handle;
             _nppTbData.pszModuleName = Main.PluginName;

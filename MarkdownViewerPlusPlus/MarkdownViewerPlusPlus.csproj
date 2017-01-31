@@ -65,6 +65,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MarkdownViewer.cs" />
+    <Compile Include="MarkdownViewerConfiguration.cs" />
     <Compile Include="MarkdownViewerFormatter.cs" />
     <Compile Include="PluginInfrastructure\ClikeStringArray.cs" />
     <Compile Include="PluginInfrastructure\DllExport\DllExportAttribute.cs" />
