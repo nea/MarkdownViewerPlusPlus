@@ -12,33 +12,42 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 ### Planned
 * Highlight the current cursor row
 * Export as PDF with properties/templates
-* ILMerge support
 * x64 support
 * Improved performance with large documents
 * Scroll to selected content
 * BugFixes ^^'
 
 ## Latest Versions
+* 0.4.0
+  * Changed to NuGet dependencies merged via ILMerge
+  * Added support for rendering SVG images
 * 0.3.1
   * Added an "About" dialog
 * 0.3.0
   * Added an option to synchronize vertical scrolling from the editor to the viewer (based on the scrolled ratio, not content)
-* 0.2.2
-  * Changed *GetText* method to support growing text lengths (lead to crashes)
   
 Download the latest [release here][9]. For a full version history go [here][10].
 
-## Compatibility
-This plugin requires 
+## Installation
+Download a [release version][9] and copy the included **MarkdownViewerPlusPlus.dll** to the *plugins* sub-folder at your Notepad++ installation directory. The plugin adds a small Markdown icon ![Markdown icon](https://github.com/nea/MarkdownViewerPlusPlus/raw/master/MarkdownViewerPlusPlus/Resources/markdown-16x16-solid.png) to the toolbar to toggle the viewer as dockable panel.
+
+### Compatibility
+This plugin requires at least
 * Notepad++ 32-bit (won't work with 64-bit)
 * Windows
+* .NET Framework 4.0 or above
 
 It has been tested under the following conditions
 * Notepad++ 7.2.2 (32-bit)
 * Windows 10 Professional (64-bit)
 
-## Installation
-Download a [release version][9] and copy the included **MarkdownViewerPlusPlus.dll** to the *plugins* sub-folder at your Notepad++ installation directory. The plugin adds a small Markdown icon ![Markdown icon](https://github.com/nea/MarkdownViewerPlusPlus/raw/master/MarkdownViewerPlusPlus/Resources/markdown-16x16-solid.png) to the toolbar to toggle the viewer as dockable panel.
+## Usage
+To open the MarkdownViewer++ you can 
+* click the toolbar icon ![Markdown icon](https://github.com/nea/MarkdownViewerPlusPlus/raw/master/MarkdownViewerPlusPlus/Resources/markdown-16x16-solid.png), 
+* use the shortcut _Ctrl+Shift+M_
+* or open it via the **Plugins** sub-menu
+
+To synchronize the scrolling between the Notepad++ editor view and the rendered markdown, you can enable the option via the **Plugins** sub-menu. The made selection will be stored and loaded in future sessions.
 
 ## License and Credits
 The MarkdownViewerPlusPlus is released under the MIT license.

@@ -38,15 +38,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             base.Init();
             //
             this.markdownViewerHtmlPanel = new MarkdownViewerHtmlPanel();
-            this.markdownViewerHtmlPanel.AllowDrop = false;
-            this.markdownViewerHtmlPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.markdownViewerHtmlPanel.IsContextMenuEnabled = false;
-            this.markdownViewerHtmlPanel.Location = new System.Drawing.Point(0, 24);
-            this.markdownViewerHtmlPanel.MinimumSize = new System.Drawing.Size(20, 20);
-            this.markdownViewerHtmlPanel.Name = "markdownViewerHtmlPanel";
-            this.markdownViewerHtmlPanel.Size = new System.Drawing.Size(284, 237);
-            this.markdownViewerHtmlPanel.TabIndex = 0;
-            //
+            //Add to view
             this.Controls.Add(this.markdownViewerHtmlPanel);
         }
 
@@ -56,7 +48,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <param name="html"></param>
         public override void Render(string html)
         {
-            this.markdownViewerHtmlPanel.Text = BuildHtml(html);
+            this.markdownViewerHtmlPanel.Text = BuildHtml(html);            
         }
 
         /// <summary>
@@ -136,6 +128,6 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
                 PdfDocument pdf = PdfGenerator.GeneratePdf(BuildHtml(GetText(), filename.ToString()), PageSize.A4);
                 pdf.Save(saveFileDialog.FileName);
             }
-        }        
+        }
     }
 }
