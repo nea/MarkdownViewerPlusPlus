@@ -1,4 +1,4 @@
-# MarkdownViewerPlusPlus
+# MarkdownViewerPlusPlus [![Build status](https://ci.appveyor.com/api/projects/status/jkuuth039vioms74?svg=true)](https://ci.appveyor.com/project/nea/markdownviewerplusplus)
 A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 
 ## Features
