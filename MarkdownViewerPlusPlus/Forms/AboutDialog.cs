@@ -26,6 +26,7 @@ Many thanks to:
   CommonMark.NET by Knagis
   PDFSharp by empira Software GmbH
   HTMLRenderer by ArthurHub
+  SVG.NET by vvvv
   FontAwesome
   dcurtis
 

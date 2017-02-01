@@ -54,10 +54,13 @@ The MarkdownViewerPlusPlus is released under the MIT license.
 
 This Notepad++ plugin integrates the sources of multiple other libraries, because of issues with the library merging process. Credits and thanks to all the developers working on these great projects:
 * The plugin is based on the [Notepad++ PluginPack.net][2] by kbilsted provided under the Apache-2.0 license.
-* The renderer uses the [CommonMark.NET][3] library by Knagis provided under the BSD-3-Clause license.
+* The renderer uses 
+  * [CommonMark.NET][3] by Knagis provided under the BSD-3-Clause license
+  * [HTMLRenderer.WinForms][6] by ArthurHub provided under the BSD-3-Clause license
 * The PDF Exporter uses 
-  * [PDFSharp][5] by empira Software GmbH and provided under the MIT license
-  * [HTMLRenderer][6] by ArthurHub provided under the BSD-3-Clause license
+  * [PDFSharp][5] by empira Software GmbH provided under the MIT license
+  * [HTMLRenderer.PdfSharp][6] by ArthurHub provided under the BSD-3-Clause license
+* The SVG renderer uses [SVG.NET][11] by vvvv provided under the Microsoft Public License
 * The menu icons are by [FontAwesome][7] provided under the SIL OFL 1.1 license
 * The Markdown icon is by [dcurtis][8] provided under the CC0-1.0 license
 
@@ -66,7 +69,6 @@ This source and the whole package comes without warranty. It may or may not harm
 
 ## Personal Note
 *I don't know if this is very useful for a lot of people but I wanted something in private to quickly write and see some formatted Markdown documents. As I was not able to find something similar very quickly I created this project. I hope this proves useful to you... with all its Bugs and Issues ;) If you like it you can give me a shout at [INsanityDesign][1] or let me know via this repository.*
-
 
   [1]: http://www.insanitydesign.com/wp/
   [2]: https://github.com/kbilsted/NotepadPlusPlusPluginPack.Net
@@ -78,3 +80,4 @@ This source and the whole package comes without warranty. It may or may not harm
   [8]: https://github.com/dcurtis/markdown-mark
   [9]: https://github.com/nea/MarkdownViewerPlusPlus/releases
   [10]: https://github.com/nea/MarkdownViewerPlusPlus/wiki/Version-History
+  [11]: https://github.com/vvvv/SVG
