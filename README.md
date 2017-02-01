@@ -19,12 +19,12 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 * BugFixes ^^'
 
 ## Latest Versions
+* 0.3.1
+  * Added an "About" dialog
 * 0.3.0
   * Added an option to synchronize vertical scrolling from the editor to the viewer (based on the scrolled ratio, not content)
 * 0.2.2
   * Changed *GetText* method to support growing text lengths (lead to crashes)
-* 0.2.1
-  * Updated CommonMark to version 0.15
   
 Download the latest [release here][9]. For a full version history go [here][10].
 
