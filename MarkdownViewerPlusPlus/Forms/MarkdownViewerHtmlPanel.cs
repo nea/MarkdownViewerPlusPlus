@@ -70,6 +70,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
                             {
                                 webClient.DownloadDataCompleted += (downloadSender, downloadEvent) => { OnDownloadDataCompleted(downloadEvent, imageLoadEvent); };
                                 webClient.DownloadDataAsync(uri);
+                                imageLoadEvent.Handled = true;
                             }
                         }
                         break;
