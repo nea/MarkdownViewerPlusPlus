@@ -5,29 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkdownViewerPlusPlus", "MarkdownViewerPlusPlus\MarkdownViewerPlusPlus.csproj", "{E56F6E12-089C-40ED-BCFD-923E5FA121A1}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommonMark", "CommonMark\CommonMark.shproj", "{04FAF955-C33D-4090-954C-B99A2F6C778B}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HtmlRenderer", "HTMLRenderer\HtmlRenderer.shproj", "{EE121D2E-60D5-43D5-8FE4-22E232C72C25}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HtmlRenderer.PdfSharp", "HtmlRenderer.PdfSharp\HtmlRenderer.PdfSharp.shproj", "{498EC3BF-E221-4AF4-939C-CB178B5250C2}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HtmlRenderer.WinForms", "HtmlRenderer.WinForms\HtmlRenderer.WinForms.shproj", "{7585AB4F-5591-423A-9F30-C96FF55B9F89}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PDFSharp", "PDFSharp\PDFSharp.shproj", "{AF6E858B-950D-49FF-9DF8-5AB68A3BE32F}"
-EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		CommonMark\CommonMark.projitems*{04faf955-c33d-4090-954c-b99a2f6c778b}*SharedItemsImports = 13
-		HtmlRenderer.PdfSharp\HtmlRenderer.PdfSharp.projitems*{498ec3bf-e221-4af4-939c-cb178b5250c2}*SharedItemsImports = 13
-		HtmlRenderer.WinForms\HtmlRenderer.WinForms.projitems*{7585ab4f-5591-423a-9f30-c96ff55b9f89}*SharedItemsImports = 13
-		PDFSharp\PDFSharp.projitems*{af6e858b-950d-49ff-9df8-5ab68a3be32f}*SharedItemsImports = 13
-		CommonMark\CommonMark.projitems*{e56f6e12-089c-40ed-bcfd-923e5fa121a1}*SharedItemsImports = 4
-		HtmlRenderer.PdfSharp\HtmlRenderer.PdfSharp.projitems*{e56f6e12-089c-40ed-bcfd-923e5fa121a1}*SharedItemsImports = 4
-		HtmlRenderer.WinForms\HtmlRenderer.WinForms.projitems*{e56f6e12-089c-40ed-bcfd-923e5fa121a1}*SharedItemsImports = 4
-		HTMLRenderer\HTMLRenderer.projitems*{e56f6e12-089c-40ed-bcfd-923e5fa121a1}*SharedItemsImports = 4
-		PDFSharp\PDFSharp.projitems*{e56f6e12-089c-40ed-bcfd-923e5fa121a1}*SharedItemsImports = 4
-		HTMLRenderer\HTMLRenderer.projitems*{ee121d2e-60d5-43d5-8fe4-22e232c72c25}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
