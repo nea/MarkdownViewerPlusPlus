@@ -5,6 +5,7 @@ using Kbg.NppPluginNET;
 using Kbg.NppPluginNET.PluginInfrastructure;
 using System;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 using static Kbg.NppPluginNET.PluginInfrastructure.Win32;
 
 /// <summary>
@@ -50,6 +51,11 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// 
         /// </summary>
         public int commandIdSynchronize = 2;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int commandIdAbout = 4;
 
         /// <summary>
         /// 
@@ -119,6 +125,21 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             PluginBase.SetCommand(this.commandId + 1, "---", null);
             //Synchronized scrolling
             PluginBase.SetCommand(this.commandIdSynchronize, "Synchronize scrolling (Editor -> Viewer)", SynchronizeScrollingCommand, this.configuration.SynchronizeScrolling);
+            //Separator
+            PluginBase.SetCommand(this.commandIdSynchronize + 1, "---", null);
+            //About
+            PluginBase.SetCommand(this.commandIdAbout, "About", AboutCommand);
+        }
+
+        /// <summary>
+        /// Show the AboutDialog as modal to the Notepad++ window
+        /// </summary>
+        private void AboutCommand()
+        {
+            using (AboutDialog about = new AboutDialog())
+            {
+                about.ShowDialog(Control.FromHandle(PluginBase.GetCurrentScintilla()));
+            }
         }
 
         /// <summary>
