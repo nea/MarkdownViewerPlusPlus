@@ -19,7 +19,7 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 
 ## Latest Versions
 * 0.4.2
-  * Fixed missing th last character from the editor text (thanks to dail8859)
+  * Fixed missing the last character from the editor text (thanks to dail8859)
 * 0.4.1
   * Fixed an issue of double header/footer in the HTML export
 * 0.4.0
