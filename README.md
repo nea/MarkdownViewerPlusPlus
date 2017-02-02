@@ -18,13 +18,13 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 * BugFixes ^^'
 
 ## Latest Versions
+* 0.4.2
+  * Fixed missing th last character from the editor text (thanks to dail8859)
 * 0.4.1
   * Fixed an issue of double header/footer in the HTML export
 * 0.4.0
   * Changed to NuGet dependencies merged via ILMerge
   * Added support for rendering SVG images
-* 0.3.1
-  * Added an "About" dialog
   
 Download the latest [release here][9]. For a full version history go [here][10].
 
