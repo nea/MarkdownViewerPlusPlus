@@ -1,9 +1,7 @@
-﻿using Kbg.NppPluginNET.PluginInfrastructure;
-using PdfSharp;
+﻿using PdfSharp;
 using PdfSharp.Pdf;
 using System;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 using TheArtOfDev.HtmlRenderer.PdfSharp;
 
@@ -45,10 +43,11 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="html"></param>
-        public override void Render(string html)
+        /// <param name="text"></param>
+        public override void Render(string text)
         {
-            this.markdownViewerHtmlPanel.Text = BuildHtml(html);            
+            base.Render(text);
+            this.markdownViewerHtmlPanel.Text = BuildHtml(text);            
         }
 
         /// <summary>
@@ -64,25 +63,14 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
-        public override string GetText()
-        {
-            return this.markdownViewerHtmlPanel.Text;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected override void exportAsHTMLMenuItem_Click(object sender, EventArgs e)
         {
             //The current file name
-            StringBuilder fileName = new StringBuilder(Win32.MAX_PATH);
-            Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_GETFILENAME, 0, fileName);
+            string fileName = this.markdownViewer.Notepad.GetCurrentFileName();
             //The current path
-            StringBuilder path = new StringBuilder(Win32.MAX_PATH);
-            Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_GETCURRENTDIRECTORY, 0, path);
+            string path = this.markdownViewer.Notepad.GetCurrentDirectory();
 
             //Save!
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -109,23 +97,21 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         protected override void exportAsPDFMenuItem_Click(object sender, EventArgs e)
         {
             //The current file name
-            StringBuilder filename = new StringBuilder(Win32.MAX_PATH);
-            Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_GETFILENAME, 0, filename);
+            string fileName = this.markdownViewer.Notepad.GetCurrentFileName();
             //The current path
-            StringBuilder path = new StringBuilder(Win32.MAX_PATH);
-            Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_GETCURRENTDIRECTORY, 0, path);
+            string path = this.markdownViewer.Notepad.GetCurrentDirectory();
 
             //Save!
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             //Default name of the file is the editor file name
-            saveFileDialog.FileName = filename.ToString() + ".pdf";
+            saveFileDialog.FileName = fileName.ToString() + ".pdf";
             saveFileDialog.InitialDirectory = path.ToString();
             //
             saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
             //
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                PdfDocument pdf = PdfGenerator.GeneratePdf(BuildHtml(GetText(), filename.ToString()), PageSize.A4);
+                PdfDocument pdf = PdfGenerator.GeneratePdf(BuildHtml(GetText(), fileName.ToString()), PageSize.A4);
                 pdf.Save(saveFileDialog.FileName);
             }
         }

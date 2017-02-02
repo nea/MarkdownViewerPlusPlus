@@ -1,17 +1,26 @@
 ﻿// NPP plugin platform for .Net v0.93.87 by Kasper B. Graversen etc.
-using System;
-using System.Text;
 using NppPluginNET.PluginInfrastructure;
+using System.Text;
 
 namespace Kbg.NppPluginNET.PluginInfrastructure
 {
-	public interface INotepadPPGateway
+    public interface INotepadPPGateway
 	{
 		void FileNew();
 
 		string GetCurrentFilePath();
 		unsafe string GetFilePath(int bufferId);
 		void SetCurrentLanguage(LangType language);
+        /// <summary>
+        /// Returns the response from NPPM_GETFILENAME 
+        /// </summary>
+        /// <returns></returns>
+        string GetCurrentFileName();
+        /// <summary>
+        /// Returns the response from NPPM_GETCURRENTDIRECTORY 
+        /// </summary>
+        /// <returns></returns>
+        string GetCurrentDirectory();
 	}
 
 	/// <summary>
@@ -27,10 +36,32 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
 			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint) NppMsg.NPPM_MENUCOMMAND, Unused, NppMenuCmd.IDM_FILE_NEW);
 		}
 
-		/// <summary>
-		/// Gets the path of the current document.
-		/// </summary>
-		public string GetCurrentFilePath()
+        /// <summary>
+        /// Returns the response from NPPM_GETCURRENTDIRECTORY 
+        /// </summary>
+        /// <returns></returns>
+        public string GetCurrentDirectory()
+        {
+            StringBuilder path = new StringBuilder(Win32.MAX_PATH);
+            Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_GETCURRENTDIRECTORY, 0, path);
+            return path.ToString();
+        }
+
+        /// <summary>
+        /// Returns the response from NPPM_GETFILENAME
+        /// </summary>
+        /// <returns></returns>
+        public string GetCurrentFileName()
+        {
+            StringBuilder fileName = new StringBuilder(Win32.MAX_PATH);
+            Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_GETFILENAME, 0, fileName);
+            return fileName.ToString();
+        }
+
+        /// <summary>
+        /// Gets the path of the current document.
+        /// </summary>
+        public string GetCurrentFilePath()
 		{
 			var path = new StringBuilder(2000);
 			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint) NppMsg.NPPM_GETFULLCURRENTPATH, 0, path);

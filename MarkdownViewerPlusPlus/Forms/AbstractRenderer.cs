@@ -38,6 +38,11 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <summary>
         /// 
         /// </summary>
+        protected string originalText;
+        
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="markdownViewer"></param>
         public AbstractRenderer(MarkdownViewer markdownViewer)
         {
@@ -105,8 +110,11 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="html"></param>
-        public abstract void Render(string html);
+        /// <param name="text"></param>
+        public virtual void Render(string text)
+        {
+            SetText(text);
+        }
 
         /// <summary>
         /// 
@@ -133,10 +141,23 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         }
 
         /// <summary>
-        /// 
-        /// </summary>>
+        /// Return the originally rendered text
+        /// </summary>
         /// <returns></returns>
-        public abstract string GetText();
+        public string GetText()
+        {
+            return this.originalText;
+        }
+
+        /// <summary>
+        /// Set the originally to be rendered text
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public void SetText(string text)
+        {
+            this.originalText = text;
+        }
 
         /// <summary>
         /// Scroll the rendered panel vertically based on the given ration

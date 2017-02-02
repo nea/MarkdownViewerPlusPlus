@@ -46,19 +46,11 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="html"></param>
-        public override void Render(string html)
+        /// <param name="text"></param>
+        public override void Render(string text)
         {
-            this.markdownViewerWebBrowser.DocumentText = BuildHtml(html);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public override string GetText()
-        {
-            return this.markdownViewerWebBrowser.DocumentText;
+            base.Render(text);
+            this.markdownViewerWebBrowser.DocumentText = BuildHtml(text);
         }
     }
 }

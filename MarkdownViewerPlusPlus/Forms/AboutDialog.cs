@@ -2,10 +2,19 @@
 using System.Reflection;
 using System.Windows.Forms;
 
+/// <summary>
+/// 
+/// </summary>
 namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
 {
+    /// <summary>
+    /// About Dialog for this plugin with basic information and link to the website.
+    /// </summary>
     public partial class AboutDialog : Form
     {
+        /// <summary>
+        /// Init the about dialog text from the Assembly Information
+        /// </summary>
         public AboutDialog()
         {
             InitializeComponent();
@@ -30,7 +39,7 @@ Many thanks to:
   FontAwesome
   dcurtis
 
-For more information, visit the website or checkout the included README.md
+For more information, visit the website or check the included README.md
             ";
         }
 
@@ -45,7 +54,7 @@ For more information, visit the website or checkout the included README.md
         }
 
         /// <summary>
-        /// 
+        /// Visit GitHub
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
