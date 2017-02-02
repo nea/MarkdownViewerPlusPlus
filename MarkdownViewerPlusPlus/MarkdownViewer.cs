@@ -40,7 +40,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// <summary>
         /// 
         /// </summary>
-        protected string oldEditorText = "";
+        protected bool needsRendered = false;
 
         /// <summary>
         /// 
@@ -85,20 +85,32 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             //Listen to any UI update to get informed about all file changes, chars added/removed etc.
             if (this.renderer.Visible)
             {
-                //TODO: Limit to certain events
                 if (notification.Header.Code == (uint)SciMsg.SCN_UPDATEUI)
                 {
-                    UpdateMarkdownViewer();
+                    if (needsRendered)
+                    {
+                        needsRendered = false;
+                        UpdateMarkdownViewer();
+                    }
+
                     //Update the scroll bar of the Viewer Panel only in case of vertical scrolls
                     if (this.configuration.SynchronizeScrolling && notification.Updated == (uint)SciMsg.SC_UPDATE_V_SCROLL)
                     {
                         UpdateScrollBar();
                     }
                 }
-                //else if (notification.Header.Code == (uint)SciMsg.SCN_MODIFIED)
-                //{
-                //    UpdateMarkdownViewer();
-                //}
+                else if (notification.Header.Code == (uint)SciMsg.SCN_MODIFIED)
+                {
+                    bool isInsert = (notification.ModificationType & (uint)SciMsg.SC_MOD_INSERTTEXT) != 0;
+                    bool isDelete = (notification.ModificationType & (uint)SciMsg.SC_MOD_DELETETEXT) != 0;
+
+                    //Track if any text modifications have been made
+                    needsRendered = needsRendered || isInsert || isDelete;
+                }
+                else if (notification.Header.Code == (uint)NppMsg.NPPN_BUFFERACTIVATED)
+                {
+                    needsRendered = true;
+                }
             }
         }
 
@@ -206,11 +218,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             try
             {
                 string editorText = this.Editor.GetText(this.Editor.GetLength() + 1);
-                if (editorText != this.oldEditorText)
-                {
-                    this.oldEditorText = editorText;
-                    this.renderer.Render(CommonMarkConverter.Convert(editorText));
-                }
+                this.renderer.Render(CommonMarkConverter.Convert(editorText));
             }
             catch
             {
