@@ -205,7 +205,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         {
             try
             {
-                string editorText = this.Editor.GetText(this.Editor.GetLength());
+                string editorText = this.Editor.GetText(this.Editor.GetLength() + 1);
                 if (editorText != this.oldEditorText)
                 {
                     this.oldEditorText = editorText;
