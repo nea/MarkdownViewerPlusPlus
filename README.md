@@ -18,13 +18,13 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 * BugFixes ^^'
 
 ## Latest Versions
+* 0.4.3
+  * Optimized viewer refresh calls in connection with Notepad++/Scintilla notifications (thanks to dail8859)
+  * Changed the dependencies of [PDFSharp][5] and [HTMLRenderer][6] to pre-releases for better page-break support in PDF files
 * 0.4.2
   * Fixed missing the last character from the editor text (thanks to dail8859)
 * 0.4.1
   * Fixed an issue of double header/footer in the HTML export
-* 0.4.0
-  * Changed to NuGet dependencies merged via ILMerge
-  * Added support for rendering SVG images
   
 Download the latest [release here][9]. For a full version history go [here][10].
 
