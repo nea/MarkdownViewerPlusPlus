@@ -184,7 +184,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         <meta name='author' content='{this.assemblyTitle}'>
         <title>{title}</title>
         <style type='text/css'> 
-            td, h1, h2, h3, h4, h5, p {{
+            td, h1, h2, h3, h4, h5, p, ul, ol, li {{
                 page-break-inside: avoid; 
             }} 
         </style>
