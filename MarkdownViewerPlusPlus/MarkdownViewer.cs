@@ -40,7 +40,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// <summary>
         /// 
         /// </summary>
-        protected bool needsRendered = false;
+        protected bool updateRenderer = true;
 
         /// <summary>
         /// 
@@ -87,11 +87,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             {
                 if (notification.Header.Code == (uint)SciMsg.SCN_UPDATEUI)
                 {
-                    if (needsRendered)
-                    {
-                        needsRendered = false;
-                        UpdateMarkdownViewer();
-                    }
+                    UpdateMarkdownViewer();
 
                     //Update the scroll bar of the Viewer Panel only in case of vertical scrolls
                     if (this.configuration.SynchronizeScrolling && notification.Updated == (uint)SciMsg.SC_UPDATE_V_SCROLL)
@@ -99,17 +95,22 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                         UpdateScrollBar();
                     }
                 }
-                else if (notification.Header.Code == (uint)SciMsg.SCN_MODIFIED)
+            }
+
+            //If the renderer is visible or not but shouldn't be updated -> Check that nothing "interesting" happened
+            if (!this.updateRenderer)
+            {
+                if (notification.Header.Code == (uint)SciMsg.SCN_MODIFIED)
                 {
                     bool isInsert = (notification.ModificationType & (uint)SciMsg.SC_MOD_INSERTTEXT) != 0;
                     bool isDelete = (notification.ModificationType & (uint)SciMsg.SC_MOD_DELETETEXT) != 0;
 
                     //Track if any text modifications have been made
-                    needsRendered = needsRendered || isInsert || isDelete;
+                    this.updateRenderer = this.updateRenderer || isInsert || isDelete;
                 }
                 else if (notification.Header.Code == (uint)NppMsg.NPPN_BUFFERACTIVATED)
                 {
-                    needsRendered = true;
+                    this.updateRenderer = true;
                 }
             }
         }
@@ -161,7 +162,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         {
             this.configuration.SynchronizeScrolling = !this.configuration.SynchronizeScrolling;
             Win32.CheckMenuItem(Win32.GetMenu(PluginBase.nppData._nppHandle), PluginBase._funcItems.Items[this.commandIdSynchronize]._cmdID, Win32.MF_BYCOMMAND | (this.configuration.SynchronizeScrolling ? Win32.MF_CHECKED : Win32.MF_UNCHECKED));
-            if(this.configuration.SynchronizeScrolling)
+            if (this.configuration.SynchronizeScrolling)
             {
                 UpdateScrollBar();
             }
@@ -217,8 +218,12 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         {
             try
             {
-                string editorText = this.Editor.GetText(this.Editor.GetLength() + 1);
-                this.renderer.Render(CommonMarkConverter.Convert(editorText));
+                if (this.updateRenderer)
+                {
+                    this.updateRenderer = false;
+                    string editorText = this.Editor.GetText(this.Editor.GetLength() + 1);
+                    this.renderer.Render(CommonMarkConverter.Convert(editorText));
+                }
             }
             catch
             {
