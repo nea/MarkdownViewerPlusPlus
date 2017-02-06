@@ -15,6 +15,25 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// <summary>
         /// 
         /// </summary>
+        public struct MarkdownViewerOptions
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            public bool synchronizeScrolling;
+            /// <summary>
+            /// 
+            /// </summary>
+            public string fileExtensions;
+            /// <summary>
+            /// 
+            /// </summary>
+            public bool inclNewFiles;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         protected string iniFilePath = null;
 
         /// <summary>
@@ -25,13 +44,8 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// <summary>
         /// 
         /// </summary>
-        protected string synchronizeScrollingKey = "synchronizeScrolling";
+        public MarkdownViewerOptions Options;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool SynchronizeScrolling { get; set; }
-        
         /// <summary>
         /// 
         /// </summary>
@@ -67,7 +81,24 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// </summary>
         public void Load()
         {
-            SynchronizeScrolling = (Win32.GetPrivateProfileInt(this.assemblyName, this.synchronizeScrollingKey, 0, iniFilePath) != 0);
+            //Grab ini file settings based on struct members
+            this.Options = new MarkdownViewerOptions();
+            //Unbox/Box magic to set structs
+            object options = this.Options;
+            foreach (FieldInfo field in this.Options.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public))
+            {
+                if(field.FieldType == typeof(bool))
+                {
+                    field.SetValue(options, (Win32.GetPrivateProfileInt(this.assemblyName, field.Name, 0, iniFilePath) != 0));
+                } else if (field.FieldType == typeof(string))
+                {
+                    StringBuilder sbFieldValue = new StringBuilder(2048);
+                    Win32.GetPrivateProfileString(this.assemblyName, field.Name, "", sbFieldValue, 2048, iniFilePath);
+                    field.SetValue(options, sbFieldValue.ToString());
+                }                
+            }
+            //Unbox/Box magic to set structs
+            this.Options = (MarkdownViewerOptions)options;
         }
 
         /// <summary>
@@ -75,7 +106,20 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// </summary>
         public void Save()
         {
-            Win32.WritePrivateProfileString(this.assemblyName, this.synchronizeScrollingKey, SynchronizeScrolling ? "1" : "0", iniFilePath);
+            //Save ini file settings based on struct members
+            foreach (FieldInfo field in this.Options.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public))
+            {
+                var value = field.GetValue(this.Options);
+                value = value != null ? value : "";
+                if (field.FieldType == typeof(bool))
+                {
+                    Win32.WritePrivateProfileString(this.assemblyName, field.Name, ((bool)value) ? "1" : "0", iniFilePath);
+                }
+                else if (field.FieldType == typeof(string))
+                {
+                    Win32.WritePrivateProfileString(this.assemblyName, field.Name, value.ToString(), iniFilePath);
+                }
+            }
         }
     }
 }

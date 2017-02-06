@@ -55,7 +55,12 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// <summary>
         /// 
         /// </summary>
-        public int commandIdAbout = 4;
+        public int commandIdOptions = 4;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int commandIdAbout = 5;
 
         /// <summary>
         /// 
@@ -90,7 +95,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                     UpdateMarkdownViewer();
 
                     //Update the scroll bar of the Viewer Panel only in case of vertical scrolls
-                    if (this.configuration.SynchronizeScrolling && (notification.Updated & (uint)SciMsg.SC_UPDATE_V_SCROLL) != 0)
+                    if (this.configuration.Options.synchronizeScrolling && (notification.Updated & (uint)SciMsg.SC_UPDATE_V_SCROLL) != 0)
                     {
                         UpdateScrollBar();
                     }
@@ -137,11 +142,24 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             //Separator
             PluginBase.SetCommand(this.commandId + 1, "---", null);
             //Synchronized scrolling
-            PluginBase.SetCommand(this.commandIdSynchronize, "Synchronize scrolling (Editor -> Viewer)", SynchronizeScrollingCommand, this.configuration.SynchronizeScrolling);
+            PluginBase.SetCommand(this.commandIdSynchronize, "Synchronize scrolling (Editor -> Viewer)", SynchronizeScrollingCommand, this.configuration.Options.synchronizeScrolling);
             //Separator
             PluginBase.SetCommand(this.commandIdSynchronize + 1, "---", null);
+            //Options
+            PluginBase.SetCommand(this.commandIdOptions, "Options", OptionsCommand);
             //About
             PluginBase.SetCommand(this.commandIdAbout, "About", AboutCommand);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void OptionsCommand()
+        {
+            using (MarkdownViewerOptions options = new MarkdownViewerOptions(this.configuration))
+            {
+                options.ShowDialog(Control.FromHandle(PluginBase.GetCurrentScintilla()));
+            }
         }
 
         /// <summary>
@@ -160,9 +178,9 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// </summary>
         protected void SynchronizeScrollingCommand()
         {
-            this.configuration.SynchronizeScrolling = !this.configuration.SynchronizeScrolling;
-            Win32.CheckMenuItem(Win32.GetMenu(PluginBase.nppData._nppHandle), PluginBase._funcItems.Items[this.commandIdSynchronize]._cmdID, Win32.MF_BYCOMMAND | (this.configuration.SynchronizeScrolling ? Win32.MF_CHECKED : Win32.MF_UNCHECKED));
-            if (this.configuration.SynchronizeScrolling)
+            this.configuration.Options.synchronizeScrolling = !this.configuration.Options.synchronizeScrolling;
+            Win32.CheckMenuItem(Win32.GetMenu(PluginBase.nppData._nppHandle), PluginBase._funcItems.Items[this.commandIdSynchronize]._cmdID, Win32.MF_BYCOMMAND | (this.configuration.Options.synchronizeScrolling ? Win32.MF_CHECKED : Win32.MF_UNCHECKED));
+            if (this.configuration.Options.synchronizeScrolling)
             {
                 UpdateScrollBar();
             }
@@ -227,7 +245,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             }
             catch
             {
-                this.renderer.Render("Couldn't render the currently selected file!");
+                this.renderer.Render("<p>Couldn't render the currently selected file!</p>");
             }
         }
 
