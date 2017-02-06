@@ -90,7 +90,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                     UpdateMarkdownViewer();
 
                     //Update the scroll bar of the Viewer Panel only in case of vertical scrolls
-                    if (this.configuration.SynchronizeScrolling && notification.Updated == (uint)SciMsg.SC_UPDATE_V_SCROLL)
+                    if (this.configuration.SynchronizeScrolling && (notification.Updated & (uint)SciMsg.SC_UPDATE_V_SCROLL) != 0)
                     {
                         UpdateScrollBar();
                     }
