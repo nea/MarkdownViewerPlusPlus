@@ -17,14 +17,6 @@
             {
                 components.Dispose();
             }
-
-            //
-            if(this.optionsGeneral != null)
-            {
-                this.optionsGeneral.Dispose();
-                this.optionsGeneral = null;
-            }
-
             //
             base.Dispose(disposing);
         }
@@ -40,6 +32,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("General");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("HTML", 1, 1);
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("PDF", 2, 2);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MarkdownViewerOptions));
             this.btnOptionsSave = new System.Windows.Forms.Button();
             this.btnOptionsCancel = new System.Windows.Forms.Button();
@@ -54,7 +47,7 @@
             // btnOptionsSave
             // 
             this.btnOptionsSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOptionsSave.Location = new System.Drawing.Point(455, 306);
+            this.btnOptionsSave.Location = new System.Drawing.Point(455, 312);
             this.btnOptionsSave.Name = "btnOptionsSave";
             this.btnOptionsSave.Size = new System.Drawing.Size(75, 23);
             this.btnOptionsSave.TabIndex = 0;
@@ -66,7 +59,8 @@
             // 
             this.btnOptionsCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOptionsCancel.CausesValidation = false;
-            this.btnOptionsCancel.Location = new System.Drawing.Point(374, 306);
+            this.btnOptionsCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnOptionsCancel.Location = new System.Drawing.Point(374, 312);
             this.btnOptionsCancel.Name = "btnOptionsCancel";
             this.btnOptionsCancel.Size = new System.Drawing.Size(75, 23);
             this.btnOptionsCancel.TabIndex = 1;
@@ -80,20 +74,19 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitOptions.Location = new System.Drawing.Point(0, 0);
+            this.splitOptions.Margin = new System.Windows.Forms.Padding(10);
             this.splitOptions.Name = "splitOptions";
             // 
             // splitOptions.Panel1
             // 
             this.splitOptions.Panel1.Controls.Add(this.treeOptions);
-            this.splitOptions.Size = new System.Drawing.Size(530, 300);
+            this.splitOptions.Size = new System.Drawing.Size(530, 306);
             this.splitOptions.SplitterDistance = 135;
             this.splitOptions.TabIndex = 2;
             // 
             // treeOptions
             // 
-            this.treeOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.treeOptions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeOptions.FullRowSelect = true;
             this.treeOptions.HideSelection = false;
             this.treeOptions.ImageIndex = 0;
@@ -102,18 +95,24 @@
             this.treeOptions.Name = "treeOptions";
             treeNode1.Checked = true;
             treeNode1.Name = "nodeGeneral";
-            treeNode1.Tag = "optionsGeneral";
+            treeNode1.Tag = "OptionsPanelGeneral";
             treeNode1.Text = "General";
             treeNode2.ImageIndex = 1;
             treeNode2.Name = "nodeHTML";
             treeNode2.SelectedImageIndex = 1;
-            treeNode2.Tag = "optionsHTML";
+            treeNode2.Tag = "OptionsPanelHTML";
             treeNode2.Text = "HTML";
+            treeNode3.ImageIndex = 2;
+            treeNode3.Name = "nodePDF";
+            treeNode3.SelectedImageIndex = 2;
+            treeNode3.Tag = "OptionsPanelPDF";
+            treeNode3.Text = "PDF";
             this.treeOptions.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
-            treeNode2});
+            treeNode2,
+            treeNode3});
             this.treeOptions.SelectedImageIndex = 0;
-            this.treeOptions.Size = new System.Drawing.Size(135, 300);
+            this.treeOptions.Size = new System.Drawing.Size(135, 306);
             this.treeOptions.TabIndex = 0;
             // 
             // imgOptions
@@ -122,11 +121,13 @@
             this.imgOptions.TransparentColor = System.Drawing.Color.Transparent;
             this.imgOptions.Images.SetKeyName(0, "markdown-16x16-solid.png");
             this.imgOptions.Images.SetKeyName(1, "fa-html5-16x16.png");
+            this.imgOptions.Images.SetKeyName(2, "fa-file-pdf-o-16x16.png");
             // 
             // MarkdownViewerOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnOptionsCancel;
             this.ClientSize = new System.Drawing.Size(534, 341);
             this.Controls.Add(this.splitOptions);
             this.Controls.Add(this.btnOptionsCancel);

@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
+using static com.insanitydesign.MarkdownViewerPlusPlus.MarkdownViewerConfiguration;
 
 /// <summary>
 /// 
@@ -13,42 +15,39 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <summary>
         /// 
         /// </summary>
-        protected MarkdownViewerConfiguration.MarkdownViewerOptions options;
-
-        /// <summary>
-        /// Empty constructor for Designer compatibility
-        /// </summary>
-        private AbstractOptionsPanel()
+        public AbstractOptionsPanel()
         {
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public AbstractOptionsPanel(MarkdownViewerConfiguration.MarkdownViewerOptions options)
-        {
-            //
-            this.options = options;
             //
             this.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Dock = DockStyle.Fill;
             //
             InitializeComponent();
-            //
-            LoadOptions();
         }
 
-        public virtual void LoadOptions()
-        {            
-        }
-
-        public virtual void SaveOptions()
+        /// <summary>
+        /// Load all options from the local Options instance
+        /// onto the panel.
+        /// </summary>
+        public virtual void LoadOptions(Options options)
         {
+            throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Save the made selections/entries of the panel
+        /// in the local Options instance.
+        /// </summary>
+        public virtual void SaveOptions(ref Options options)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual void InitializeComponent()
         {
-
+            throw new NotImplementedException();
         }
     }
 }

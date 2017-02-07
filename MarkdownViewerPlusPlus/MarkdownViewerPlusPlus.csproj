@@ -110,17 +110,23 @@
     <Compile Include="Forms\MarkdownViewerRenderer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\OptionsGeneral.cs">
+    <Compile Include="Forms\OptionsPanelGeneral.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\OptionsGeneral.Designer.cs">
-      <DependentUpon>OptionsGeneral.cs</DependentUpon>
+    <Compile Include="Forms\OptionsPanelGeneral.Designer.cs">
+      <DependentUpon>OptionsPanelGeneral.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\OptionsHTML.cs">
+    <Compile Include="Forms\OptionsPanelHTML.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\OptionsHTML.Designer.cs">
-      <DependentUpon>OptionsHTML.cs</DependentUpon>
+    <Compile Include="Forms\OptionsPanelHTML.Designer.cs">
+      <DependentUpon>OptionsPanelHTML.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionsPanelPDF.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionsPanelPDF.Designer.cs">
+      <DependentUpon>OptionsPanelPDF.cs</DependentUpon>
     </Compile>
     <Compile Include="MarkdownViewer.cs" />
     <Compile Include="MarkdownViewerConfiguration.cs" />
@@ -157,11 +163,14 @@
     <EmbeddedResource Include="Forms\MarkdownViewerOptions.resx">
       <DependentUpon>MarkdownViewerOptions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\OptionsGeneral.resx">
-      <DependentUpon>OptionsGeneral.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\OptionsPanelGeneral.resx">
+      <DependentUpon>OptionsPanelGeneral.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\OptionsHTML.resx">
-      <DependentUpon>OptionsHTML.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\OptionsPanelHTML.resx">
+      <DependentUpon>OptionsPanelHTML.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionsPanelPDF.resx">
+      <DependentUpon>OptionsPanelPDF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

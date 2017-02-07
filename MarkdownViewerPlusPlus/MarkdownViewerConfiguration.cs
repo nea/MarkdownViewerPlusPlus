@@ -1,4 +1,5 @@
 ﻿using Kbg.NppPluginNET.PluginInfrastructure;
+using PdfSharp;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -15,7 +16,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// <summary>
         /// 
         /// </summary>
-        public struct MarkdownViewerOptions
+        public struct Options
         {
             /// <summary>
             /// 
@@ -29,6 +30,14 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             /// 
             /// </summary>
             public bool inclNewFiles;
+            /// <summary>
+            /// 
+            /// </summary>
+            public string htmlCssStyle;
+            /// <summary>
+            /// 
+            /// </summary>
+            public PageOrientation pdfOrientation;
         }
 
         /// <summary>
@@ -44,7 +53,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// <summary>
         /// 
         /// </summary>
-        public MarkdownViewerOptions Options;
+        public Options options;
 
         /// <summary>
         /// 
@@ -82,10 +91,10 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         public void Load()
         {
             //Grab ini file settings based on struct members
-            this.Options = new MarkdownViewerOptions();
+            this.options = new Options();
             //Unbox/Box magic to set structs
-            object options = this.Options;
-            foreach (FieldInfo field in this.Options.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public))
+            object options = this.options;
+            foreach (FieldInfo field in this.options.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public))
             {
                 if(field.FieldType == typeof(bool))
                 {
@@ -98,7 +107,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                 }                
             }
             //Unbox/Box magic to set structs
-            this.Options = (MarkdownViewerOptions)options;
+            this.options = (Options)options;
         }
 
         /// <summary>
@@ -107,9 +116,9 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         public void Save()
         {
             //Save ini file settings based on struct members
-            foreach (FieldInfo field in this.Options.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public))
+            foreach (FieldInfo field in this.options.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public))
             {
-                var value = field.GetValue(this.Options);
+                var value = field.GetValue(this.options);
                 value = value != null ? value : "";
                 if (field.FieldType == typeof(bool))
                 {

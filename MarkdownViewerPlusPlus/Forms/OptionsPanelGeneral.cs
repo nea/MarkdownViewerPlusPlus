@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Windows;
+using static com.insanitydesign.MarkdownViewerPlusPlus.MarkdownViewerConfiguration;
 
 /// <summary>
 /// 
@@ -11,7 +12,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
     /// <summary>
     /// 
     /// </summary>
-    public partial class OptionsGeneral : AbstractOptionsPanel
+    public partial class OptionsPanelGeneral : AbstractOptionsPanel
     {
         /// <summary>
         /// 
@@ -26,7 +27,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <summary>
         /// 
         /// </summary>
-        public OptionsGeneral(MarkdownViewerConfiguration.MarkdownViewerOptions options) : base(options)
+        public OptionsPanelGeneral()
         {
             //
             this.txtFileExtensions.Enter += txtFileExtensions_Enter;
@@ -76,14 +77,19 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <summary>
         /// 
         /// </summary>
-        public override void SaveOptions()
+        public override void SaveOptions(ref Options options)
         {
-
+            options.inclNewFiles = this.chkBoxNewFiles.Checked;
+            options.fileExtensions = this.txtFileExtensions.Text;
         }
 
-        public override void LoadOptions()
+        /// <summary>
+        /// 
+        /// </summary>
+        public override void LoadOptions(Options options)
         {
-
+            this.chkBoxNewFiles.Checked = options.inclNewFiles;
+            this.txtFileExtensions.Text = options.fileExtensions;
         }
     }
 }

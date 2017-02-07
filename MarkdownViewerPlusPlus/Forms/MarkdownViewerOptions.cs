@@ -1,5 +1,8 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
+using static com.insanitydesign.MarkdownViewerPlusPlus.MarkdownViewerConfiguration;
 
 /// <summary>
 /// 
@@ -14,33 +17,61 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <summary>
         /// 
         /// </summary>
-        protected AbstractOptionsPanel optionsGeneral;
-        /// <summary>
-        /// 
-        /// </summary>
-        protected AbstractOptionsPanel optionsHTML;
-
-        /// <summary>
-        /// 
-        /// </summary>
         protected MarkdownViewerConfiguration configuration;
 
         /// <summary>
         /// 
         /// </summary>
-        public MarkdownViewerOptions(MarkdownViewerConfiguration configuration)
+        protected Dictionary<string, AbstractOptionsPanel> optionPanels = new Dictionary<string, AbstractOptionsPanel>();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="options"></param>
+        protected delegate void SaveHandler(ref Options options);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected SaveHandler SaveEvent;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="options"></param>
+        protected delegate void LoadHandler(Options options);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected LoadHandler LoadEvent;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public MarkdownViewerOptions(ref MarkdownViewerConfiguration configuration)
         {
             //
             this.configuration = configuration;
-            this.optionsGeneral = new OptionsGeneral(this.configuration.Options);
-            this.optionsHTML = new OptionsHTML(this.configuration.Options);
             //
             InitializeComponent();
+            //Iterate over all menu items and register their classes            
+            string thisNamespace = typeof(MarkdownViewerOptions).Namespace;
+            foreach (TreeNode node in this.treeOptions.Nodes)
+            {
+                AbstractOptionsPanel optionsPanel = (AbstractOptionsPanel)Activator.CreateInstance(Type.GetType(thisNamespace + "." + node.Tag.ToString()));
+                this.SaveEvent += optionsPanel.SaveOptions;
+                this.LoadEvent += optionsPanel.LoadOptions;
+                //Add to map to store for changes
+                this.optionPanels.Add(node.Tag.ToString(), optionsPanel);
+            }
             //
             this.treeOptions.NodeMouseClick += treeOptions_NodeMouseClick;
             //Start with the general options panel
-            this.splitOptions.Panel2.Controls.Add(this.optionsGeneral);
+            this.splitOptions.Panel2.Controls.Add(this.optionPanels.First().Value);
             this.treeOptions.Select();
+            //
+            this.LoadEvent(this.configuration.options);
         }
 
         /// <summary>
@@ -49,16 +80,15 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <param name="sender"></param>
         /// <param name="treeNodeEvent"></param>
         protected void treeOptions_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs treeNodeEvent)
-        {            
+        {
             //Remove old (if any)
-            if(this.splitOptions.Panel2.Controls.Count > 0)
+            if (this.splitOptions.Panel2.Controls.Count > 0)
             {
                 this.splitOptions.Panel2.Controls.RemoveAt(0);
             }
-            //
-            FieldInfo optionsPanel = this.GetType().GetField(treeNodeEvent.Node.Tag.ToString(), BindingFlags.Instance | BindingFlags.NonPublic);
             //Add selected options panel
-            this.splitOptions.Panel2.Controls.Add((UserControl)optionsPanel.GetValue(this));
+            AbstractOptionsPanel optionPanel = this.optionPanels.Where(entry => entry.Key == treeNodeEvent.Node.Tag.ToString()).First().Value;
+            this.splitOptions.Panel2.Controls.Add(optionPanel);
         }
 
         /// <summary>
@@ -78,10 +108,12 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <param name="e"></param>
         private void btnOptionsSave_Click(object sender, System.EventArgs e)
         {
-            //TODO: Set all values
-            this.optionsGeneral.SaveOptions();
-            //
+            //Fire the save event for all listeners
+            this.SaveEvent(ref this.configuration.options);
+            //Save to init
             this.configuration.Save();
+            //Close the options dialog when all has been done
+            this.Close();
         }
     }
 }

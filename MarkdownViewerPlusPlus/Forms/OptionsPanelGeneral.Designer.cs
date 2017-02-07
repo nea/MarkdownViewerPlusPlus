@@ -1,6 +1,6 @@
 ﻿namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
 {
-    partial class OptionsGeneral
+    partial class OptionsPanelGeneral
     {
         /// <summary> 
         /// Required designer variable.
@@ -66,15 +66,14 @@
             // 
             // grpBoxFiles
             // 
-            this.grpBoxFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBoxFiles.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.grpBoxFiles.Controls.Add(this.lblFileExtensions);
             this.grpBoxFiles.Controls.Add(this.chkBoxNewFiles);
             this.grpBoxFiles.Controls.Add(this.txtFileExtensions);
-            this.grpBoxFiles.Location = new System.Drawing.Point(3, 3);
+            this.grpBoxFiles.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grpBoxFiles.Location = new System.Drawing.Point(0, 0);
             this.grpBoxFiles.Name = "grpBoxFiles";
-            this.grpBoxFiles.Size = new System.Drawing.Size(1249, 86);
+            this.grpBoxFiles.Size = new System.Drawing.Size(1255, 86);
             this.grpBoxFiles.TabIndex = 3;
             this.grpBoxFiles.TabStop = false;
             this.grpBoxFiles.Text = "Files";
@@ -85,16 +84,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFileExtensions.Location = new System.Drawing.Point(9, 36);
             this.txtFileExtensions.Name = "txtFileExtensions";
-            this.txtFileExtensions.Size = new System.Drawing.Size(1234, 20);
+            this.txtFileExtensions.Size = new System.Drawing.Size(1240, 20);
             this.txtFileExtensions.TabIndex = 1;
             // 
-            // OptionsGeneral
+            // OptionsPanelGeneral
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.grpBoxFiles);
-            this.Name = "OptionsGeneral";
+            this.Name = "OptionsPanelGeneral";
             this.Size = new System.Drawing.Size(1255, 626);
             this.grpBoxFiles.ResumeLayout(false);
             this.grpBoxFiles.PerformLayout();

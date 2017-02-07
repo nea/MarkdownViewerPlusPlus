@@ -111,7 +111,12 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             //
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                PdfDocument pdf = PdfGenerator.GeneratePdf(BuildHtml(GetText(), fileName.ToString()), PageSize.A4);
+                //Build a config based on made settings
+                PdfGenerateConfig pdfConfig = new PdfGenerateConfig();
+                pdfConfig.PageOrientation = PageOrientation.Landscape;
+                pdfConfig.PageSize = PageSize.A4;
+                //Generate PDF and save
+                PdfDocument pdf = PdfGenerator.GeneratePdf(BuildHtml(GetText(), fileName.ToString()), pdfConfig);
                 pdf.Save(saveFileDialog.FileName);
             }
         }

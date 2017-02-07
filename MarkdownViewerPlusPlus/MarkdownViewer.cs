@@ -95,7 +95,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                     UpdateMarkdownViewer();
 
                     //Update the scroll bar of the Viewer Panel only in case of vertical scrolls
-                    if (this.configuration.Options.synchronizeScrolling && (notification.Updated & (uint)SciMsg.SC_UPDATE_V_SCROLL) != 0)
+                    if (this.configuration.options.synchronizeScrolling && (notification.Updated & (uint)SciMsg.SC_UPDATE_V_SCROLL) != 0)
                     {
                         UpdateScrollBar();
                     }
@@ -142,7 +142,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             //Separator
             PluginBase.SetCommand(this.commandId + 1, "---", null);
             //Synchronized scrolling
-            PluginBase.SetCommand(this.commandIdSynchronize, "Synchronize scrolling (Editor -> Viewer)", SynchronizeScrollingCommand, this.configuration.Options.synchronizeScrolling);
+            PluginBase.SetCommand(this.commandIdSynchronize, "Synchronize scrolling (Editor -> Viewer)", SynchronizeScrollingCommand, this.configuration.options.synchronizeScrolling);
             //Separator
             PluginBase.SetCommand(this.commandIdSynchronize + 1, "---", null);
             //Options
@@ -156,7 +156,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// </summary>
         private void OptionsCommand()
         {
-            using (MarkdownViewerOptions options = new MarkdownViewerOptions(this.configuration))
+            using (MarkdownViewerOptions options = new MarkdownViewerOptions(ref this.configuration))
             {
                 options.ShowDialog(Control.FromHandle(PluginBase.GetCurrentScintilla()));
             }
@@ -178,9 +178,9 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// </summary>
         protected void SynchronizeScrollingCommand()
         {
-            this.configuration.Options.synchronizeScrolling = !this.configuration.Options.synchronizeScrolling;
-            Win32.CheckMenuItem(Win32.GetMenu(PluginBase.nppData._nppHandle), PluginBase._funcItems.Items[this.commandIdSynchronize]._cmdID, Win32.MF_BYCOMMAND | (this.configuration.Options.synchronizeScrolling ? Win32.MF_CHECKED : Win32.MF_UNCHECKED));
-            if (this.configuration.Options.synchronizeScrolling)
+            this.configuration.options.synchronizeScrolling = !this.configuration.options.synchronizeScrolling;
+            Win32.CheckMenuItem(Win32.GetMenu(PluginBase.nppData._nppHandle), PluginBase._funcItems.Items[this.commandIdSynchronize]._cmdID, Win32.MF_BYCOMMAND | (this.configuration.options.synchronizeScrolling ? Win32.MF_CHECKED : Win32.MF_UNCHECKED));
+            if (this.configuration.options.synchronizeScrolling)
             {
                 UpdateScrollBar();
             }
