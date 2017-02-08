@@ -95,6 +95,12 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                         UpdateScrollBar();
                     }
                 }
+                else if (notification.Header.Code == (uint)NppMsg.NPPN_BUFFERACTIVATED)
+                {
+                    //Update the Editor reference since the "other" one could be active now
+                    this.Editor = new ScintillaGateway(PluginBase.GetCurrentScintilla());
+                    this.updateRenderer = true;
+                }
             }
 
             //If the renderer is visible or not but shouldn't be updated -> Check that nothing "interesting" happened
@@ -107,10 +113,6 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
 
                     //Track if any text modifications have been made
                     this.updateRenderer = this.updateRenderer || isInsert || isDelete;
-                }
-                else if (notification.Header.Code == (uint)NppMsg.NPPN_BUFFERACTIVATED)
-                {
-                    this.updateRenderer = true;
                 }
             }
         }
