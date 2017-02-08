@@ -16,7 +16,7 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
     {
         private const int Unused = 0;
 
-        private readonly IntPtr scintilla;
+        private IntPtr scintilla;
 
         public static readonly int LengthZeroTerminator = "\0".Length;
 
@@ -24,6 +24,36 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
         public ScintillaGateway(IntPtr scintilla)
         {
             this.scintilla = scintilla;
+        }
+
+        /// <summary>
+        /// Switch the handle between main and second window handle.
+        /// </summary>
+        public void SwitchScintillaHandle()
+        {
+            this.scintilla = this.scintilla == PluginBase.nppData._scintillaMainHandle ? PluginBase.nppData._scintillaSecondHandle : PluginBase.nppData._scintillaMainHandle;
+        }
+
+        /// <summary>
+        /// Change the Scintilla window handle for this Gateway
+        /// and return the previous handle for potentially final updates.
+        /// </summary>
+        /// <param name="newHandle"></param>
+        /// <returns></returns>
+        public IntPtr SetScintillaHandle(IntPtr newHandle)
+        {
+            IntPtr oldHandle = this.scintilla;
+            this.scintilla = newHandle;
+            return oldHandle;
+        }
+
+        /// <summary>
+        /// Return the current Scintilla window handle
+        /// </summary>
+        /// <returns></returns>
+        public IntPtr GetScintillaHandle()
+        {
+            return this.scintilla;
         }
 
         public int GetSelectionLength()
