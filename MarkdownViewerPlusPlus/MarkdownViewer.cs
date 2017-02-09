@@ -85,33 +85,43 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             //Listen to any UI update to get informed about all file changes, chars added/removed etc.
             if (this.renderer.Visible)
             {
+                //Check for updates
                 if (notification.Header.Code == (uint)SciMsg.SCN_UPDATEUI)
                 {
-                    UpdateMarkdownViewer();
-
-                    //Update the scroll bar of the Viewer Panel only in case of vertical scrolls
-                    if (this.configuration.SynchronizeScrolling && (notification.Updated & (uint)SciMsg.SC_UPDATE_V_SCROLL) != 0)
-                    {
-                        UpdateScrollBar();
-                    }
+                    //Update the view
+                    Update((notification.Updated & (uint)SciMsg.SC_UPDATE_V_SCROLL) != 0);
                 }
-            }
-
-            //If the renderer is visible or not but shouldn't be updated -> Check that nothing "interesting" happened
-            if (!this.updateRenderer)
-            {
-                if (notification.Header.Code == (uint)SciMsg.SCN_MODIFIED)
+                else if (notification.Header.Code == (uint)NppMsg.NPPN_BUFFERACTIVATED)
+                {
+                    //Update the scintilla handle in all cases to keep track of which instance is active
+                    this.Editor.SetScintillaHandle(PluginBase.GetCurrentScintilla());
+                    this.Editor.CurrentBufferID = notification.Header.IdFrom;
+                    this.updateRenderer = true;
+                    Update(true);
+                }
+                else if (notification.Header.Code == (uint)SciMsg.SCN_MODIFIED && !this.updateRenderer)
                 {
                     bool isInsert = (notification.ModificationType & (uint)SciMsg.SC_MOD_INSERTTEXT) != 0;
                     bool isDelete = (notification.ModificationType & (uint)SciMsg.SC_MOD_DELETETEXT) != 0;
 
                     //Track if any text modifications have been made
-                    this.updateRenderer = this.updateRenderer || isInsert || isDelete;
+                    this.updateRenderer = isInsert || isDelete;
                 }
-                else if (notification.Header.Code == (uint)NppMsg.NPPN_BUFFERACTIVATED)
-                {
-                    this.updateRenderer = true;
-                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="updateScrollBar"></param>
+        protected void Update(bool updateScrollBar = false)
+        {
+            //Update the view
+            UpdateMarkdownViewer();
+            //Update the scroll bar of the Viewer Panel only in case of vertical scrolls
+            if (this.configuration.SynchronizeScrolling && updateScrollBar)
+            {
+                UpdateScrollBar();
             }
         }
 
@@ -189,6 +199,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             //Show
             if (!this.renderer.Visible)
             {
+                this.updateRenderer = true;
                 UpdateMarkdownViewer();
                 UpdateScrollBar();
             }
