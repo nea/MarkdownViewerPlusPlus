@@ -47,7 +47,6 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// </summary>
         protected virtual void InitializeComponent()
         {
-            throw new NotImplementedException();
         }
     }
 }

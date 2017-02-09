@@ -11,6 +11,10 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
     /// </summary>
     public partial class OptionsPanelPDF : AbstractOptionsPanel
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="options"></param>
         public override void LoadOptions(Options options)
         {
             //Load options from enum

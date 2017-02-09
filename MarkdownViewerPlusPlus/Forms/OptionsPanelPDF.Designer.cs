@@ -42,7 +42,7 @@
             this.grpPDFExport.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpPDFExport.Location = new System.Drawing.Point(0, 0);
             this.grpPDFExport.Name = "grpPDFExport";
-            this.grpPDFExport.Size = new System.Drawing.Size(913, 139);
+            this.grpPDFExport.Size = new System.Drawing.Size(1255, 61);
             this.grpPDFExport.TabIndex = 0;
             this.grpPDFExport.TabStop = false;
             this.grpPDFExport.Text = "Export";
@@ -54,7 +54,7 @@
             this.cmbPDFOrientation.FormattingEnabled = true;
             this.cmbPDFOrientation.Location = new System.Drawing.Point(10, 36);
             this.cmbPDFOrientation.Name = "cmbPDFOrientation";
-            this.cmbPDFOrientation.Size = new System.Drawing.Size(121, 21);
+            this.cmbPDFOrientation.Size = new System.Drawing.Size(274, 21);
             this.cmbPDFOrientation.TabIndex = 4;
             // 
             // lblPDFOrientation
@@ -70,9 +70,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.grpPDFExport);
             this.Name = "OptionsPanelPDF";
-            this.Size = new System.Drawing.Size(913, 489);
+            this.Size = new System.Drawing.Size(1255, 709);
             this.grpPDFExport.ResumeLayout(false);
             this.grpPDFExport.PerformLayout();
             this.ResumeLayout(false);

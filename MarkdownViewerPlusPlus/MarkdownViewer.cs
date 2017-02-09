@@ -4,6 +4,7 @@ using CommonMark;
 using Kbg.NppPluginNET;
 using Kbg.NppPluginNET.PluginInfrastructure;
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using static Kbg.NppPluginNET.PluginInfrastructure.Win32;
@@ -41,6 +42,16 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// 
         /// </summary>
         protected bool updateRenderer = true;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected string currentFileName = "";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected string currentFileExtension;
 
         /// <summary>
         /// 
@@ -99,7 +110,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                 else if (notification.Header.Code == (uint)NppMsg.NPPN_BUFFERACTIVATED)
                 {
                     //Update the scintilla handle in all cases to keep track of which instance is active
-                    this.Editor.SetScintillaHandle(PluginBase.GetCurrentScintilla());
+                    UpdateEditorInformation();
                     this.Editor.CurrentBufferID = notification.Header.IdFrom;
                     this.updateRenderer = true;
                     Update(true);
@@ -121,12 +132,24 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// <param name="updateScrollBar"></param>
         protected void Update(bool updateScrollBar = false)
         {
-            //Update the view
-            UpdateMarkdownViewer();
-            //Update the scroll bar of the Viewer Panel only in case of vertical scrolls
-            if (this.configuration.SynchronizeScrolling && updateScrollBar)
+            //Validate that the current file may be rendered
+            if (this.configuration.ValidateFileExtension(this.currentFileExtension, this.currentFileName))
             {
-                UpdateScrollBar();
+                //Update the view
+                UpdateMarkdownViewer();
+                //Update the scroll bar of the Viewer Panel only in case of vertical scrolls
+                if (this.configuration.options.synchronizeScrolling && updateScrollBar)
+                {
+                    UpdateScrollBar();
+                }
+            }
+            else
+            {
+                this.renderer.Render($@"<p>
+Your configuration settings do not include the currently selected file extension.<br />
+The rendered file extensions are <b>'{this.configuration.options.fileExtensions}'</b>.<br />
+The current file is <i>'{this.currentFileName}'</i>. {this.Editor.GetModify()}
+                </p>");
             }
         }
 
@@ -217,11 +240,21 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             //Show
             if (!this.renderer.Visible)
             {
+                UpdateEditorInformation();
                 this.updateRenderer = true;
-                UpdateMarkdownViewer();
-                UpdateScrollBar();
+                Update(true);
             }
             ToggleToolbarIcon(!this.renderer.Visible);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected void UpdateEditorInformation()
+        {
+            this.Editor.SetScintillaHandle(PluginBase.GetCurrentScintilla());
+            this.currentFileName = this.Notepad.GetCurrentFileName();
+            this.currentFileExtension = Path.GetExtension(this.currentFileName);
         }
 
         /// <summary>
