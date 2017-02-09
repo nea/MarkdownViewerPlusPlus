@@ -82,12 +82,6 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// <param name="notification"></param>
         public void OnNotification(ScNotification notification)
         {
-            //Update the scintilla handle in all cases to keep track of which instance is active
-            if (notification.Header.Code == (uint)NppMsg.NPPN_BUFFERACTIVATED)
-            {
-                this.Editor.SetScintillaHandle(PluginBase.GetCurrentScintilla());
-            }
-
             //Listen to any UI update to get informed about all file changes, chars added/removed etc.
             if (this.renderer.Visible)
             {
@@ -99,6 +93,9 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                 }
                 else if (notification.Header.Code == (uint)NppMsg.NPPN_BUFFERACTIVATED)
                 {
+                    //Update the scintilla handle in all cases to keep track of which instance is active
+                    this.Editor.SetScintillaHandle(PluginBase.GetCurrentScintilla());
+                    this.Editor.CurrentBufferID = notification.Header.IdFrom;
                     this.updateRenderer = true;
                     Update(true);
                 }

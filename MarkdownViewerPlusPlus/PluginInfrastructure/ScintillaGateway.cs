@@ -20,6 +20,10 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
 
         public static readonly int LengthZeroTerminator = "\0".Length;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public uint CurrentBufferID { get; set; }
 
         public ScintillaGateway(IntPtr scintilla)
         {

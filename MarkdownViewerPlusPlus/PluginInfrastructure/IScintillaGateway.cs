@@ -33,6 +33,8 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
         /// <returns></returns>
         IntPtr GetScintillaHandle();
 
+        uint CurrentBufferID { get; set; }
+
         int GetSelectionLength();
         void AppendTextAndMoveCursor(string text);
         void InsertTextAndMoveCursor(string text);
