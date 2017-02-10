@@ -129,5 +129,17 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /* Avoid page breaks inside the most common attributes, especially for exports (i.e. PDF) */
+        ///td, h1, h2, h3, h4, h5, p, ul, ol, li {
+        ///    page-break-inside: avoid; 
+        ///}.
+        /// </summary>
+        internal static string MarkdownViewerHTML {
+            get {
+                return ResourceManager.GetString("MarkdownViewerHTML", resourceCulture);
+            }
+        }
     }
 }

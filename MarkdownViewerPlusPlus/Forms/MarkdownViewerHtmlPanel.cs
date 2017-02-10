@@ -117,7 +117,6 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             get { return _text; }
             set {
                 _text = value;
-                //base.Text = value;
                 if (!IsDisposed)
                 {
                     _htmlContainer.SetHtml(_text, _baseCssData);

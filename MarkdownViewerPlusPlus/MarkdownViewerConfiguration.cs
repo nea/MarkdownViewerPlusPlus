@@ -1,8 +1,10 @@
 ﻿using Kbg.NppPluginNET.PluginInfrastructure;
 using PdfSharp;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
+
 /// <summary>
 /// 
 /// </summary>
@@ -33,11 +35,27 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             /// <summary>
             /// 
             /// </summary>
-            public string htmlCssStyle;
+            private string htmlCssStyle;
+            /// <summary>
+            /// 
+            /// </summary>
+            public string HtmlCssStyle {
+                get {
+                    if (htmlCssStyle == null) return "";
+                    return htmlCssStyle.Replace(@" \n ", Environment.NewLine);
+                }
+                set {
+                    htmlCssStyle = value.Replace(Environment.NewLine, @" \n ");
+                }
+            }
             /// <summary>
             /// 
             /// </summary>
             public PageOrientation pdfOrientation;
+            /// <summary>
+            /// 
+            /// </summary>
+            public PageSize pdfPageSize;
         }
 
         /// <summary>
@@ -94,17 +112,28 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             this.options = new Options();
             //Unbox/Box magic to set structs
             object options = this.options;
-            foreach (FieldInfo field in this.options.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public))
+            foreach (FieldInfo field in this.options.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
             {
-                if(field.FieldType == typeof(bool))
+                if (field.FieldType == typeof(bool))
                 {
                     field.SetValue(options, (Win32.GetPrivateProfileInt(this.assemblyName, field.Name, 0, iniFilePath) != 0));
-                } else if (field.FieldType == typeof(string))
+                }
+                else if (field.FieldType == typeof(string))
                 {
-                    StringBuilder sbFieldValue = new StringBuilder(2048);
-                    Win32.GetPrivateProfileString(this.assemblyName, field.Name, "", sbFieldValue, 2048, iniFilePath);
+                    StringBuilder sbFieldValue = new StringBuilder(32767);
+                    Win32.GetPrivateProfileString(this.assemblyName, field.Name, "", sbFieldValue, 32767, iniFilePath);
                     field.SetValue(options, sbFieldValue.ToString());
-                }                
+                }
+                else if (field.FieldType.IsEnum)
+                {
+                    StringBuilder sbFieldValue = new StringBuilder(Win32.MAX_PATH);
+                    Win32.GetPrivateProfileString(this.assemblyName, field.Name, "", sbFieldValue, Win32.MAX_PATH, iniFilePath);
+                    try
+                    {
+                        field.SetValue(options, Enum.Parse(field.FieldType, sbFieldValue.ToString()));
+                    }
+                    catch { }
+                }
             }
             //Unbox/Box magic to set structs
             this.options = (Options)options;
@@ -124,13 +153,13 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                 {
                     Win32.WritePrivateProfileString(this.assemblyName, field.Name, ((bool)value) ? "1" : "0", iniFilePath);
                 }
-                else if (field.FieldType == typeof(string))
+                else if (field.FieldType == typeof(string) || field.FieldType.IsEnum)
                 {
                     Win32.WritePrivateProfileString(this.assemblyName, field.Name, value.ToString(), iniFilePath);
                 }
             }
         }
-        
+
         /// <summary>
         /// 
         /// </summary>

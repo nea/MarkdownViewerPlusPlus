@@ -1,8 +1,9 @@
-﻿using PdfSharp;
+﻿using com.insanitydesign.MarkdownViewerPlusPlus.Properties;
 using PdfSharp.Pdf;
 using System;
 using System.IO;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using TheArtOfDev.HtmlRenderer.PdfSharp;
 
 /// <summary>
@@ -44,10 +45,11 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// 
         /// </summary>
         /// <param name="text"></param>
-        public override void Render(string text)
+        /// <param name="fileName"></param>
+        public override void Render(string text, string fileName = "")
         {
-            base.Render(text);
-            this.markdownViewerHtmlPanel.Text = BuildHtml(text);            
+            base.Render(text, fileName);
+            this.markdownViewerHtmlPanel.Text = BuildHtml(text, fileName);
         }
 
         /// <summary>
@@ -69,14 +71,12 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         {
             //The current file name
             string fileName = this.markdownViewer.Notepad.GetCurrentFileName();
-            //The current path
-            string path = this.markdownViewer.Notepad.GetCurrentDirectory();
-
             //Save!
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             //Default name of the file is the editor file name
-            saveFileDialog.FileName = fileName.ToString() + ".html";
-            saveFileDialog.InitialDirectory = path.ToString();
+            saveFileDialog.FileName = Path.GetFileNameWithoutExtension(fileName) + ".html";
+            //The current path
+            saveFileDialog.InitialDirectory = this.markdownViewer.Notepad.GetCurrentDirectory();
             //
             saveFileDialog.Filter = "HTML files (*.html)|*.html|All files (*.*)|*.*";
             //
@@ -84,7 +84,13 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             {
                 using (StreamWriter sw = new StreamWriter(saveFileDialog.FileName))
                 {
-                    sw.WriteLine(BuildHtml(GetText(), fileName.ToString()));
+                    string html = BuildHtml(GetText(), fileName);
+                    try
+                    {
+                        html = XDocument.Parse(html).ToString();
+                    }
+                    catch { }
+                    sw.WriteLine(html);
                 }
             }
         }
@@ -98,14 +104,12 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         {
             //The current file name
             string fileName = this.markdownViewer.Notepad.GetCurrentFileName();
-            //The current path
-            string path = this.markdownViewer.Notepad.GetCurrentDirectory();
-
             //Save!
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             //Default name of the file is the editor file name
-            saveFileDialog.FileName = fileName.ToString() + ".pdf";
-            saveFileDialog.InitialDirectory = path.ToString();
+            saveFileDialog.FileName = Path.GetFileNameWithoutExtension(fileName) + ".pdf";
+            //The current path
+            saveFileDialog.InitialDirectory = this.markdownViewer.Notepad.GetCurrentDirectory();
             //
             saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
             //
@@ -113,10 +117,10 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             {
                 //Build a config based on made settings
                 PdfGenerateConfig pdfConfig = new PdfGenerateConfig();
-                pdfConfig.PageOrientation = PageOrientation.Landscape;
-                pdfConfig.PageSize = PageSize.A4;
+                pdfConfig.PageOrientation = this.markdownViewer.Options.pdfOrientation;
+                pdfConfig.PageSize = this.markdownViewer.Options.pdfPageSize;
                 //Generate PDF and save
-                PdfDocument pdf = PdfGenerator.GeneratePdf(BuildHtml(GetText(), fileName.ToString()), pdfConfig);
+                PdfDocument pdf = PdfGenerator.GeneratePdf(BuildHtml(GetText(), fileName), pdfConfig, PdfGenerator.ParseStyleSheet(Resources.MarkdownViewerHTML));                
                 pdf.Save(saveFileDialog.FileName);
             }
         }

@@ -7,6 +7,7 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using static com.insanitydesign.MarkdownViewerPlusPlus.MarkdownViewerConfiguration;
 using static Kbg.NppPluginNET.PluginInfrastructure.Win32;
 
 /// <summary>
@@ -77,6 +78,15 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// 
         /// </summary>
         protected MarkdownViewerConfiguration configuration;
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Options Options {
+            get {
+                return this.configuration.options;
+            }
+        }
 
         /// <summary>
         /// 
@@ -284,7 +294,7 @@ The current file is <i>'{this.currentFileName}'</i>. {this.Editor.GetModify()}
                 {
                     this.updateRenderer = false;
                     string editorText = this.Editor.GetText(this.Editor.GetLength() + 1);
-                    this.renderer.Render(CommonMarkConverter.Convert(editorText));
+                    this.renderer.Render(CommonMarkConverter.Convert(editorText), this.currentFileName);
                 }
             }
             catch

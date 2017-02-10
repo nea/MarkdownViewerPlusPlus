@@ -111,7 +111,8 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// 
         /// </summary>
         /// <param name="text"></param>
-        public virtual void Render(string text)
+        /// <param name="fileName"></param>
+        public virtual void Render(string text, string fileName = "")
         {
             SetText(text);
         }
@@ -181,12 +182,13 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset='UTF-8'>
         <meta name='author' content='{this.assemblyTitle}'>
         <title>{title}</title>
-        <style type='text/css'> 
-            td, h1, h2, h3, h4, h5, p, ul, ol, li {{
-                page-break-inside: avoid; 
-            }} 
+        <style type='text/css'>
+            {Resources.MarkdownViewerHTML}
+
+            {this.markdownViewer.Options.HtmlCssStyle}
         </style>
       </head>
     <body>

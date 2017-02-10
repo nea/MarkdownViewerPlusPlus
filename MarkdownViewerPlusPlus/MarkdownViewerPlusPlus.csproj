@@ -77,6 +77,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -94,9 +95,6 @@
     </Compile>
     <Compile Include="Forms\AbstractRenderer.Designer.cs">
       <DependentUpon>AbstractRenderer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\MarkdownViewerBrowser.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MarkdownViewerHtmlPanel.cs">
       <SubType>Component</SubType>
@@ -203,6 +201,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ILMergeOrder.txt" />
+    <EmbeddedResource Include="Resources\MarkdownViewerHTML.css" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildProjectDirectory)\PluginInfrastructure\DllExport\NppPlugin.DllExport.targets" />
