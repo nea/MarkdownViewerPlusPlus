@@ -5,7 +5,7 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 * Dockable panel (toggle) with a rendered HTML of the currently selected file/tab
 * CommonMark compliant ([0.27][4])
 * Synchronized scrolling
-* Links open in a separate Browser
+* Custom CSS integration
 * Basic HTML Export
 * Basic PDF Export
 * Unicode Notepad++ 32-bit plugin
@@ -19,13 +19,12 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 * BugFixes ^^'
 
 ## Latest Versions
+* 0.5.0
+  * Added an options dialog for file extensions, HTML CSS and PDF attributes
 * 0.4.5
   * Fixed handling rendering Markdown in either editor view (thanks to dail8859)
 * 0.4.4
   * Update renderer scrolling when caret causes a scroll event (thanks to dail8859)
-* 0.4.3
-  * Optimized viewer refresh calls in connection with Notepad++/Scintilla notifications (thanks to dail8859)
-  * Changed the dependencies of [PDFSharp][5] and [HTMLRenderer][6] to pre-releases for better page-break support in PDF files
   
 Download the latest [release here][9]. For a full version history go [here][10].
 
