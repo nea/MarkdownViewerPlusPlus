@@ -23,9 +23,9 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             this.cmbPDFOrientation.SelectedItem = PageOrientation.Portrait.ToString();
             //Now load
             this.cmbPDFOrientation.SelectedItem = options.pdfOrientation.ToString();
-
             //
             this.cmbPDFPageSize.Items.AddRange(Enum.GetNames(typeof(PageSize)));
+            this.cmbPDFPageSize.Items.Remove(PageSize.Undefined.ToString());
             this.cmbPDFPageSize.SelectedItem = PageSize.A4.ToString();
             this.cmbPDFPageSize.SelectedItem = options.pdfPageSize.ToString();
         }

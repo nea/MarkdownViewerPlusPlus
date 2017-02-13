@@ -109,7 +109,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         public void Load()
         {
             //Grab ini file settings based on struct members
-            this.options = new Options();
+            this.options = GetDefaultOptions();
             //Unbox/Box magic to set structs
             object options = this.options;
             foreach (FieldInfo field in this.options.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
@@ -174,6 +174,20 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             if (fileExtension == null || fileExtension == "") return this.options.inclNewFiles && fileName.StartsWith("new ");
             //Otherwise check
             return this.options.fileExtensions.Contains(fileExtension);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>An Options object containing some pre-set default options</returns>
+        protected Options GetDefaultOptions()
+        {
+            Options options = new Options();
+            options.inclNewFiles = true;
+            options.pdfOrientation = PageOrientation.Portrait;
+            options.pdfPageSize = PageSize.A4;
+            options.synchronizeScrolling = false;
+            return options;
         }
     }
 }
