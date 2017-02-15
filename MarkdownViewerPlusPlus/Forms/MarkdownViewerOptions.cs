@@ -70,6 +70,9 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             //Start with the general options panel
             this.splitOptions.Panel2.Controls.Add(this.optionPanels.First().Value);
             this.treeOptions.Select();
+            //Set the according dialog result to their respective buttons
+            this.btnOptionsCancel.DialogResult = DialogResult.Cancel;
+            this.btnOptionsSave.DialogResult = DialogResult.OK;
             //
             this.LoadEvent(this.configuration.options);
         }
@@ -98,7 +101,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <param name="e"></param>
         private void btnOptionsCancel_Click(object sender, System.EventArgs e)
         {
-            this.Close();
+            this.Dispose();
         }
 
         /// <summary>
@@ -113,7 +116,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             //Save to init
             this.configuration.Save();            
             //Close the options dialog when all has been done
-            this.Close();
+            this.Dispose();
         }
     }
 }

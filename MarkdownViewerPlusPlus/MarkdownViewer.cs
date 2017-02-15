@@ -202,10 +202,13 @@ The current file is <i>'{this.currentFileName}'</i>.
         {
             using (MarkdownViewerOptions options = new MarkdownViewerOptions(ref this.configuration))
             {
-                options.ShowDialog(Control.FromHandle(PluginBase.GetCurrentScintilla()));
+                DialogResult result = options.ShowDialog(Control.FromHandle(PluginBase.GetCurrentScintilla()));
+                if (result == DialogResult.OK)
+                {
+                    //Update after something potentially changed in the settings dialog
+                    Update(true, true);
+                }
             }
-            //Update after something potentially changed in the settings dialog
-            Update(true, true);
         }
 
         /// <summary>
