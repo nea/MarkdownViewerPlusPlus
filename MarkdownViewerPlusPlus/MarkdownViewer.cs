@@ -122,8 +122,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                     //Update the scintilla handle in all cases to keep track of which instance is active
                     UpdateEditorInformation();
                     this.Editor.CurrentBufferID = notification.Header.IdFrom;
-                    this.updateRenderer = true;
-                    Update(true);
+                    Update(true, true);
                 }
                 else if (notification.Header.Code == (uint)SciMsg.SCN_MODIFIED && !this.updateRenderer)
                 {
@@ -140,12 +139,14 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// 
         /// </summary>
         /// <param name="updateScrollBar"></param>
-        protected void Update(bool updateScrollBar = false)
+        /// <param name="updateRenderer"></param>
+        public void Update(bool updateScrollBar = false, bool updateRenderer = false)
         {
             //Validate that the current file may be rendered
             if (this.configuration.ValidateFileExtension(this.currentFileExtension, this.currentFileName))
             {
                 //Update the view
+                this.updateRenderer = updateRenderer ? updateRenderer : this.updateRenderer;
                 UpdateMarkdownViewer();
                 //Update the scroll bar of the Viewer Panel only in case of vertical scrolls
                 if (this.configuration.options.synchronizeScrolling && updateScrollBar)
@@ -158,7 +159,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                 this.renderer.Render($@"<p>
 Your configuration settings do not include the currently selected file extension.<br />
 The rendered file extensions are <b>'{this.configuration.options.fileExtensions}'</b>.<br />
-The current file is <i>'{this.currentFileName}'</i>. {this.Editor.GetModify()}
+The current file is <i>'{this.currentFileName}'</i>.
                 </p>");
             }
         }
@@ -203,6 +204,8 @@ The current file is <i>'{this.currentFileName}'</i>. {this.Editor.GetModify()}
             {
                 options.ShowDialog(Control.FromHandle(PluginBase.GetCurrentScintilla()));
             }
+            //Update after something potentially changed in the settings dialog
+            Update(true, true);
         }
 
         /// <summary>
@@ -251,8 +254,7 @@ The current file is <i>'{this.currentFileName}'</i>. {this.Editor.GetModify()}
             if (!this.renderer.Visible)
             {
                 UpdateEditorInformation();
-                this.updateRenderer = true;
-                Update(true);
+                Update(true, true);
             }
             ToggleToolbarIcon(!this.renderer.Visible);
         }
@@ -265,6 +267,7 @@ The current file is <i>'{this.currentFileName}'</i>. {this.Editor.GetModify()}
             this.Editor.SetScintillaHandle(PluginBase.GetCurrentScintilla());
             this.currentFileName = this.Notepad.GetCurrentFileName();
             this.currentFileExtension = Path.GetExtension(this.currentFileName);
+            this.currentFileExtension = this.currentFileExtension.StartsWith(".") ? this.currentFileExtension.Substring(1, this.currentFileExtension.Length-1) : this.currentFileExtension;
         }
 
         /// <summary>
@@ -286,7 +289,7 @@ The current file is <i>'{this.currentFileName}'</i>. {this.Editor.GetModify()}
         /// <summary>
         /// 
         /// </summary>
-        public void UpdateMarkdownViewer()
+        protected void UpdateMarkdownViewer()
         {
             try
             {

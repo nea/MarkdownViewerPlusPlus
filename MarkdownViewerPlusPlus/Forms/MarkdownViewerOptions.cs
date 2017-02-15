@@ -111,7 +111,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             //Fire the save event for all listeners
             this.SaveEvent(ref this.configuration.options);
             //Save to init
-            this.configuration.Save();
+            this.configuration.Save();            
             //Close the options dialog when all has been done
             this.Close();
         }

@@ -19,12 +19,12 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 * BugFixes ^^'
 
 ## Latest Versions
+* 0.5.1
+  * Fixed a bug always returning false while checking file extensions
 * 0.5.0
   * Added an options dialog for file extensions, HTML CSS and PDF attributes
 * 0.4.5
   * Fixed handling rendering Markdown in either editor view (thanks to dail8859)
-* 0.4.4
-  * Update renderer scrolling when caret causes a scroll event (thanks to dail8859)
   
 Download the latest [release here][9]. For a full version history go [here][10].
 

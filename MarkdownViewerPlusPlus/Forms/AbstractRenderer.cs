@@ -138,7 +138,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <param name="e"></param>
         protected void refreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.markdownViewer.UpdateMarkdownViewer();
+            this.markdownViewer.Update();
         }
 
         /// <summary>

@@ -172,8 +172,8 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             if (this.options.fileExtensions == null || this.options.fileExtensions == "") return true;
             //Something set but nothing given, check for "new " files (dirty dirty ^^)
             if (fileExtension == null || fileExtension == "") return this.options.inclNewFiles && fileName.StartsWith("new ");
-            //Otherwise check
-            return this.options.fileExtensions.Contains(fileExtension);
+            //Otherwise check            
+            return this.options.fileExtensions.ToLower().Contains(fileExtension.ToLower());
         }
 
         /// <summary>
