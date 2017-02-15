@@ -1,14 +1,14 @@
-﻿// NPP plugin platform for .Net v0.93.87 by Kasper B. Graversen etc.
-using System;
-using System.Runtime.InteropServices;
+﻿// NPP plugin platform for .Net v0.93.96 by Kasper B. Graversen etc.
 using Kbg.NppPluginNET.PluginInfrastructure;
 using NppPlugin.DllExport;
+using System;
+using System.Runtime.InteropServices;
 
 namespace Kbg.NppPluginNET
 {
     class UnmanagedExports
     {
-        [DllExport(CallingConvention=CallingConvention.Cdecl)]
+        [DllExport(CallingConvention = CallingConvention.Cdecl)]
         static bool isUnicode()
         {
             return true;
@@ -59,7 +59,7 @@ namespace Kbg.NppPluginNET
             }
             else
             {
-	            Main.OnNotification(notification);
+                Main.OnNotification(notification);
             }
         }
     }

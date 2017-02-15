@@ -1,4 +1,4 @@
-﻿// NPP plugin platform for .Net v0.93.87 by Kasper B. Graversen etc.
+﻿// NPP plugin platform for .Net v0.93.96 by Kasper B. Graversen etc.
 //
 // This file should stay in sync with the CPP project file
 // "notepad-plus-plus/PowerEditor/src/menuCmdID.h"

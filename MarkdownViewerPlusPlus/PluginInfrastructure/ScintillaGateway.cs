@@ -1,4 +1,4 @@
-﻿// NPP plugin platform for .Net v0.93.87 by Kasper B. Graversen etc.
+﻿// NPP plugin platform for .Net v0.93.96 by Kasper B. Graversen etc.
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -23,7 +23,7 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
         /// <summary>
         /// 
         /// </summary>
-        public uint CurrentBufferID { get; set; }
+        public IntPtr CurrentBufferID { get; set; }
 
         public ScintillaGateway(IntPtr scintilla)
         {
@@ -1853,10 +1853,9 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
         }
 
         /// <summary>Retrieve a pointer to a function that processes messages for this Scintilla. (Scintilla feature 2184)</summary>
-        public int GetDirectFunction()
+        public IntPtr GetDirectFunction()
         {
-            IntPtr res = Win32.SendMessage(scintilla, SciMsg.SCI_GETDIRECTFUNCTION, Unused, Unused);
-            return (int) res;
+            return Win32.SendMessage(scintilla, SciMsg.SCI_GETDIRECTFUNCTION, Unused, Unused);
         }
 
         /// <summary>
@@ -1864,10 +1863,9 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
         /// the function returned by GetDirectFunction.
         /// (Scintilla feature 2185)
         /// </summary>
-        public int GetDirectPointer()
+        public IntPtr GetDirectPointer()
         {
-            IntPtr res = Win32.SendMessage(scintilla, SciMsg.SCI_GETDIRECTPOINTER, Unused, Unused);
-            return (int) res;
+            return Win32.SendMessage(scintilla, SciMsg.SCI_GETDIRECTPOINTER, Unused, Unused);
         }
 
         /// <summary>Set to overtype (true) or insert mode. (Scintilla feature 2186)</summary>
@@ -3044,14 +3042,13 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
         }
 
         /// <summary>Retrieve a pointer to the document object. (Scintilla feature 2357)</summary>
-        public int GetDocPointer()
+        public IntPtr GetDocPointer()
         {
-            IntPtr res = Win32.SendMessage(scintilla, SciMsg.SCI_GETDOCPOINTER, Unused, Unused);
-            return (int) res;
+            return Win32.SendMessage(scintilla, SciMsg.SCI_GETDOCPOINTER, Unused, Unused);
         }
 
         /// <summary>Change the document object used. (Scintilla feature 2358)</summary>
-        public void SetDocPointer(int pointer)
+        public void SetDocPointer(IntPtr pointer)
         {
             IntPtr res = Win32.SendMessage(scintilla, SciMsg.SCI_SETDOCPOINTER, Unused, pointer);
         }
@@ -3982,16 +3979,15 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
         {
             IntPtr res = Win32.SendMessage(scintilla, SciMsg.SCI_COPYALLOWLINE, Unused, Unused);
         }
-
+        
         /// <summary>
         /// Compact the document buffer and return a read-only pointer to the
         /// characters in the document.
         /// (Scintilla feature 2520)
         /// </summary>
-        public int GetCharacterPointer()
+        public IntPtr GetCharacterPointer()
         {
-            IntPtr res = Win32.SendMessage(scintilla, SciMsg.SCI_GETCHARACTERPOINTER, Unused, Unused);
-            return (int) res;
+            return Win32.SendMessage(scintilla, SciMsg.SCI_GETCHARACTERPOINTER, Unused, Unused);
         }
 
         /// <summary>
@@ -4000,10 +3996,9 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
         /// to rangeLength bytes.
         /// (Scintilla feature 2643)
         /// </summary>
-        public int GetRangePointer(int position, int rangeLength)
+        public IntPtr GetRangePointer(int position, int rangeLength)
         {
-            IntPtr res = Win32.SendMessage(scintilla, SciMsg.SCI_GETRANGEPOINTER, position, rangeLength);
-            return (int) res;
+            return Win32.SendMessage(scintilla, SciMsg.SCI_GETRANGEPOINTER, position, rangeLength);
         }
 
         /// <summary>

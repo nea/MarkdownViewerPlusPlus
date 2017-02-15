@@ -6,25 +6,23 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 * CommonMark compliant ([0.27][4])
 * Synchronized scrolling
 * Custom CSS integration
-* Basic HTML Export
-* Basic PDF Export
-* Unicode Notepad++ 32-bit plugin
+* HTML Export
+* PDF Export
 
 ### Planned
 * Highlight the current cursor row
 * Export as PDF with properties/templates
-* x64 support
 * Improved performance with large documents
 * Scroll to selected content
 * BugFixes ^^'
 
 ## Latest Versions
+* 0.6.0
+  * Updated [Notepad++ PluginPack.net][2] to further support x64
 * 0.5.1
   * Fixed a bug always returning false while checking file extensions
 * 0.5.0
   * Added an options dialog for file extensions, HTML CSS and PDF attributes
-* 0.4.5
-  * Fixed handling rendering Markdown in either editor view (thanks to dail8859)
   
 Download the latest [release here][9]. For a full version history go [here][10].
 
@@ -33,12 +31,12 @@ Download a [release version][9] and copy the included **MarkdownViewerPlusPlus.d
 
 ### Compatibility
 This plugin requires at least
-* Notepad++ 32-bit (won't work with 64-bit)
+* Notepad++ 32-bit/64-bit
 * Windows
 * .NET Framework 4.0 or above
 
 It has been tested under the following conditions
-* Notepad++ 7.2.2 (32-bit)
+* Notepad++ 7.2.2 32-bit and Notepad++ 7.3.2 64-bit
 * Windows 10 Professional (64-bit)
 
 ## Usage
