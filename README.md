@@ -6,8 +6,8 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 * CommonMark compliant ([0.27][4])
 * Synchronized scrolling
 * Custom CSS integration
-* HTML Export
-* PDF Export
+* HTML and PDF Export
+* Notepad++ Unicode Plugin
 
 ### Planned
 * Highlight the current cursor row
@@ -18,7 +18,7 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 
 ## Latest Versions
 * 0.6.0
-  * Updated [Notepad++ PluginPack.net][2] to further support x64
+  * Updated the [Notepad++ PluginPack.net][2] for better x64 support and first x64 release
 * 0.5.1
   * Fixed a bug always returning false while checking file extensions
 * 0.5.0
