@@ -19,6 +19,8 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 ## Latest Versions
 * 0.6.0
   * Updated the [Notepad++ PluginPack.net][2] for better x64 support and first x64 release
+  * Extended the documentation by a description about the included *Options*
+  * Added a MSBuild target to produce release zips automatically
 * 0.5.1
   * Fixed a bug always returning false while checking file extensions
 * 0.5.0
@@ -48,6 +50,24 @@ To open the MarkdownViewer++ you can
 To synchronize the scrolling between the Notepad++ editor view and the rendered markdown, you can enable the option via the **Plugins** sub-menu. The made selection will be stored and loaded in future sessions.
 
 ![MarkdownViewer++](https://github.com/nea/MarkdownViewerPlusPlus/blob/master/MarkdownViewerPlusPlus/Resources/MarkdownViewerPlusPlus.png?raw=true)
+
+### Options
+The MarkdownViewer++ offers several options to customize your plugin experience. You can open the options dialog via the **Plugins** sub-menu.
+
+![MarkdownViewer++ Options](https://github.com/nea/MarkdownViewerPlusPlus/blob/master/MarkdownViewerPlusPlus/Resources/MarkdownViewerPlusPlus-Options.png?raw=true)
+
+#### General
+On the **General** tab you can configure the file extensions the MarkdownViewer++ renderer should actually display. If the box is *empty* all files will be rendered. If you want to limit the rendering to certain file extensions list them in the textbox as comma-separated list without leading dot.
+
+For example, if you only want to render *txt*, *log* and *md* files just type in "txt,log,md".
+
+Please note that only file extensions are compared and no certain mime types or anything. If a text document is not named *XYZ.txt* it will not be rendered.
+
+#### HTML
+On the **HTML** tab you can fill in *Custom CSS*, which is used when rendering the MarkdownViewer++ preview as well as the exported HTML. Therefore, you are able to e.g. change bullet-point-list icons or sizes of headlines. The custom CSS textbox is limited to 32767 characters.
+
+#### PDF
+On the **PDF** tab you can set the *orientation* and *page size* of the exported PDF. The content is provided by the [PDFSharp][5] enumerations.
 
 ## License and Credits
 The MarkdownViewerPlusPlus is released under the MIT license.
