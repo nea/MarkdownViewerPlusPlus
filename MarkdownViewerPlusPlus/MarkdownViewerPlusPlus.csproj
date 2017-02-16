@@ -251,13 +251,48 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\MSBuild.ILMerge.Task.1.0.5\build\MSBuild.ILMerge.Task.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSBuild.ILMerge.Task.1.0.5\build\MSBuild.ILMerge.Task.props'))" />
     <Error Condition="!Exists('..\packages\MSBuild.ILMerge.Task.1.0.5\build\MSBuild.ILMerge.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSBuild.ILMerge.Task.1.0.5\build\MSBuild.ILMerge.Task.targets'))" />
+    <Error Condition="!Exists('..\packages\MSBuild.Extension.Pack.1.9.0\build\net40\MSBuild.Extension.Pack.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSBuild.Extension.Pack.1.9.0\build\net40\MSBuild.Extension.Pack.targets'))" />
   </Target>
   <Import Project="..\packages\MSBuild.ILMerge.Task.1.0.5\build\MSBuild.ILMerge.Task.targets" Condition="Exists('..\packages\MSBuild.ILMerge.Task.1.0.5\build\MSBuild.ILMerge.Task.targets')" />
+  <Import Project="..\packages\MSBuild.Extension.Pack.1.9.0\build\net40\MSBuild.Extension.Pack.targets" Condition="Exists('..\packages\MSBuild.Extension.Pack.1.9.0\build\net40\MSBuild.Extension.Pack.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
   -->
+  <Target Name="AfterBuild">
+    <!-- Get the current Major.Minor.Build version from the assembly -->
+    <PropertyGroup>
+      <In>$([System.IO.File]::ReadAllText('Properties\AssemblyInfo.cs'))</In>
+      <Pattern>^\s*\[assembly: AssemblyVersion\(\D*(\d+)\.(\d+)\.(\d+)</Pattern>
+      <AssemblyVersionMajor>$([System.Text.RegularExpressions.Regex]::Match($(In), $(Pattern), System.Text.RegularExpressions.RegexOptions.Multiline).Groups[1].Value)</AssemblyVersionMajor>
+      <AssemblyVersionMinor>$([System.Text.RegularExpressions.Regex]::Match($(In), $(Pattern), System.Text.RegularExpressions.RegexOptions.Multiline).Groups[2].Value)</AssemblyVersionMinor>
+      <AssemblyVersionBuild>$([System.Text.RegularExpressions.Regex]::Match($(In), $(Pattern), System.Text.RegularExpressions.RegexOptions.Multiline).Groups[3].Value)</AssemblyVersionBuild>
+    </PropertyGroup>
+    
+    <!-- Some useful properties folder -->
+    <ItemGroup>
+      <ParentFolder Include="..\." />
+      <OutputDirectory Include="Releases\"/>
+    </ItemGroup>
+    <Message Text="Creating the output folder @(OutputDirectory)" Importance="high" />
+    <MakeDir Directories="@(OutputDirectory)"/>
+    <PropertyGroup>
+      <ParentDirectory>%(ParentFolder.Fullpath)</ParentDirectory>
+      <ReleaseZipName>$(AssemblyName)-$(AssemblyVersionMajor).$(AssemblyVersionMinor).$(AssemblyVersionBuild)-$(Platform).zip</ReleaseZipName>
+      <WorkingDir>%(OutputDirectory.Fullpath)</WorkingDir>
+    </PropertyGroup>
+  
+    <!-- The files to include in the zip -->
+    <ItemGroup>
+      <Licenses Include="..\license\**" />
+      <Dll Include="$(OutputPath)\*.dll" />
+      <Readme Include="..\*.md" />
+    </ItemGroup>
+    
+    <Message Text="Creating the release zip $(ReleaseZipName) in $(WorkingDir)" Importance="high" />
+    <MSBuild.ExtensionPack.Compression.Zip TaskAction="Create" CompressFiles="@(Licenses)" ZipFileName="$(WorkingDir)$(ReleaseZipName)" RemoveRoot="$(ParentDirectory)"/>        
+    <MSBuild.ExtensionPack.Compression.Zip TaskAction="AddFiles" CompressFiles="@(Dll)" ZipFileName="$(WorkingDir)$(ReleaseZipName)" RemoveRoot="%(Dll.RootDir)%(Dll.Directory)"/>
+    <MSBuild.ExtensionPack.Compression.Zip TaskAction="AddFiles" CompressFiles="@(Readme)" ZipFileName="$(WorkingDir)$(ReleaseZipName)" RemoveRoot="%(Readme.RootDir)%(Readme.Directory)"/>
+  </Target>
 </Project>

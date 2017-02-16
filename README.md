@@ -47,7 +47,7 @@ To open the MarkdownViewer++ you can
 
 To synchronize the scrolling between the Notepad++ editor view and the rendered markdown, you can enable the option via the **Plugins** sub-menu. The made selection will be stored and loaded in future sessions.
 
-![MarkdownViewer++](https://github.com/nea/MarkdownViewerPlusPlus/blob/master/MarkdownViewerPlusPlus.png?raw=true)
+![MarkdownViewer++](https://github.com/nea/MarkdownViewerPlusPlus/blob/master/MarkdownViewerPlusPlus/Resources/MarkdownViewerPlusPlus.png?raw=true)
 
 ## License and Credits
 The MarkdownViewerPlusPlus is released under the MIT license.
