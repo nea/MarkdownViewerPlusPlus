@@ -17,14 +17,14 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 * BugFixes ^^'
 
 ## Latest Versions
+* 0.6.1
+  * Fixed saving custom CSS to ini
 * 0.6.0
   * Updated the [Notepad++ PluginPack.net][2] for better x64 support and first x64 release
   * Extended the documentation by a description about the included *Options*
   * Added a MSBuild target to produce release zips automatically
 * 0.5.1
   * Fixed a bug always returning false while checking file extensions
-* 0.5.0
-  * Added an options dialog for file extensions, HTML CSS and PDF attributes
   
 Download the latest [release here][9]. For a full version history go [here][10].
 
