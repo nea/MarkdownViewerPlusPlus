@@ -145,7 +145,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         public void Save()
         {
             //Save ini file settings based on struct members
-            foreach (FieldInfo field in this.options.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public))
+            foreach (FieldInfo field in this.options.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
             {
                 var value = field.GetValue(this.options);
                 value = value != null ? value : "";

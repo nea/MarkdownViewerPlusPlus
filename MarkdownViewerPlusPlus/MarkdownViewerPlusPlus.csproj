@@ -277,10 +277,12 @@
                    LibToolDllPath="$(DevEnvDir)"
                    SdkPath="$(SDK40ToolsPath)"/>
                    
+    <Message Condition="Exists('C:\Program Files (x86)\Notepad++\plugins\') AND '$(PlatformTarget)'=='x86'" Text="Copying to C:\Program Files (x86)\Notepad++\plugins\" Importance="high" />
     <Copy Condition="Exists('C:\Program Files (x86)\Notepad++\plugins\') AND '$(PlatformTarget)'=='x86'" 
         SourceFiles="$(TargetPath)" 
         DestinationFolder="C:\Program Files (x86)\Notepad++\plugins\"         
-        ContinueOnError="false" />  
+        ContinueOnError="false" />
+    <Message Condition="Exists('C:\Program Files\Notepad++\plugins\') AND '$(PlatformTarget)'=='x86'" Text="Copying to C:\Program Files\Notepad++\plugins\" Importance="high" />
     <Copy Condition="Exists('C:\Program Files\Notepad++\plugins\') AND '$(PlatformTarget)'=='x64'"
         SourceFiles="$(TargetPath)" 
         DestinationFolder="C:\Program Files\Notepad++\plugins\"         
