@@ -261,6 +261,31 @@
   </Target>
   -->
   <Target Name="AfterBuild">
+    <DllExportTask Platform="$(Platform)"
+                   PlatformTarget="$(PlatformTarget)"
+                   CpuType="$(CpuType)"
+                   EmitDebugSymbols="$(DebugSymbols)"
+                   DllExportAttributeAssemblyName="$(DllExportAttributeAssemblyName)"
+                   DllExportAttributeFullName="$(DllExportAttributeFullName)"
+                   Timeout="$(DllExportTimeout)"
+                   KeyContainer="$(KeyContainerName)$(AssemblyKeyContainerName)"
+                   KeyFile="$(KeyOriginatorFile)"
+                   ProjectDirectory="$(MSBuildProjectDirectory)"
+                   InputFileName="$(TargetPath)"
+                   FrameworkPath="$(TargetedFrameworkDir);$(TargetFrameworkDirectory)"
+                   LibToolPath="$(DevEnvDir)\..\..\VC\bin"
+                   LibToolDllPath="$(DevEnvDir)"
+                   SdkPath="$(SDK40ToolsPath)"/>
+                   
+    <Copy Condition="Exists('C:\Program Files (x86)\Notepad++\plugins\') AND '$(PlatformTarget)'=='x86'" 
+        SourceFiles="$(TargetPath)" 
+        DestinationFolder="C:\Program Files (x86)\Notepad++\plugins\"         
+        ContinueOnError="false" />  
+    <Copy Condition="Exists('C:\Program Files\Notepad++\plugins\') AND '$(PlatformTarget)'=='x64'"
+        SourceFiles="$(TargetPath)" 
+        DestinationFolder="C:\Program Files\Notepad++\plugins\"         
+        ContinueOnError="false" />  
+    
     <!-- Get the current Major.Minor.Build version from the assembly -->
     <PropertyGroup>
       <In>$([System.IO.File]::ReadAllText('Properties\AssemblyInfo.cs'))</In>
