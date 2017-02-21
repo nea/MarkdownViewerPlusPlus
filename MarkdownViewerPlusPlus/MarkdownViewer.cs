@@ -252,13 +252,14 @@ The current file is <i>'{this.currentFileName}'</i>.
         /// </summary>
         public void MarkdownViewerCommand()
         {
+            bool visibility = !this.renderer.Visible;
+            ToggleToolbarIcon(visibility);
             //Show
-            if (!this.renderer.Visible)
+            if (visibility)
             {
                 UpdateEditorInformation();
                 Update(true, true);
-            }
-            ToggleToolbarIcon(!this.renderer.Visible);
+            }            
         }
 
         /// <summary>
