@@ -1,5 +1,7 @@
-Copyright (c) 2009, José Manuel Menéndez Poo
+Copyright (c) 2009, JosÃ© Manuel MenÃ©ndez Poo
+
 Copyright (c) 2013, Arthur Teplitzki
+
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
