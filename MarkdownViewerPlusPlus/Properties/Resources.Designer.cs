@@ -73,6 +73,16 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fa_envelope_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("fa_envelope_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fa_file_pdf_o_16x16 {
             get {
                 object obj = ResourceManager.GetObject("fa_file_pdf_o_16x16", resourceCulture);
@@ -93,6 +103,16 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fa_print_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("fa_print_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fa_refresh_16x16 {
             get {
                 object obj = ResourceManager.GetObject("fa_refresh_16x16", resourceCulture);
@@ -106,6 +126,16 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Properties {
         internal static System.Drawing.Bitmap fa_tv_16x16 {
             get {
                 object obj = ResourceManager.GetObject("fa_tv_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fa_upload_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("fa_upload_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

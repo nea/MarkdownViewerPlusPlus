@@ -38,8 +38,12 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             this.exportAsToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.exportAsHTMLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportAsPDFMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sendToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.sendAsHTMLMail = new System.Windows.Forms.ToolStripMenuItem();
+            this.sendAsTextMail = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sendToPrinter = new System.Windows.Forms.ToolStripMenuItem();
             this.markdownViewerMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,6 +51,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             // 
             this.markdownViewerMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exportAsToolStrip,
+            this.sendToolStrip,
             this.viewToolStripMenuItem});
             this.markdownViewerMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.markdownViewerMenuStrip.Name = "markdownViewerMenuStrip";
@@ -80,6 +85,33 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             this.exportAsPDFMenuItem.Text = "PDF";
             this.exportAsPDFMenuItem.Click += new System.EventHandler(this.exportAsPDFMenuItem_Click);
             // 
+            // sendToolStrip
+            // 
+            this.sendToolStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sendAsHTMLMail,
+            this.sendAsTextMail,
+            this.sendToPrinter});
+            this.sendToolStrip.Image = global::com.insanitydesign.MarkdownViewerPlusPlus.Properties.Resources.fa_upload_16x16;
+            this.sendToolStrip.Name = "sendToolStrip";
+            this.sendToolStrip.Size = new System.Drawing.Size(61, 20);
+            this.sendToolStrip.Text = "Send";
+            // 
+            // sendAsHTMLMail
+            // 
+            this.sendAsHTMLMail.Image = global::com.insanitydesign.MarkdownViewerPlusPlus.Properties.Resources.fa_html5_16x16;
+            this.sendAsHTMLMail.Name = "sendAsHTMLMail";
+            this.sendAsHTMLMail.Size = new System.Drawing.Size(158, 22);
+            this.sendAsHTMLMail.Text = "as HTML E-mail";
+            this.sendAsHTMLMail.Click += new System.EventHandler(this.sendAsHTMLMail_Click);
+            // 
+            // sendAsTextMail
+            // 
+            this.sendAsTextMail.Image = global::com.insanitydesign.MarkdownViewerPlusPlus.Properties.Resources.fa_envelope_16x16;
+            this.sendAsTextMail.Name = "sendAsTextMail";
+            this.sendAsTextMail.Size = new System.Drawing.Size(158, 22);
+            this.sendAsTextMail.Text = "as Text E-mail";
+            this.sendAsTextMail.Click += new System.EventHandler(this.sendAsTextMail_Click);
+            // 
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -97,14 +129,22 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             this.refreshToolStripMenuItem.Text = "Refresh";
             this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
             // 
-            // MarkdownViewerBrowser
+            // sendToPrinter
+            // 
+            this.sendToPrinter.Image = global::com.insanitydesign.MarkdownViewerPlusPlus.Properties.Resources.fa_print_16x16;
+            this.sendToPrinter.Name = "sendToPrinter";
+            this.sendToPrinter.Size = new System.Drawing.Size(158, 22);
+            this.sendToPrinter.Text = "to Printer";
+            this.sendToPrinter.Click += new System.EventHandler(this.sendToPrinter_Click);
+            // 
+            // AbstractRenderer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);            
+            this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.markdownViewerMenuStrip);
             this.MainMenuStrip = this.markdownViewerMenuStrip;
-            this.Name = "MarkdownViewer++";
+            this.Name = "AbstractRenderer";
             this.Text = "MarkdownViewer++";
             this.markdownViewerMenuStrip.ResumeLayout(false);
             this.markdownViewerMenuStrip.PerformLayout();
@@ -121,5 +161,9 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         protected System.Windows.Forms.ToolStripMenuItem exportAsPDFMenuItem;
         protected System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         protected System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sendToolStrip;
+        private System.Windows.Forms.ToolStripMenuItem sendAsHTMLMail;
+        private System.Windows.Forms.ToolStripMenuItem sendAsTextMail;
+        private System.Windows.Forms.ToolStripMenuItem sendToPrinter;
     }
 }

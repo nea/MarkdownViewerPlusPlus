@@ -98,6 +98,10 @@
       <HintPath>..\packages\HtmlRenderer.WinForms.1.5.1-beta1\lib\net40-client\HtmlRenderer.WinForms.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Outlook, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="PdfSharp, Version=1.50.4000.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>..\packages\PDFsharp.1.50.4000-beta3b\lib\net20\PdfSharp.dll</HintPath>
       <Private>True</Private>
@@ -198,6 +202,9 @@
     <EmbeddedResource Include="Forms\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AbstractRenderer.resx">
+      <DependentUpon>AbstractRenderer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MarkdownViewerOptions.resx">
       <DependentUpon>MarkdownViewerOptions.cs</DependentUpon>
     </EmbeddedResource>
@@ -243,6 +250,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ILMergeOrder.txt" />
+    <None Include="Resources\fa-upload-16x16.png" />
+    <None Include="Resources\fa-print-16x16.png" />
+    <None Include="Resources\fa-envelope-16x16.png" />
     <EmbeddedResource Include="Resources\MarkdownViewerHTML.css" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

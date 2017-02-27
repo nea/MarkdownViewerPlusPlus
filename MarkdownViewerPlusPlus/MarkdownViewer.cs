@@ -160,7 +160,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
 Your configuration settings do not include the currently selected file extension.<br />
 The rendered file extensions are <b>'{this.configuration.options.fileExtensions}'</b>.<br />
 The current file is <i>'{this.currentFileName}'</i>.
-                </p>");
+                </p>", this.currentFileName);
             }
         }
 
@@ -299,13 +299,12 @@ The current file is <i>'{this.currentFileName}'</i>.
                 if (this.updateRenderer)
                 {
                     this.updateRenderer = false;
-                    string editorText = this.Editor.GetText(this.Editor.GetLength() + 1);
-                    this.renderer.Render(CommonMarkConverter.Convert(editorText), this.currentFileName);
+                    this.renderer.Render(this.Editor.GetText(this.Editor.GetLength() + 1), this.currentFileName);
                 }
             }
             catch
             {
-                this.renderer.Render("<p>Couldn't render the currently selected file!</p>");
+                this.renderer.Render("<p>Couldn't render the currently selected file!</p>", this.currentFileName);
             }
         }
 
