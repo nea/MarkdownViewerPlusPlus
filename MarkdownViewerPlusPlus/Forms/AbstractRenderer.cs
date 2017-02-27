@@ -17,6 +17,7 @@ using TheArtOfDev.HtmlRenderer.PdfSharp;
 using System.Xml.Linq;
 using PdfSharp.Pdf;
 using System.IO;
+using System.Net;
 
 /// <summary>
 /// 
@@ -103,7 +104,8 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_DMMREGASDCKDLG, 0, _ptrNppTbData);
             Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_DMMHIDE, 0, this.Handle);
 
-            //Hide the HTML E-mail item if Outlook is not installed
+            //Hide the E-mail items if Outlook is not installed
+            this.sendAsTextMail.Visible = IsOutlookInstalled();
             this.sendAsHTMLMail.Visible = IsOutlookInstalled();
         }
 
@@ -195,9 +197,17 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <param name="e"></param>
         protected virtual void sendAsTextMail_Click(object sender, EventArgs e)
         {
-            //Build a mailto: command
-            string command = $"mailto:?subject={FileName}&body={RawText}";
-            Process.Start(command);
+            //Double-check
+            if (IsOutlookInstalled())
+            {
+                Outlook.Application outlook = new Outlook.Application();
+                Outlook.MailItem message = (Outlook.MailItem)outlook.CreateItem(Outlook.OlItemType.olMailItem);
+                //
+                message.Subject = FileName;
+                message.BodyFormat = Outlook.OlBodyFormat.olFormatPlain;
+                message.Body = RawText;
+                message.Display(true);
+            }
         }
 
         /// <summary>
