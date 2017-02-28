@@ -1,6 +1,8 @@
 ﻿using PdfSharp;
 using System;
+using System.Linq;
 using static com.insanitydesign.MarkdownViewerPlusPlus.MarkdownViewerConfiguration;
+
 /// <summary>
 /// 
 /// </summary>
@@ -28,6 +30,12 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             this.cmbPDFPageSize.Items.Remove(PageSize.Undefined.ToString());
             this.cmbPDFPageSize.SelectedItem = PageSize.A4.ToString();
             this.cmbPDFPageSize.SelectedItem = options.pdfPageSize.ToString();
+            //Load margins
+            int[] margins = options.GetMargins();
+            this.numMarginLeft.Value = margins[0];
+            this.numMarginTop.Value = margins[1];
+            this.numMarginRight.Value = margins[2];
+            this.numMarginBottom.Value = margins[3];
         }
 
         /// <summary>
@@ -46,6 +54,8 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             {
                 options.pdfPageSize = pdfPageSize;
             }
+            //Save margins
+            options.margins = this.numMarginLeft.Value + "," + this.numMarginTop.Value + "," + this.numMarginRight.Value + "," + this.numMarginBottom.Value;
         }
     }
 }

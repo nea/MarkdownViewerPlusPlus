@@ -283,6 +283,12 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
                 PdfGenerateConfig pdfConfig = new PdfGenerateConfig();
                 pdfConfig.PageOrientation = this.markdownViewer.Options.pdfOrientation;
                 pdfConfig.PageSize = this.markdownViewer.Options.pdfPageSize;
+                //Set margins
+                int[] margins = this.markdownViewer.Options.GetMargins();
+                pdfConfig.MarginLeft = MilimiterToPoint(margins[0]);
+                pdfConfig.MarginTop = MilimiterToPoint(margins[1]);
+                pdfConfig.MarginRight = MilimiterToPoint(margins[2]);
+                pdfConfig.MarginBottom = MilimiterToPoint(margins[3]);
                 //Generate PDF and save
                 PdfDocument pdf = PdfGenerator.GeneratePdf(BuildHtml(ConvertedText, FileName), pdfConfig, PdfGenerator.ParseStyleSheet(Resources.MarkdownViewerHTML));
                 pdf.Save(saveFileDialog.FileName);
@@ -304,6 +310,16 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
                 ((WebBrowser)browser).ShowPrintPreviewDialog();
             };
             webBrowser.DocumentText = BuildHtml(ConvertedText, FileName);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mm"></param>
+        /// <returns></returns>
+        protected int MilimiterToPoint(int mm)
+        {
+            return (int)(mm * 2.834646);
         }
 
         /// <summary>

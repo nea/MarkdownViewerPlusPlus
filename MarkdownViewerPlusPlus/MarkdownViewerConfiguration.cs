@@ -2,6 +2,7 @@
 using PdfSharp;
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -56,6 +57,25 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             /// 
             /// </summary>
             public PageSize pdfPageSize;
+            /// <summary>
+            /// 
+            /// </summary>
+            public string margins;
+            
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <returns></returns>
+            public int[] GetMargins()
+            {
+                try
+                {
+                    return this.margins.Split(',').Select(x => int.Parse(x)).ToArray();
+                }
+                catch { }
+                //Default to 5mm
+                return new int[] { 5, 5, 5, 5 };
+            }
         }
 
         /// <summary>
@@ -182,11 +202,14 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// <returns>An Options object containing some pre-set default options</returns>
         protected Options GetDefaultOptions()
         {
-            Options options = new Options();
-            options.inclNewFiles = true;
-            options.pdfOrientation = PageOrientation.Portrait;
-            options.pdfPageSize = PageSize.A4;
-            options.synchronizeScrolling = false;
+            Options options = new Options()
+            {
+                inclNewFiles = true,
+                pdfOrientation = PageOrientation.Portrait,
+                pdfPageSize = PageSize.A4,
+                synchronizeScrolling = false,
+                margins = "5,5,5,5"
+            };
             return options;
         }
     }
