@@ -174,10 +174,10 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset='UTF-8'>
-        <meta name='author' content='{this.assemblyTitle}'>
+        <meta charset=""UTF-8"" />
+        <meta name=""author"" content=""{this.assemblyTitle}"" />
         <title>{title}</title>
-        <style type='text/css'>
+        <style type=""text/css"">
             {Resources.MarkdownViewerHTML}
 
             {this.markdownViewer.Options.HtmlCssStyle}
@@ -206,7 +206,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
                 message.Subject = FileName;
                 message.BodyFormat = Outlook.OlBodyFormat.olFormatPlain;
                 message.Body = RawText;
-                message.Display(true);
+                message.Display();
             }
         }
 
@@ -305,11 +305,31 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             //
             WebBrowser webBrowser = new WebBrowser();
             webBrowser.Parent = this;
-            webBrowser.DocumentCompleted += (browser, webBrowserEvent) => {
+            webBrowser.DocumentCompleted += (browser, webBrowserEvent) =>
+            {
                 ((WebBrowser)browser).Size = webBrowser.MaximumSize;
                 ((WebBrowser)browser).ShowPrintPreviewDialog();
             };
             webBrowser.DocumentText = BuildHtml(ConvertedText, FileName);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void sendToClipboard_Click(object sender, EventArgs e)
+        {
+            var dataObject = new DataObject();
+            string html = BuildHtml(ConvertedText, FileName);
+            try
+            {
+                html = XDocument.Parse(html).ToString();
+            }
+            catch { }
+            //
+            dataObject.SetData(DataFormats.UnicodeText, html);
+            Clipboard.SetDataObject(dataObject);
         }
 
         /// <summary>
@@ -330,20 +350,14 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         {
             try
             {
-                var officeType = Type.GetTypeFromProgID("Outlook.Application");
-                if (officeType == null)
-                {
-                    return false;
-                }
-                else
+                if (Type.GetTypeFromProgID("Outlook.Application") != null)
                 {
                     return true;
                 }
             }
-            catch
-            {
-                return false;
-            }
+            catch { }
+
+            return false;
         }
     }
 }

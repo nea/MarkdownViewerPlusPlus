@@ -169,9 +169,13 @@ The current file is <i>'{this.currentFileName}'</i>.
         /// </summary>
         protected void UpdateScrollBar()
         {
-            ScrollInfo scrollInfo = this.Editor.GetScrollInfo(ScrollInfoMask.SIF_RANGE | ScrollInfoMask.SIF_TRACKPOS | ScrollInfoMask.SIF_PAGE, ScrollInfoBar.SB_VERT);
-            var scrollRatio = (double)scrollInfo.nTrackPos / (scrollInfo.nMax - scrollInfo.nPage);
-            this.renderer.ScrollByRatioVertically(scrollRatio);
+            try
+            {
+                ScrollInfo scrollInfo = this.Editor.GetScrollInfo(ScrollInfoMask.SIF_RANGE | ScrollInfoMask.SIF_TRACKPOS | ScrollInfoMask.SIF_PAGE, ScrollInfoBar.SB_VERT);
+                var scrollRatio = (double)scrollInfo.nTrackPos / (scrollInfo.nMax - scrollInfo.nPage);
+                this.renderer.ScrollByRatioVertically(scrollRatio);
+            }
+            catch { }            
         }
 
         /// <summary>

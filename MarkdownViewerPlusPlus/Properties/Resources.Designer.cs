@@ -63,6 +63,16 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fa_clipboard_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("fa_clipboard_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fa_download_16x16 {
             get {
                 object obj = ResourceManager.GetObject("fa_download_16x16", resourceCulture);

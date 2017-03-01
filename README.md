@@ -21,6 +21,7 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
   * Added a menu action to send content as HTML/Text E-mail (requires *Outlook*)
   * Added a menu action to print the rendered content directly (requires the *WebBrowser* component)
   * Added margins configuration for PDF exports
+  * Added a menu action to copy the rendered content to the clipboard
 * 0.6.2
   * Fixed an issue updating the scroll information in an invisible window
   * Updated [CommonMark.NET][3] to version 0.15.1

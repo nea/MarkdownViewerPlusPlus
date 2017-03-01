@@ -250,6 +250,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ILMergeOrder.txt" />
+    <None Include="Resources\fa-clipboard-16x16.png" />
     <None Include="Resources\fa-upload-16x16.png" />
     <None Include="Resources\fa-print-16x16.png" />
     <None Include="Resources\fa-envelope-16x16.png" />
