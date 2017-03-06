@@ -170,6 +170,7 @@
     <Compile Include="Forms\OptionsPanelPDF.Designer.cs">
       <DependentUpon>OptionsPanelPDF.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ClipboardHelper.cs" />
     <Compile Include="MarkdownViewer.cs" />
     <Compile Include="MarkdownViewerConfiguration.cs" />
     <Compile Include="MarkdownViewerFormatter.cs" />

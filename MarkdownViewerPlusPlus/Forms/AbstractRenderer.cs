@@ -18,6 +18,7 @@ using System.Xml.Linq;
 using PdfSharp.Pdf;
 using System.IO;
 using System.Net;
+using com.insanitydesign.MarkdownViewerPlusPlus.Helper;
 
 /// <summary>
 /// 
@@ -320,16 +321,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <param name="e"></param>
         protected void sendToClipboard_Click(object sender, EventArgs e)
         {
-            var dataObject = new DataObject();
-            string html = BuildHtml(ConvertedText, FileName);
-            try
-            {
-                html = XDocument.Parse(html).ToString();
-            }
-            catch { }
-            //
-            dataObject.SetData(DataFormats.UnicodeText, html);
-            Clipboard.SetDataObject(dataObject);
+            ClipboardHelper.CopyToClipboard(BuildHtml(ConvertedText, FileName), ConvertedText);
         }
 
         /// <summary>
