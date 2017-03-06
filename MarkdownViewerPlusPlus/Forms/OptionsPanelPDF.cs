@@ -36,6 +36,8 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             this.numMarginTop.Value = margins[1];
             this.numMarginRight.Value = margins[2];
             this.numMarginBottom.Value = margins[3];
+            //
+            this.chkOpenPDFExport.Checked = options.pdfOpenExport;
         }
 
         /// <summary>
@@ -56,6 +58,8 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             }
             //Save margins
             options.margins = this.numMarginLeft.Value + "," + this.numMarginTop.Value + "," + this.numMarginRight.Value + "," + this.numMarginBottom.Value;
+            //
+            options.pdfOpenExport = this.chkOpenPDFExport.Checked;
         }
     }
 }

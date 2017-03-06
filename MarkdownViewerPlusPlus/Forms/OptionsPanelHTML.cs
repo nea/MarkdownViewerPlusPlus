@@ -16,6 +16,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         public override void LoadOptions(Options options)
         {
             this.txtCssStyles.Text = options.HtmlCssStyle;
+            this.chkOpenHTMLExport.Checked = options.htmlOpenExport;
         }
 
         /// <summary>
@@ -25,6 +26,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         public override void SaveOptions(ref Options options)
         {
             options.HtmlCssStyle = this.txtCssStyles.Text;
+            options.htmlOpenExport = this.chkOpenHTMLExport.Checked;
         }
     }
 }

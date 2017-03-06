@@ -29,29 +29,31 @@
         protected override void InitializeComponent()
         {
             this.grpPDFExport = new System.Windows.Forms.GroupBox();
+            this.numMarginLeft = new System.Windows.Forms.NumericUpDown();
+            this.numMarginRight = new System.Windows.Forms.NumericUpDown();
+            this.numMarginBottom = new System.Windows.Forms.NumericUpDown();
+            this.numMarginTop = new System.Windows.Forms.NumericUpDown();
+            this.lblMMBottom = new System.Windows.Forms.Label();
+            this.lblMMRight = new System.Windows.Forms.Label();
+            this.lblMMLeft = new System.Windows.Forms.Label();
+            this.lblMMTop = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbPDFPageSize = new System.Windows.Forms.ComboBox();
             this.lblPDFPageSize = new System.Windows.Forms.Label();
             this.cmbPDFOrientation = new System.Windows.Forms.ComboBox();
             this.lblPDFOrientation = new System.Windows.Forms.Label();
-            this.lblMMTop = new System.Windows.Forms.Label();
-            this.lblMMLeft = new System.Windows.Forms.Label();
-            this.lblMMRight = new System.Windows.Forms.Label();
-            this.lblMMBottom = new System.Windows.Forms.Label();
-            this.numMarginTop = new System.Windows.Forms.NumericUpDown();
-            this.numMarginBottom = new System.Windows.Forms.NumericUpDown();
-            this.numMarginRight = new System.Windows.Forms.NumericUpDown();
-            this.numMarginLeft = new System.Windows.Forms.NumericUpDown();
+            this.chkOpenPDFExport = new System.Windows.Forms.CheckBox();
             this.grpPDFExport.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numMarginTop)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numMarginBottom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numMarginRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMarginLeft)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMarginRight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMarginBottom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMarginTop)).BeginInit();
             this.SuspendLayout();
             // 
             // grpPDFExport
             // 
             this.grpPDFExport.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.grpPDFExport.Controls.Add(this.chkOpenPDFExport);
             this.grpPDFExport.Controls.Add(this.numMarginLeft);
             this.grpPDFExport.Controls.Add(this.numMarginRight);
             this.grpPDFExport.Controls.Add(this.numMarginBottom);
@@ -68,10 +70,94 @@
             this.grpPDFExport.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpPDFExport.Location = new System.Drawing.Point(0, 0);
             this.grpPDFExport.Name = "grpPDFExport";
-            this.grpPDFExport.Size = new System.Drawing.Size(1255, 206);
+            this.grpPDFExport.Size = new System.Drawing.Size(1255, 235);
             this.grpPDFExport.TabIndex = 0;
             this.grpPDFExport.TabStop = false;
             this.grpPDFExport.Text = "Export";
+            // 
+            // numMarginLeft
+            // 
+            this.numMarginLeft.Location = new System.Drawing.Point(10, 150);
+            this.numMarginLeft.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numMarginLeft.Name = "numMarginLeft";
+            this.numMarginLeft.Size = new System.Drawing.Size(51, 20);
+            this.numMarginLeft.TabIndex = 19;
+            // 
+            // numMarginRight
+            // 
+            this.numMarginRight.Location = new System.Drawing.Point(190, 150);
+            this.numMarginRight.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numMarginRight.Name = "numMarginRight";
+            this.numMarginRight.Size = new System.Drawing.Size(50, 20);
+            this.numMarginRight.TabIndex = 18;
+            // 
+            // numMarginBottom
+            // 
+            this.numMarginBottom.Location = new System.Drawing.Point(100, 175);
+            this.numMarginBottom.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numMarginBottom.Name = "numMarginBottom";
+            this.numMarginBottom.Size = new System.Drawing.Size(50, 20);
+            this.numMarginBottom.TabIndex = 17;
+            // 
+            // numMarginTop
+            // 
+            this.numMarginTop.Location = new System.Drawing.Point(100, 125);
+            this.numMarginTop.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numMarginTop.Name = "numMarginTop";
+            this.numMarginTop.Size = new System.Drawing.Size(50, 20);
+            this.numMarginTop.TabIndex = 16;
+            // 
+            // lblMMBottom
+            // 
+            this.lblMMBottom.AutoSize = true;
+            this.lblMMBottom.Location = new System.Drawing.Point(157, 181);
+            this.lblMMBottom.Name = "lblMMBottom";
+            this.lblMMBottom.Size = new System.Drawing.Size(23, 13);
+            this.lblMMBottom.TabIndex = 15;
+            this.lblMMBottom.Text = "mm";
+            // 
+            // lblMMRight
+            // 
+            this.lblMMRight.AutoSize = true;
+            this.lblMMRight.Location = new System.Drawing.Point(247, 156);
+            this.lblMMRight.Name = "lblMMRight";
+            this.lblMMRight.Size = new System.Drawing.Size(23, 13);
+            this.lblMMRight.TabIndex = 14;
+            this.lblMMRight.Text = "mm";
+            // 
+            // lblMMLeft
+            // 
+            this.lblMMLeft.AutoSize = true;
+            this.lblMMLeft.Location = new System.Drawing.Point(66, 157);
+            this.lblMMLeft.Name = "lblMMLeft";
+            this.lblMMLeft.Size = new System.Drawing.Size(23, 13);
+            this.lblMMLeft.TabIndex = 13;
+            this.lblMMLeft.Text = "mm";
+            // 
+            // lblMMTop
+            // 
+            this.lblMMTop.AutoSize = true;
+            this.lblMMTop.Location = new System.Drawing.Point(156, 132);
+            this.lblMMTop.Name = "lblMMTop";
+            this.lblMMTop.Size = new System.Drawing.Size(23, 13);
+            this.lblMMTop.TabIndex = 12;
+            this.lblMMTop.Text = "mm";
             // 
             // label1
             // 
@@ -118,89 +204,15 @@
             this.lblPDFOrientation.TabIndex = 0;
             this.lblPDFOrientation.Text = "Orientation";
             // 
-            // lblMMTop
+            // chkOpenPDFExport
             // 
-            this.lblMMTop.AutoSize = true;
-            this.lblMMTop.Location = new System.Drawing.Point(156, 132);
-            this.lblMMTop.Name = "lblMMTop";
-            this.lblMMTop.Size = new System.Drawing.Size(23, 13);
-            this.lblMMTop.TabIndex = 12;
-            this.lblMMTop.Text = "mm";
-            // 
-            // lblMMLeft
-            // 
-            this.lblMMLeft.AutoSize = true;
-            this.lblMMLeft.Location = new System.Drawing.Point(66, 157);
-            this.lblMMLeft.Name = "lblMMLeft";
-            this.lblMMLeft.Size = new System.Drawing.Size(23, 13);
-            this.lblMMLeft.TabIndex = 13;
-            this.lblMMLeft.Text = "mm";
-            // 
-            // lblMMRight
-            // 
-            this.lblMMRight.AutoSize = true;
-            this.lblMMRight.Location = new System.Drawing.Point(247, 156);
-            this.lblMMRight.Name = "lblMMRight";
-            this.lblMMRight.Size = new System.Drawing.Size(23, 13);
-            this.lblMMRight.TabIndex = 14;
-            this.lblMMRight.Text = "mm";
-            // 
-            // lblMMBottom
-            // 
-            this.lblMMBottom.AutoSize = true;
-            this.lblMMBottom.Location = new System.Drawing.Point(157, 181);
-            this.lblMMBottom.Name = "lblMMBottom";
-            this.lblMMBottom.Size = new System.Drawing.Size(23, 13);
-            this.lblMMBottom.TabIndex = 15;
-            this.lblMMBottom.Text = "mm";
-            // 
-            // numMarginTop
-            // 
-            this.numMarginTop.Location = new System.Drawing.Point(100, 125);
-            this.numMarginTop.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.numMarginTop.Name = "numMarginTop";
-            this.numMarginTop.Size = new System.Drawing.Size(50, 20);
-            this.numMarginTop.TabIndex = 16;
-            // 
-            // numMarginBottom
-            // 
-            this.numMarginBottom.Location = new System.Drawing.Point(100, 175);
-            this.numMarginBottom.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.numMarginBottom.Name = "numMarginBottom";
-            this.numMarginBottom.Size = new System.Drawing.Size(50, 20);
-            this.numMarginBottom.TabIndex = 17;
-            // 
-            // numMarginRight
-            // 
-            this.numMarginRight.Location = new System.Drawing.Point(190, 150);
-            this.numMarginRight.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.numMarginRight.Name = "numMarginRight";
-            this.numMarginRight.Size = new System.Drawing.Size(50, 20);
-            this.numMarginRight.TabIndex = 18;
-            // 
-            // numMarginLeft
-            // 
-            this.numMarginLeft.Location = new System.Drawing.Point(10, 150);
-            this.numMarginLeft.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.numMarginLeft.Name = "numMarginLeft";
-            this.numMarginLeft.Size = new System.Drawing.Size(51, 20);
-            this.numMarginLeft.TabIndex = 19;
+            this.chkOpenPDFExport.AutoSize = true;
+            this.chkOpenPDFExport.Location = new System.Drawing.Point(10, 206);
+            this.chkOpenPDFExport.Name = "chkOpenPDFExport";
+            this.chkOpenPDFExport.Size = new System.Drawing.Size(132, 17);
+            this.chkOpenPDFExport.TabIndex = 20;
+            this.chkOpenPDFExport.Text = "Open PDF after export";
+            this.chkOpenPDFExport.UseVisualStyleBackColor = true;
             // 
             // OptionsPanelPDF
             // 
@@ -212,10 +224,10 @@
             this.Size = new System.Drawing.Size(1255, 709);
             this.grpPDFExport.ResumeLayout(false);
             this.grpPDFExport.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numMarginTop)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numMarginBottom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numMarginRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMarginLeft)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMarginRight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMarginBottom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMarginTop)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -236,5 +248,6 @@
         private System.Windows.Forms.NumericUpDown numMarginRight;
         private System.Windows.Forms.NumericUpDown numMarginBottom;
         private System.Windows.Forms.NumericUpDown numMarginTop;
+        private System.Windows.Forms.CheckBox chkOpenPDFExport;
     }
 }

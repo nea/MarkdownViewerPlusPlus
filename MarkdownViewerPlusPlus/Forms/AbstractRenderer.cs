@@ -259,6 +259,11 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
                     catch { }
                     sw.WriteLine(html);
                 }
+                //Open if requested
+                if (this.markdownViewer.Options.htmlOpenExport)
+                {
+                    Process.Start(saveFileDialog.FileName);
+                }
             }
         }
 
@@ -293,6 +298,12 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
                 //Generate PDF and save
                 PdfDocument pdf = PdfGenerator.GeneratePdf(BuildHtml(ConvertedText, FileName), pdfConfig, PdfGenerator.ParseStyleSheet(Resources.MarkdownViewerHTML));
                 pdf.Save(saveFileDialog.FileName);
+
+                //Open if requested
+                if (this.markdownViewer.Options.pdfOpenExport)
+                {
+                    Process.Start(saveFileDialog.FileName);
+                }
             }
         }
 

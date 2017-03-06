@@ -76,6 +76,16 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                 //Default to 5mm
                 return new int[] { 5, 5, 5, 5 };
             }
+
+            /// <summary>
+            /// 
+            /// </summary>
+            public bool pdfOpenExport;
+
+            /// <summary>
+            /// 
+            /// </summary>
+            public bool htmlOpenExport;
         }
 
         /// <summary>
@@ -208,7 +218,9 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                 pdfOrientation = PageOrientation.Portrait,
                 pdfPageSize = PageSize.A4,
                 synchronizeScrolling = false,
-                margins = "5,5,5,5"
+                margins = "5,5,5,5",
+                pdfOpenExport = false,
+                htmlOpenExport = false
             };
             return options;
         }
