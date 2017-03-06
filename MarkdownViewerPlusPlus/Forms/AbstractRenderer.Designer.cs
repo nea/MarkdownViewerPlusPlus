@@ -102,7 +102,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             // 
             this.sendAsHTMLMail.Image = global::com.insanitydesign.MarkdownViewerPlusPlus.Properties.Resources.fa_html5_16x16;
             this.sendAsHTMLMail.Name = "sendAsHTMLMail";
-            this.sendAsHTMLMail.Size = new System.Drawing.Size(158, 22);
+            this.sendAsHTMLMail.Size = new System.Drawing.Size(176, 22);
             this.sendAsHTMLMail.Text = "as HTML E-mail";
             this.sendAsHTMLMail.Click += new System.EventHandler(this.sendAsHTMLMail_Click);
             // 
@@ -110,7 +110,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             // 
             this.sendAsTextMail.Image = global::com.insanitydesign.MarkdownViewerPlusPlus.Properties.Resources.fa_envelope_16x16;
             this.sendAsTextMail.Name = "sendAsTextMail";
-            this.sendAsTextMail.Size = new System.Drawing.Size(158, 22);
+            this.sendAsTextMail.Size = new System.Drawing.Size(176, 22);
             this.sendAsTextMail.Text = "as Text E-mail";
             this.sendAsTextMail.Click += new System.EventHandler(this.sendAsTextMail_Click);
             // 
@@ -118,7 +118,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             // 
             this.sendToPrinter.Image = global::com.insanitydesign.MarkdownViewerPlusPlus.Properties.Resources.fa_print_16x16;
             this.sendToPrinter.Name = "sendToPrinter";
-            this.sendToPrinter.Size = new System.Drawing.Size(158, 22);
+            this.sendToPrinter.Size = new System.Drawing.Size(176, 22);
             this.sendToPrinter.Text = "to Printer";
             this.sendToPrinter.Click += new System.EventHandler(this.sendToPrinter_Click);
             // 
@@ -126,8 +126,8 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             // 
             this.sendToClipboard.Image = global::com.insanitydesign.MarkdownViewerPlusPlus.Properties.Resources.fa_clipboard_16x16;
             this.sendToClipboard.Name = "sendToClipboard";
-            this.sendToClipboard.Size = new System.Drawing.Size(158, 22);
-            this.sendToClipboard.Text = "to Clipboard";
+            this.sendToClipboard.Size = new System.Drawing.Size(176, 22);
+            this.sendToClipboard.Text = "HTML to Clipboard";
             this.sendToClipboard.Click += new System.EventHandler(this.sendToClipboard_Click);
             // 
             // viewToolStripMenuItem
