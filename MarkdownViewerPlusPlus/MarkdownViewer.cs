@@ -23,11 +23,48 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// <summary>
         /// 
         /// </summary>
+        public struct FileInformation
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            public string FileDirectory { get; set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            private string fileName;
+            /// <summary>
+            /// 
+            /// </summary>
+            public string FileName {
+                get {
+                    return this.fileName;
+                }
+                set {
+                    this.fileName = value;
+                    this.FileExtension = Path.GetExtension(this.fileName);
+                    this.FileExtension = this.FileExtension.StartsWith(".") ? this.FileExtension.Substring(1, this.FileExtension.Length - 1) : this.FileExtension;
+                }
+            }
+            /// <summary>
+            /// 
+            /// </summary>
+            public string FileExtension { get; private set; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public IScintillaGateway Editor { get; protected set; }
         /// <summary>
         /// 
         /// </summary>
         public INotepadPPGateway Notepad { get; protected set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public FileInformation FileInfo { get; protected set; }
 
         /// <summary>
         /// 
@@ -43,16 +80,6 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         /// 
         /// </summary>
         protected bool updateRenderer = true;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected string currentFileName = "";
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected string currentFileExtension;
 
         /// <summary>
         /// 
@@ -143,7 +170,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
         public void Update(bool updateScrollBar = false, bool updateRenderer = false)
         {
             //Validate that the current file may be rendered
-            if (this.configuration.ValidateFileExtension(this.currentFileExtension, this.currentFileName))
+            if (this.configuration.ValidateFileExtension(this.FileInfo.FileExtension, this.FileInfo.FileName))
             {
                 //Update the view
                 this.updateRenderer = updateRenderer ? updateRenderer : this.updateRenderer;
@@ -159,8 +186,8 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                 this.renderer.Render($@"<p>
 Your configuration settings do not include the currently selected file extension.<br />
 The rendered file extensions are <b>'{this.configuration.options.fileExtensions}'</b>.<br />
-The current file is <i>'{this.currentFileName}'</i>.
-                </p>", this.currentFileName);
+The current file is <i>'{this.FileInfo.FileName}'</i>.
+                </p>", this.FileInfo);
             }
         }
 
@@ -272,9 +299,10 @@ The current file is <i>'{this.currentFileName}'</i>.
         protected void UpdateEditorInformation()
         {
             this.Editor.SetScintillaHandle(PluginBase.GetCurrentScintilla());
-            this.currentFileName = this.Notepad.GetCurrentFileName();
-            this.currentFileExtension = Path.GetExtension(this.currentFileName);
-            this.currentFileExtension = this.currentFileExtension.StartsWith(".") ? this.currentFileExtension.Substring(1, this.currentFileExtension.Length-1) : this.currentFileExtension;
+            this.FileInfo = new FileInformation() {
+                FileName = this.Notepad.GetCurrentFileName(),
+                FileDirectory = this.Notepad.GetCurrentDirectory()
+            };
         }
 
         /// <summary>
@@ -303,12 +331,12 @@ The current file is <i>'{this.currentFileName}'</i>.
                 if (this.updateRenderer)
                 {
                     this.updateRenderer = false;
-                    this.renderer.Render(this.Editor.GetText(this.Editor.GetLength() + 1), this.currentFileName);
+                    this.renderer.Render(this.Editor.GetText(this.Editor.GetLength() + 1), this.FileInfo);
                 }
             }
             catch
             {
-                this.renderer.Render("<p>Couldn't render the currently selected file!</p>", this.currentFileName);
+                this.renderer.Render("<p>Couldn't render the currently selected file!</p>", this.FileInfo);
             }
         }
 

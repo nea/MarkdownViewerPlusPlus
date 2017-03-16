@@ -17,6 +17,8 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 * BugFixes ^^'
 
 ## Latest Versions
+* 0.7.1
+  * Added handling of local image files
 * 0.7.0
   * Added a menu action to send content as HTML/Text E-mail (requires *Outlook*)
   * Added a menu action to print the rendered content directly
@@ -26,8 +28,6 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 * 0.6.2
   * Fixed an issue updating the scroll information in an invisible window
   * Updated [CommonMark.NET][3] to version 0.15.1
-* 0.6.1
-  * Fixed saving custom CSS to ini
   
 Download the latest [release here][9]. For a full version history go [here][10].
 

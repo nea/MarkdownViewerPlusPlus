@@ -19,6 +19,7 @@ using PdfSharp.Pdf;
 using System.IO;
 using System.Net;
 using com.insanitydesign.MarkdownViewerPlusPlus.Helper;
+using static com.insanitydesign.MarkdownViewerPlusPlus.MarkdownViewer;
 
 /// <summary>
 /// 
@@ -58,7 +59,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <summary>
         /// 
         /// </summary>
-        protected virtual string FileName { get; set; }
+        protected virtual FileInformation FileInfo { get; set; }
 
         /// <summary>
         /// 
@@ -135,10 +136,10 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// 
         /// </summary>
         /// <param name="text"></param>
-        /// <param name="fileName"></param>
-        public virtual void Render(string text, string fileName)
+        /// <param name="fileInfo"></param>
+        public virtual void Render(string text, FileInformation fileInfo)
         {
-            FileName = fileName;
+            FileInfo = fileInfo;
             RawText = text;
             ConvertedText = CommonMarkConverter.Convert(text);
         }
@@ -204,7 +205,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
                 Outlook.Application outlook = new Outlook.Application();
                 Outlook.MailItem message = (Outlook.MailItem)outlook.CreateItem(Outlook.OlItemType.olMailItem);
                 //
-                message.Subject = FileName;
+                message.Subject = this.FileInfo.FileName;
                 message.BodyFormat = Outlook.OlBodyFormat.olFormatPlain;
                 message.Body = RawText;
                 message.Display();
@@ -224,9 +225,9 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
                 Outlook.Application outlook = new Outlook.Application();
                 Outlook.MailItem message = (Outlook.MailItem)outlook.CreateItem(Outlook.OlItemType.olMailItem);
                 //
-                message.Subject = FileName;
+                message.Subject = this.FileInfo.FileName;
                 message.BodyFormat = Outlook.OlBodyFormat.olFormatHTML;
-                message.HTMLBody = BuildHtml(ConvertedText, FileName);
+                message.HTMLBody = BuildHtml(ConvertedText, this.FileInfo.FileName);
                 message.Display(true);
             }
         }
@@ -241,7 +242,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             //Save!
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             //Default name of the file is the editor file name
-            saveFileDialog.FileName = Path.GetFileNameWithoutExtension(FileName) + ".html";
+            saveFileDialog.FileName = Path.GetFileNameWithoutExtension(this.FileInfo.FileName) + ".html";
             //The current path
             saveFileDialog.InitialDirectory = this.markdownViewer.Notepad.GetCurrentDirectory();
             //
@@ -251,7 +252,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             {
                 using (StreamWriter sw = new StreamWriter(saveFileDialog.FileName))
                 {
-                    string html = BuildHtml(ConvertedText, FileName);
+                    string html = BuildHtml(ConvertedText, this.FileInfo.FileName);
                     try
                     {
                         html = XDocument.Parse(html).ToString();
@@ -277,7 +278,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             //Save!
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             //Default name of the file is the editor file name
-            saveFileDialog.FileName = Path.GetFileNameWithoutExtension(FileName) + ".pdf";
+            saveFileDialog.FileName = Path.GetFileNameWithoutExtension(this.FileInfo.FileName) + ".pdf";
             //The current path
             saveFileDialog.InitialDirectory = this.markdownViewer.Notepad.GetCurrentDirectory();
             //
@@ -296,7 +297,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
                 pdfConfig.MarginRight = MilimiterToPoint(margins[2]);
                 pdfConfig.MarginBottom = MilimiterToPoint(margins[3]);
                 //Generate PDF and save
-                PdfDocument pdf = PdfGenerator.GeneratePdf(BuildHtml(ConvertedText, FileName), pdfConfig, PdfGenerator.ParseStyleSheet(Resources.MarkdownViewerHTML));
+                PdfDocument pdf = PdfGenerator.GeneratePdf(BuildHtml(ConvertedText, this.FileInfo.FileName), pdfConfig, PdfGenerator.ParseStyleSheet(Resources.MarkdownViewerHTML));
                 pdf.Save(saveFileDialog.FileName);
 
                 //Open if requested
@@ -322,7 +323,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
                 ((WebBrowser)browser).Size = webBrowser.MaximumSize;
                 ((WebBrowser)browser).ShowPrintPreviewDialog();
             };
-            webBrowser.DocumentText = BuildHtml(ConvertedText, FileName);
+            webBrowser.DocumentText = BuildHtml(ConvertedText, this.FileInfo.FileName);
         }
 
         /// <summary>
@@ -332,7 +333,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <param name="e"></param>
         protected void sendToClipboard_Click(object sender, EventArgs e)
         {
-            ClipboardHelper.CopyToClipboard(BuildHtml(ConvertedText, FileName), ConvertedText);
+            ClipboardHelper.CopyToClipboard(BuildHtml(ConvertedText, this.FileInfo.FileName), ConvertedText);
         }
 
         /// <summary>
