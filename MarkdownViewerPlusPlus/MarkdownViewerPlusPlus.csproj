@@ -258,7 +258,8 @@
     <EmbeddedResource Include="Resources\MarkdownViewerHTML.css" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildProjectDirectory)\PluginInfrastructure\DllExport\NppPlugin.DllExport.targets" />
+  <Import Project="$(MSBuildProjectDirectory)\PluginInfrastructure\DllExport\NppPlugin.DllExport.targets" />  
+  <Import Condition="Exists('$(DevEnvDir)\..\..\VC\Auxiliary\Build')" Project="$(DevEnvDir)\..\..\VC\Auxiliary\Build\Microsoft.VCToolsVersion.default.props" />  
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
@@ -273,10 +274,14 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
-  -->
+  -->  
   <Target Name="AfterBuild">
-    <DllExportTask Platform="$(Platform)" PlatformTarget="$(PlatformTarget)" CpuType="$(CpuType)" EmitDebugSymbols="$(DebugSymbols)" DllExportAttributeAssemblyName="$(DllExportAttributeAssemblyName)" DllExportAttributeFullName="$(DllExportAttributeFullName)" Timeout="$(DllExportTimeout)" KeyContainer="$(KeyContainerName)$(AssemblyKeyContainerName)" KeyFile="$(KeyOriginatorFile)" ProjectDirectory="$(MSBuildProjectDirectory)" InputFileName="$(TargetPath)" FrameworkPath="$(TargetedFrameworkDir);$(TargetFrameworkDirectory)" LibToolPath="$(DevEnvDir)\..\..\VC\bin" LibToolDllPath="$(DevEnvDir)" SdkPath="$(SDK40ToolsPath)" />
-    <Message Condition="Exists('C:\Program Files (x86)\Notepad++\plugins\') AND '$(PlatformTarget)'=='x86'" Text="Copying to C:\Program Files (x86)\Notepad++\plugins\" Importance="high" />
+	<!-- Visual Studio < 2017 -->
+    <DllExportTask Condition="Exists('$(DevEnvDir)\..\..\VC\bin')" Platform="$(Platform)" PlatformTarget="$(PlatformTarget)" CpuType="$(CpuType)" EmitDebugSymbols="$(DebugSymbols)" DllExportAttributeAssemblyName="$(DllExportAttributeAssemblyName)" DllExportAttributeFullName="$(DllExportAttributeFullName)" Timeout="$(DllExportTimeout)" KeyContainer="$(KeyContainerName)$(AssemblyKeyContainerName)" KeyFile="$(KeyOriginatorFile)" ProjectDirectory="$(MSBuildProjectDirectory)" InputFileName="$(TargetPath)" FrameworkPath="$(TargetedFrameworkDir);$(TargetFrameworkDirectory)" LibToolPath="$(DevEnvDir)\..\..\VC\bin" LibToolDllPath="$(DevEnvDir)" SdkPath="$(SDK40ToolsPath)" />
+	<!-- Visual Studio >= 2017 -->
+	<DllExportTask Condition="Exists('$(DevEnvDir)\..\..\VC\Tools\MSVC\$(VCToolsVersion)\bin\Host$(Platform)\$(Platform)')" Platform="$(Platform)" PlatformTarget="$(PlatformTarget)" CpuType="$(CpuType)" EmitDebugSymbols="$(DebugSymbols)" DllExportAttributeAssemblyName="$(DllExportAttributeAssemblyName)" DllExportAttributeFullName="$(DllExportAttributeFullName)" Timeout="$(DllExportTimeout)" KeyContainer="$(KeyContainerName)$(AssemblyKeyContainerName)" KeyFile="$(KeyOriginatorFile)" ProjectDirectory="$(MSBuildProjectDirectory)" InputFileName="$(TargetPath)" FrameworkPath="$(TargetedFrameworkDir);$(TargetFrameworkDirectory)" LibToolPath="$(DevEnvDir)\..\..\VC\Tools\MSVC\$(VCToolsVersion)\bin\Host$(Platform)\$(Platform)" LibToolDllPath="$(DevEnvDir)" SdkPath="$(SDK40ToolsPath)" />
+    
+	<Message Condition="Exists('C:\Program Files (x86)\Notepad++\plugins\') AND '$(PlatformTarget)'=='x86'" Text="Copying to C:\Program Files (x86)\Notepad++\plugins\" Importance="high" />
     <Copy Condition="Exists('C:\Program Files (x86)\Notepad++\plugins\') AND '$(PlatformTarget)'=='x86'" SourceFiles="$(TargetPath)" DestinationFolder="C:\Program Files (x86)\Notepad++\plugins\" ContinueOnError="false" />
     <Message Condition="Exists('C:\Program Files\Notepad++\plugins\') AND '$(PlatformTarget)'=='x86'" Text="Copying to C:\Program Files\Notepad++\plugins\" Importance="high" />
     <Copy Condition="Exists('C:\Program Files\Notepad++\plugins\') AND '$(PlatformTarget)'=='x64'" SourceFiles="$(TargetPath)" DestinationFolder="C:\Program Files\Notepad++\plugins\" ContinueOnError="false" />
