@@ -72,6 +72,8 @@ On the **HTML** tab you can fill in *Custom CSS*, which is used when rendering t
 #### PDF
 On the **PDF** tab you can set the *orientation* and *page size* of the exported PDF. The content is provided by the [PDFSharp][5] enumerations.
 
+Additionally, the margins for *top*, *right*, *bottom* and *left* can be set for the exported PDF file.
+
 ## License and Credits
 The MarkdownViewerPlusPlus is released under the MIT license.
 
