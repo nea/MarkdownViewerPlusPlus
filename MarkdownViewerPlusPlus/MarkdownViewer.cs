@@ -1,6 +1,5 @@
 ﻿using com.insanitydesign.MarkdownViewerPlusPlus.Forms;
 using com.insanitydesign.MarkdownViewerPlusPlus.Properties;
-using CommonMark;
 using Kbg.NppPluginNET;
 using Kbg.NppPluginNET.PluginInfrastructure;
 using System;
@@ -125,8 +124,6 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             this.Notepad = new NotepadPPGateway();
             //Init the actual renderer
             this.renderer = new MarkdownViewerRenderer(this);
-            //Set our custom formatter
-            CommonMarkSettings.Default.OutputDelegate = (doc, output, settings) => new MarkdownViewerFormatter(output, settings).WriteDocument(doc);
         }
 
         /// <summary>

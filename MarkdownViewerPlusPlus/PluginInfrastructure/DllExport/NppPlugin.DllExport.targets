@@ -5,6 +5,11 @@
   <Target Name="AfterBuild"
           DependsOnTargets="GetFrameworkPaths"
           >
+    <PropertyGroup>
+		<!-- LibToolPath is optional - it's needed to debug C++, but you can still debug the C# code without it
+			If you don't have the C++ toolchain installed this is missing, but then you can't' debug C++ anyway -->
+        <LibToolPath Condition="Exists('$(DevEnvDir)\..\..\VC\bin')">$(DevEnvDir)\..\..\VC\bin</LibToolPath>
+    </PropertyGroup>
     <DllExportTask Platform="$(Platform)"
                    PlatformTarget="$(PlatformTarget)"
                    CpuType="$(CpuType)"
@@ -17,14 +22,23 @@
                    ProjectDirectory="$(MSBuildProjectDirectory)"
                    InputFileName="$(TargetPath)"
                    FrameworkPath="$(TargetedFrameworkDir);$(TargetFrameworkDirectory)"
-                   LibToolPath="$(DevEnvDir)\..\..\VC\bin"
+                   LibToolPath="$(LibToolPath)"
                    LibToolDllPath="$(DevEnvDir)"
                    SdkPath="$(SDK40ToolsPath)"/>
  
+	<!-- $(MSBuildProgramFiles32) points to the 32 bit program files dir.
+		On 32 bit windows usually C:\Program Files\
+		On 64 bit windows usually C:\Program Files (x86)\
+		$(ProgramW6432) points to the 64bit Program Files (on 32 bit windows it is blank) -->
     <Copy 
         SourceFiles="$(TargetPath)" 
-        DestinationFolder="C:\Program Files (x86)\Notepad++\plugins\" 
-        Condition="Exists('C:\Program Files (x86)\Notepad++\plugins\')"
+        DestinationFolder="$(MSBuildProgramFiles32)\Notepad++\plugins\" 
+        Condition="Exists('$(MSBuildProgramFiles32)\Notepad++\plugins\') AND '$(Platform)'=='x86'"
+        ContinueOnError="false" /> 
+    <Copy 
+        SourceFiles="$(TargetPath)" 
+        DestinationFolder="$(ProgramW6432)\Notepad++\plugins\" 
+        Condition="Exists('$(ProgramW6432)\Notepad++\plugins\') AND '$(Platform)'=='x64'"
         ContinueOnError="false" />
   </Target>
 </Project>

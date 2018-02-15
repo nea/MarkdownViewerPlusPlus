@@ -3,20 +3,16 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 
 ## Features
 * Dockable panel (toggle) with a rendered HTML of the currently selected file/tab
-* CommonMark compliant ([0.27][4])
+* CommonMark compliant ([0.28][4])
 * Synchronized scrolling
 * Custom CSS integration
 * HTML and PDF Export
 * Notepad++ Unicode Plugin
 
-### Planned
-* Highlight the current cursor row
-* Export as PDF with properties/templates
-* Improved performance with large documents
-* Scroll to selected content
-* BugFixes ^^'
-
 ## Latest Versions
+* 0.8.0
+  * Changed CommonMark converter to [Markdig][3]
+  * Updated [PDFSharp][5] and [HTMLRenderer][6] accordingly
 * 0.7.1
   * Added handling of local image files
 * 0.7.0
@@ -25,9 +21,6 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
   * Added margins configuration for PDF exports
   * Added a menu action to copy the rendered content to the clipboard
   * Added options to open an exported PDF/HTML after the action completed
-* 0.6.2
-  * Fixed an issue updating the scroll information in an invisible window
-  * Updated [CommonMark.NET][3] to version 0.15.1
   
 Download the latest [release here][9]. For a full version history go [here][10].
 
@@ -80,7 +73,7 @@ The MarkdownViewerPlusPlus is released under the MIT license.
 This Notepad++ plugin integrates the sources of multiple other libraries, because of issues with the library merging process. Credits and thanks to all the developers working on these great projects:
 * The plugin is based on the [Notepad++ PluginPack.net][2] by kbilsted provided under the Apache-2.0 license.
 * The renderer uses 
-  * [CommonMark.NET][3] by Knagis provided under the BSD-3-Clause license
+  * [Markdig][3] by lunet-io provided under the BSD-2-Clause license
   * [HTMLRenderer.WinForms][6] by ArthurHub provided under the BSD-3-Clause license
 * The PDF Exporter uses 
   * [PDFSharp][5] by empira Software GmbH provided under the MIT license
@@ -97,8 +90,8 @@ This source and the whole package comes without warranty. It may or may not harm
 
   [1]: http://www.insanitydesign.com/wp/
   [2]: https://github.com/kbilsted/NotepadPlusPlusPluginPack.Net
-  [3]: https://github.com/Knagis/CommonMark.NET
-  [4]: http://spec.commonmark.org/
+  [3]: https://github.com/lunet-io/markdig
+  [4]: http://spec.commonmark.org/0.28/
   [5]: http://www.pdfsharp.net/
   [6]: https://htmlrenderer.codeplex.com/
   [7]: http://fontawesome.io/

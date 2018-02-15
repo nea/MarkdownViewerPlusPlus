@@ -1,10 +1,11 @@
-﻿// NPP plugin platform for .Net v0.93.96 by Kasper B. Graversen etc.
-using NppPluginNET.PluginInfrastructure;
+﻿// NPP plugin platform for .Net v0.94.00 by Kasper B. Graversen etc.
+using System;
 using System.Text;
+using NppPluginNET.PluginInfrastructure;
 
 namespace Kbg.NppPluginNET.PluginInfrastructure
 {
-    public interface INotepadPPGateway
+	public interface INotepadPPGateway
 	{
 		void FileNew();
 
@@ -21,7 +22,7 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
         /// </summary>
         /// <returns></returns>
         string GetCurrentDirectory();
-	}
+    }
 
 	/// <summary>
 	/// This class holds helpers for sending messages defined in the Msgs_h.cs file. It is at the moment

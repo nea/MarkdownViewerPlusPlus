@@ -1,4 +1,4 @@
-﻿// NPP plugin platform for .Net v0.93.96 by Kasper B. Graversen etc.
+﻿// NPP plugin platform for .Net v0.94.00 by Kasper B. Graversen etc.
 //
 // This file should stay in sync with the CPP project file
 // "notepad-plus-plus/scintilla/include/Scintilla.iface"
@@ -21,7 +21,7 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
         /// <summary>
         /// environment specific window handle/pointer
         /// </summary>
-        public IntPtr hwndFrom;
+        public IntPtr hwndFrom; 
 
         /// <summary>
         /// CtrlID of the window issuing the notification
@@ -31,7 +31,7 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
         /// <summary>
         /// The SCN_* notification Code
         /// </summary>
-        public uint Code;
+        public uint Code;       
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -73,7 +73,7 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
         /// Character of the notification - eg keydown
         /// SCN_CHARADDED, SCN_KEY, SCN_AUTOCCOMPLETE, SCN_AUTOCSELECTION, SCN_USERLISTSELECTION
         /// </summary>
-        public char Character { get { return (char)character; } }
+        public char Character { get { return (char) character; } }
     }
 
     [Flags]

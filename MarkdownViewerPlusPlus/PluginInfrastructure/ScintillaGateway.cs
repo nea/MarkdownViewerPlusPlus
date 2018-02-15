@@ -1,4 +1,4 @@
-﻿// NPP plugin platform for .Net v0.93.96 by Kasper B. Graversen etc.
+﻿// NPP plugin platform for .Net v0.94.00 by Kasper B. Graversen etc.
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -24,6 +24,7 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
         /// 
         /// </summary>
         public IntPtr CurrentBufferID { get; set; }
+
 
         public ScintillaGateway(IntPtr scintilla)
         {
@@ -1836,8 +1837,7 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
         /// </summary>
         public unsafe string GetText(int length)
         {
-            //byte[] textBuffer = new byte[10000];
-            byte[] textBuffer = new byte[length];
+            byte[] textBuffer = new byte[10000];
             fixed (byte* textPtr = textBuffer)
             {
                 IntPtr res = Win32.SendMessage(scintilla, SciMsg.SCI_GETTEXT, length, (IntPtr) textPtr);
@@ -3979,7 +3979,7 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
         {
             IntPtr res = Win32.SendMessage(scintilla, SciMsg.SCI_COPYALLOWLINE, Unused, Unused);
         }
-        
+
         /// <summary>
         /// Compact the document buffer and return a read-only pointer to the
         /// characters in the document.

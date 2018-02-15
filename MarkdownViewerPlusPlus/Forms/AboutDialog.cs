@@ -32,7 +32,7 @@ Version: {version}
 
 Many thanks to:
   Notepad++ PluginPack.net by kbilsted
-  CommonMark.NET by Knagis
+  Markdig by lunet-io
   PDFSharp by empira Software GmbH
   HTMLRenderer by ArthurHub
   SVG.NET by vvvv

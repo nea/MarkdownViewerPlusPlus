@@ -12,7 +12,6 @@ using System.Windows.Forms;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using static com.insanitydesign.MarkdownViewerPlusPlus.Windows.WindowsMessage;
 using System.Drawing.Printing;
-using CommonMark;
 using TheArtOfDev.HtmlRenderer.PdfSharp;
 using System.Xml.Linq;
 using PdfSharp.Pdf;
@@ -20,6 +19,7 @@ using System.IO;
 using System.Net;
 using com.insanitydesign.MarkdownViewerPlusPlus.Helper;
 using static com.insanitydesign.MarkdownViewerPlusPlus.MarkdownViewer;
+using Markdig;
 
 /// <summary>
 /// 
@@ -60,6 +60,11 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// 
         /// </summary>
         protected virtual FileInformation FileInfo { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected MarkdownPipeline markdownPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
 
         /// <summary>
         /// 
@@ -141,7 +146,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         {
             FileInfo = fileInfo;
             RawText = text;
-            ConvertedText = CommonMarkConverter.Convert(text);
+            ConvertedText = Markdown.ToHtml(text, this.markdownPipeline);
         }
 
         /// <summary>

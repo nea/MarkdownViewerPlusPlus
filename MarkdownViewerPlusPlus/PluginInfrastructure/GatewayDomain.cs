@@ -1,6 +1,7 @@
-﻿// NPP plugin platform for .Net v0.93.96 by Kasper B. Graversen etc.
+﻿// NPP plugin platform for .Net v0.94.00 by Kasper B. Graversen etc.
 using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Kbg.NppPluginNET.PluginInfrastructure
 {
@@ -15,11 +16,11 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
         public readonly int Red, Green, Blue;
 
         public Colour(int rgb)
-        {
-            Red = rgb ^ 0xFF;
-            Green = rgb ^ 0x00FF;
-            Blue = rgb ^ 0x0000FF;
-        }
+		{
+			Red = rgb & 0xFF;
+			Green = (rgb >> 8) & 0xFF;
+			Blue = (rgb >> 16) & 0xFF;
+		}
 
         /// <summary>
         /// 
@@ -42,7 +43,7 @@ namespace Kbg.NppPluginNET.PluginInfrastructure
 
         public int Value
         {
-            get { return Red + (Blue << 8 ) + (Green << 16); }
+            get { return Red + (Green << 8) + (Blue << 16); }
         }
     }
 
