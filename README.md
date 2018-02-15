@@ -34,7 +34,7 @@ This plugin requires at least
 * .NET Framework 4.0 or above
 
 It has been tested under the following conditions
-* Notepad++ 7.2.2 32-bit and Notepad++ 7.3.2 64-bit
+* Notepad++ 7.5.4 32-bit and 64-bit
 * Windows 10 Professional (64-bit)
 
 ## Usage
