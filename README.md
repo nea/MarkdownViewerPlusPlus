@@ -27,6 +27,9 @@ Download the latest [release here][9]. For a full version history go [here][10].
 ## Installation
 Download a [release version][9] and copy the included **MarkdownViewerPlusPlus.dll** to the *plugins* sub-folder at your Notepad++ installation directory. The plugin adds a small Markdown icon ![Markdown icon](https://github.com/nea/MarkdownViewerPlusPlus/blob/master/MarkdownViewerPlusPlus/Resources/markdown-16x16-solid.png?raw=true) to the toolbar to toggle the viewer as dockable panel.
 
+### Plugin Manager
+If you have the [Plugin Manager][13] installed you can search for MarkdownViewer++ and install it via that plugin.
+
 ### Compatibility
 This plugin requires at least
 * Notepad++ 32-bit/64-bit
@@ -67,6 +70,9 @@ On the **PDF** tab you can set the *orientation* and *page size* of the exported
 
 Additionally, the margins for *top*, *right*, *bottom* and *left* can be set for the exported PDF file.
 
+### Highlighting
+MarkdownViewer++ adds no markdown highlighting to Notepad++ itself. But you might find the [user-defined syntax highlighting by Edditoria][12] helpful.
+
 ## License and Credits
 The MarkdownViewerPlusPlus is released under the MIT license.
 
@@ -99,3 +105,5 @@ This source and the whole package comes without warranty. It may or may not harm
   [9]: https://github.com/nea/MarkdownViewerPlusPlus/releases
   [10]: https://github.com/nea/MarkdownViewerPlusPlus/wiki/Version-History
   [11]: https://github.com/vvvv/SVG
+  [12]: https://github.com/Edditoria/markdown-plus-plus
+  [13]: https://bruderste.in/npp/pm/
