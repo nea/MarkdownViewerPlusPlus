@@ -20,6 +20,9 @@ using System.Net;
 using com.insanitydesign.MarkdownViewerPlusPlus.Helper;
 using static com.insanitydesign.MarkdownViewerPlusPlus.MarkdownViewer;
 using Markdig;
+using System.Text.RegularExpressions;
+using System.Linq;
+using System.Collections.Generic;
 
 /// <summary>
 /// 
@@ -65,6 +68,11 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// 
         /// </summary>
         protected MarkdownPipeline markdownPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected string patternCSSImportStatements = "(@import\\s.+;)";
 
         /// <summary>
         /// 
@@ -185,9 +193,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         <meta name=""author"" content=""{this.assemblyTitle}"" />
         <title>{title}</title>
         <style type=""text/css"">
-            {Resources.MarkdownViewerHTML}
-
-            {this.markdownViewer.Options.HtmlCssStyle}
+            {this.getCSS()}
         </style>
       </head>
     <body>
@@ -302,7 +308,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
                 pdfConfig.MarginRight = MilimiterToPoint(margins[2]);
                 pdfConfig.MarginBottom = MilimiterToPoint(margins[3]);
                 //Generate PDF and save
-                PdfDocument pdf = PdfGenerator.GeneratePdf(BuildHtml(ConvertedText, this.FileInfo.FileName), pdfConfig, PdfGenerator.ParseStyleSheet(Resources.MarkdownViewerHTML));
+                PdfDocument pdf = PdfGenerator.GeneratePdf(BuildHtml(ConvertedText, this.FileInfo.FileName), pdfConfig, PdfGenerator.ParseStyleSheet(this.getCSS()));
                 pdf.Save(saveFileDialog.FileName);
 
                 //Open if requested
@@ -339,6 +345,22 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         protected void sendToClipboard_Click(object sender, EventArgs e)
         {
             ClipboardHelper.CopyToClipboard(BuildHtml(ConvertedText, this.FileInfo.FileName), ConvertedText);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        protected virtual String getCSS()
+        {
+            string cssImportStatements = "";
+            
+            //Get all @import statements from the custom CSS
+            List<Match> matches = Regex.Matches(this.markdownViewer.Options.HtmlCssStyle, this.patternCSSImportStatements).Cast<Match>().ToList();
+            matches.ForEach(match => match.Captures.Cast<Capture>().ToList().ForEach(capture => cssImportStatements += capture.Value + Environment.NewLine));            
+            
+            //Return a CSS with the @import statements in front, the base MarkdownViewer++ CSS and the rest of the custom CSS from the user
+            return cssImportStatements + Environment.NewLine + Resources.MarkdownViewerHTML + Environment.NewLine + Regex.Replace(this.markdownViewer.Options.HtmlCssStyle, this.patternCSSImportStatements, "").Trim();
         }
 
         /// <summary>
