@@ -62,5 +62,15 @@ For more information, visit the website or check the included README.md
         {
             System.Diagnostics.Process.Start("https://github.com/nea/MarkdownViewerPlusPlus");
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void picBoxDonate_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.paypal.me/insanitydesign");
+        }
     }
 }

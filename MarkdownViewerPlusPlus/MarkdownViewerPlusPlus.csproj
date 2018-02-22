@@ -258,6 +258,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ILMergeOrder.txt" />
+    <None Include="Resources\Donate-PayPal-green.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildProjectDirectory)\PluginInfrastructure\DllExport\NppPlugin.DllExport.targets" />
