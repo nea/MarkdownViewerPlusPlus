@@ -11,7 +11,7 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 
 ## Latest Versions
 * 0.8.1
-  * Fixed a bug cutting of text after 10000 characters (#60)  
+  * Fixed a bug cutting off text after 10000 characters (#60)  
   * Changed parsing of custom CSS to recognize _@import_ statements and have them lead (#35)
 * 0.8.0
   * Changed CommonMark.net converter to [Markdig][3]
