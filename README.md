@@ -1,4 +1,4 @@
-# MarkdownViewerPlusPlus [![Build status](https://ci.appveyor.com/api/projects/status/jkuuth039vioms74?svg=true)](https://ci.appveyor.com/project/nea/markdownviewerplusplus) [![GitHub license](https://img.shields.io/github/license/nea/MarkdownViewerPlusPlus.svg)](https://github.com/nea/MarkdownViewerPlusPlus/blob/master/LICENSE.md) [![GitHub (pre-)release](https://img.shields.io/badge/release-0.8.0-yellowgreen.svg)](https://github.com/nea/MarkdownViewerPlusPlus/releases/tag/0.8.0)
+# MarkdownViewerPlusPlus [![Build status](https://ci.appveyor.com/api/projects/status/jkuuth039vioms74?svg=true)](https://ci.appveyor.com/project/nea/markdownviewerplusplus) [![GitHub license](https://img.shields.io/github/license/nea/MarkdownViewerPlusPlus.svg)](https://github.com/nea/MarkdownViewerPlusPlus/blob/master/LICENSE.md) [![GitHub (pre-)release](https://img.shields.io/badge/release-0.8.1-yellow.svg)](https://github.com/nea/MarkdownViewerPlusPlus/releases/tag/0.8.1) [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/insanitydesign)
 A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 
 ## Features
@@ -10,17 +10,14 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 * Notepad++ Unicode Plugin
 
 ## Latest Versions
+* 0.8.1
+  * Fixed a bug cutting of text after 10000 characters (#60)  
+  * Changed parsing of custom CSS to recognize _@import_ statements and have them lead (#35)
 * 0.8.0
   * Changed CommonMark.net converter to [Markdig][3]
   * Updated [PDFSharp][5] and [HTMLRenderer][6] accordingly
 * 0.7.1
   * Added handling of local image files
-* 0.7.0
-  * Added a menu action to send content as HTML/Text E-mail (requires *Outlook*)
-  * Added a menu action to print the rendered content directly
-  * Added margins configuration for PDF exports
-  * Added a menu action to copy the rendered content to the clipboard
-  * Added options to open an exported PDF/HTML after the action completed
   
 Download the latest [release here][9]. For a full version history go [here][10].
 
