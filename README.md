@@ -91,7 +91,7 @@ This source and the whole package comes without warranty. It may or may not harm
 ## Personal Note
 *I don't know if this is very useful for a lot of people but I wanted something in private to quickly write and see some formatted Markdown documents. As I was not able to find something similar very quickly I created this project. I hope this proves useful to you... with all its Bugs and Issues ;) If you like it you can give me a shout at [INsanityDesign][1] or let me know via this repository.*
 
-  [1]: http://www.insanitydesign.com/wp/
+  [1]: http://www.insanitydesign.com/
   [2]: https://github.com/kbilsted/NotepadPlusPlusPluginPack.Net
   [3]: https://github.com/lunet-io/markdig
   [4]: http://spec.commonmark.org/0.28/
