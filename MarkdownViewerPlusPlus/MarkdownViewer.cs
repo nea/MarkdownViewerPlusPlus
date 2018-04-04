@@ -302,6 +302,7 @@ The current file is <i>'{this.FileInfo.FileName}'</i>.
             {
                 UpdateEditorInformation();
                 Update(true, true);
+                Editor.SetFocus(true);
             }            
         }
 
