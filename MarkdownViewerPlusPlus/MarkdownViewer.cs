@@ -196,7 +196,7 @@ The current file is <i>'{this.FileInfo.FileName}'</i>.
             try
             {
                 ScrollInfo scrollInfo = this.Editor.GetScrollInfo(ScrollInfoMask.SIF_RANGE | ScrollInfoMask.SIF_TRACKPOS | ScrollInfoMask.SIF_PAGE, ScrollInfoBar.SB_VERT);
-                var scrollRatio = (double)scrollInfo.nTrackPos / (scrollInfo.nMax - scrollInfo.nPage);
+                var scrollRatio = (double)scrollInfo.nTrackPos / (scrollInfo.nMax - scrollInfo.nMin + 1 - scrollInfo.nPage);
                 this.renderer.ScrollByRatioVertically(scrollRatio);
             }
             catch { }            
