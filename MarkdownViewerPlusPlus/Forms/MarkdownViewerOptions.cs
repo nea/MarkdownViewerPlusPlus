@@ -66,7 +66,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
                 this.optionPanels.Add(node.Tag.ToString(), optionsPanel);
             }
             //
-            this.treeOptions.NodeMouseClick += treeOptions_NodeMouseClick;
+            this.treeOptions.AfterSelect += treeOptions_AfterSelect;
             //Start with the general options panel
             this.splitOptions.Panel2.Controls.Add(this.optionPanels.First().Value);
             this.treeOptions.Select();
@@ -82,7 +82,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="treeNodeEvent"></param>
-        protected void treeOptions_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs treeNodeEvent)
+        protected void treeOptions_AfterSelect(object sender, TreeViewEventArgs treeNodeEvent)
         {
             //Remove old (if any)
             if (this.splitOptions.Panel2.Controls.Count > 0)
