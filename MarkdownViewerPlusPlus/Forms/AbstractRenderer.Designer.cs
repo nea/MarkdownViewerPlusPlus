@@ -54,9 +54,8 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             this.exportAsToolStrip,
             this.sendToolStrip,
             this.viewToolStripMenuItem});
-            this.markdownViewerMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.markdownViewerMenuStrip.Dock = System.Windows.Forms.DockStyle.Top;
             this.markdownViewerMenuStrip.Name = "markdownViewerMenuStrip";
-            this.markdownViewerMenuStrip.Size = new System.Drawing.Size(284, 24);
             this.markdownViewerMenuStrip.TabIndex = 1;
             this.markdownViewerMenuStrip.Text = "markdownViewerMenuStrip";
             // 

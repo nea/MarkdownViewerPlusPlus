@@ -43,6 +43,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             this.markdownViewerHtmlPanel.ImageLoad += OnImageLoad;
             //Add to view
             this.Controls.Add(this.markdownViewerHtmlPanel);
+            this.Controls.SetChildIndex(this.markdownViewerHtmlPanel, 0);
         }
 
         /// <summary>
