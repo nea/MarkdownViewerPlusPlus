@@ -24,7 +24,7 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 Download the latest [release here][9]. For a full version history go [here][10].
 
 ## Installation
-Download a [release version][9] and copy the included **MarkdownViewerPlusPlus.dll** to the *plugins* sub-folder at your Notepad++ installation directory. The plugin adds a small Markdown icon ![Markdown icon](https://github.com/nea/MarkdownViewerPlusPlus/blob/master/MarkdownViewerPlusPlus/Resources/markdown-16x16-solid.png?raw=true) to the toolbar to toggle the viewer as dockable panel.
+Download a [release version][9] and copy the included **MarkdownViewerPlusPlus.dll** to the *plugins* sub-folder at your Notepad++ installation directory. The plugin adds a small Markdown icon ![Markdown icon](https://raw.githubusercontent.com/nea/MarkdownViewerPlusPlus/master/MarkdownViewerPlusPlus/Resources/markdown-16x16-solid.png) to the toolbar to toggle the viewer as dockable panel.
 
 ### Plugin Manager
 If you have the [Plugin Manager][13] installed you can search for MarkdownViewer++ and install it via that plugin.
@@ -41,18 +41,18 @@ It has been tested under the following conditions
 
 ## Usage
 To open the MarkdownViewer++ you can 
-* click the toolbar icon ![Markdown icon](https://github.com/nea/MarkdownViewerPlusPlus/raw/master/MarkdownViewerPlusPlus/Resources/markdown-16x16-solid.png?raw=true), 
+* click the toolbar icon ![Markdown icon](https://raw.githubusercontent.com/nea/MarkdownViewerPlusPlus/master/MarkdownViewerPlusPlus/Resources/markdown-16x16-solid.png), 
 * use the shortcut _Ctrl+Shift+M_
 * or open it via the **Plugins** sub-menu
 
 To synchronize the scrolling between the Notepad++ editor view and the rendered markdown, you can enable the option via the **Plugins** sub-menu. The made selection will be stored and loaded in future sessions.
 
-![MarkdownViewer++](https://github.com/nea/MarkdownViewerPlusPlus/blob/master/MarkdownViewerPlusPlus/Resources/MarkdownViewerPlusPlus.png?raw=true)
+![MarkdownViewer++](https://raw.githubusercontent.com/nea/MarkdownViewerPlusPlus/master/MarkdownViewerPlusPlus/Resources/MarkdownViewerPlusPlus.png)
 
 ### Options
 The MarkdownViewer++ offers several options to customize your plugin experience. You can open the options dialog via the **Plugins** sub-menu.
 
-![MarkdownViewer++ Options](https://github.com/nea/MarkdownViewerPlusPlus/blob/master/MarkdownViewerPlusPlus/Resources/MarkdownViewerPlusPlus-Options.png?raw=true)
+![MarkdownViewer++ Options](https://raw.githubusercontent.com/nea/MarkdownViewerPlusPlus/master/MarkdownViewerPlusPlus/Resources/MarkdownViewerPlusPlus-Options.png)
 
 #### General
 On the **General** tab you can configure the file extensions the MarkdownViewer++ renderer should actually display. If the box is *empty* all files will be rendered. If you want to limit the rendering to certain file extensions list them in the textbox as comma-separated list without leading dot.
