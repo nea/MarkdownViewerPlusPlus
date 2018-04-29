@@ -90,26 +90,26 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlRenderer, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlRenderer.Core.1.5.1-beta2\lib\net40-client\HtmlRenderer.dll</HintPath>
+      <HintPath>..\packages\HtmlRenderer.Core.1.5.1-beta3\lib\net40-client\HtmlRenderer.dll</HintPath>
     </Reference>
     <Reference Include="HtmlRenderer.PdfSharp, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlRenderer.PdfSharp.1.5.1-beta2\lib\net40-client\HtmlRenderer.PdfSharp.dll</HintPath>
+      <HintPath>..\packages\HtmlRenderer.PdfSharp.1.5.1-beta3\lib\net40-client\HtmlRenderer.PdfSharp.dll</HintPath>
     </Reference>
     <Reference Include="HtmlRenderer.WinForms, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlRenderer.WinForms.1.5.1-beta2\lib\net40-client\HtmlRenderer.WinForms.dll</HintPath>
+      <HintPath>..\packages\HtmlRenderer.WinForms.1.5.1-beta3\lib\net40-client\HtmlRenderer.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Markdig, Version=0.14.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Markdig.0.14.9\lib\net40\Markdig.dll</HintPath>
+    <Reference Include="Markdig, Version=0.15.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Markdig.0.15.0\lib\net40\Markdig.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Outlook, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="PdfSharp, Version=1.50.4790.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\PDFsharp.1.50.4790-beta5a\lib\net20\PdfSharp.dll</HintPath>
+    <Reference Include="PdfSharp, Version=1.50.4845.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.50.4845-RC2a\lib\net20\PdfSharp.dll</HintPath>
     </Reference>
-    <Reference Include="PdfSharp.Charting, Version=1.50.4790.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\PDFsharp.1.50.4790-beta5a\lib\net20\PdfSharp.Charting.dll</HintPath>
+    <Reference Include="PdfSharp.Charting, Version=1.50.4845.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.50.4845-RC2a\lib\net20\PdfSharp.Charting.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -258,6 +258,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ILMergeOrder.txt" />
+    <None Include="Resources\fa-paypal-16x16.png" />
+    <None Include="Resources\fa-info-16x16.png" />
+    <None Include="Resources\fa-cog-16x16.png" />
     <None Include="Resources\Donate-PayPal-green.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

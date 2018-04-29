@@ -45,6 +45,9 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             this.sendToClipboard = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.markdownViewerMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +56,8 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             this.markdownViewerMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exportAsToolStrip,
             this.sendToolStrip,
-            this.viewToolStripMenuItem});
+            this.viewToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.markdownViewerMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.markdownViewerMenuStrip.Name = "markdownViewerMenuStrip";
             this.markdownViewerMenuStrip.Size = new System.Drawing.Size(284, 24);
@@ -147,6 +151,31 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             this.refreshToolStripMenuItem.Text = "Refresh";
             this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
             // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.optionsToolStripMenuItem,
+            this.aboutToolStripMenuItem1});
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(24, 20);
+            this.aboutToolStripMenuItem.Text = "?";
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.Image = global::com.insanitydesign.MarkdownViewerPlusPlus.Properties.Resources.fa_cog_16x16;
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.optionsToolStripMenuItem.Text = "Options";
+            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem1
+            // 
+            this.aboutToolStripMenuItem1.Image = global::com.insanitydesign.MarkdownViewerPlusPlus.Properties.Resources.fa_info_16x16;
+            this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem1.Text = "About";
+            this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
+            // 
             // AbstractRenderer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -176,5 +205,8 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         private System.Windows.Forms.ToolStripMenuItem sendAsTextMail;
         private System.Windows.Forms.ToolStripMenuItem sendToPrinter;
         private System.Windows.Forms.ToolStripMenuItem sendToClipboard;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
     }
 }

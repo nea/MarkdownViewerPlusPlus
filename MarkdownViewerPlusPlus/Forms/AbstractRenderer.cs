@@ -390,5 +390,25 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
 
             return false;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.markdownViewer.OptionsCommand();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.markdownViewer.AboutCommand();
+        }
     }
 }
