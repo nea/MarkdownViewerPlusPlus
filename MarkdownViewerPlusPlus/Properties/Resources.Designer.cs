@@ -83,6 +83,16 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fa_cog_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("fa_cog_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fa_download_16x16 {
             get {
                 object obj = ResourceManager.GetObject("fa_download_16x16", resourceCulture);
@@ -116,6 +126,26 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Properties {
         internal static System.Drawing.Bitmap fa_html5_16x16 {
             get {
                 object obj = ResourceManager.GetObject("fa_html5_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fa_info_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("fa_info_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fa_paypal_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("fa_paypal_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

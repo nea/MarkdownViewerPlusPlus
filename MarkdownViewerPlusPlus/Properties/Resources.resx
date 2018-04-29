@@ -157,4 +157,13 @@
   <data name="Donate_PayPal_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Donate-PayPal-green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="fa_cog_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fa-cog-16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fa_info_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fa-info-16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fa_paypal_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fa-paypal-16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

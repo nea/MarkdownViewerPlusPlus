@@ -241,7 +241,7 @@ The current file is <i>'{this.FileInfo.FileName}'</i>.
         /// <summary>
         /// 
         /// </summary>
-        private void OptionsCommand()
+        public void OptionsCommand()
         {
             using (MarkdownViewerOptions options = new MarkdownViewerOptions(ref this.configuration))
             {
@@ -256,7 +256,7 @@ The current file is <i>'{this.FileInfo.FileName}'</i>.
         /// <summary>
         /// Show the AboutDialog as modal to the Notepad++ window
         /// </summary>
-        private void AboutCommand()
+        public void AboutCommand()
         {
             using (AboutDialog about = new AboutDialog())
             {
