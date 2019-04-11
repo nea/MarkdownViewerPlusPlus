@@ -95,9 +95,6 @@
     <Reference Include="HtmlRenderer.PdfSharp, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlRenderer.PdfSharp.1.5.1-beta1\lib\net40-client\HtmlRenderer.PdfSharp.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlRenderer.WinForms, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlRenderer.WinForms.1.5.1-beta1\lib\net40-client\HtmlRenderer.WinForms.dll</HintPath>
-    </Reference>
     <Reference Include="Markdig, Version=0.15.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Markdig.0.15.0\lib\net40\Markdig.dll</HintPath>
     </Reference>
@@ -139,9 +136,6 @@
     </Compile>
     <Compile Include="Forms\AbstractRenderer.Designer.cs">
       <DependentUpon>AbstractRenderer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\MarkdownViewerHtmlPanel.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\MarkdownViewerOptions.cs">
       <SubType>Form</SubType>
