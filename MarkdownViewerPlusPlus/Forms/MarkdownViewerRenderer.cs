@@ -7,6 +7,7 @@ using System.Net;
 using System.Threading;
 using TheArtOfDev.HtmlRenderer.Core.Entities;
 using static com.insanitydesign.MarkdownViewerPlusPlus.MarkdownViewer;
+using System.Windows.Forms;
 
 /// <summary>
 /// 
@@ -18,10 +19,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
     /// </summary>
     public class MarkdownViewerRenderer : AbstractRenderer
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public MarkdownViewerHtmlPanel markdownViewerHtmlPanel;
+        public WebBrowser browser;
 
         /// <summary>
         /// 
@@ -37,13 +35,17 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         protected override void Init()
         {
             base.Init();
-            //
-            this.markdownViewerHtmlPanel = new MarkdownViewerHtmlPanel();
+
+            this.browser = new WebBrowser
+            {
+                Dock = DockStyle.Fill
+            };
+
             //Add a custom image loader
-            this.markdownViewerHtmlPanel.ImageLoad += OnImageLoad;
+
             //Add to view
-            this.Controls.Add(this.markdownViewerHtmlPanel);
-            this.Controls.SetChildIndex(this.markdownViewerHtmlPanel, 0);
+            this.Controls.Add(this.browser);
+            this.Controls.SetChildIndex(this.browser, 0);
         }
 
         /// <summary>
@@ -54,7 +56,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         public override void Render(string text, FileInformation fileInfo)
         {
             base.Render(text, fileInfo);
-            this.markdownViewerHtmlPanel.Text = BuildHtml(ConvertedText, fileInfo.FileName);
+            this.browser.DocumentText = BuildHtml(ConvertedText, fileInfo.FileName);
         }
 
         /// <summary>
@@ -64,7 +66,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <param name="scrollRatio"></param>
         public override void ScrollByRatioVertically(double scrollRatio)
         {
-            this.markdownViewerHtmlPanel.ScrollByRatioVertically(scrollRatio);
+            
         }
 
         /// <summary>
@@ -181,10 +183,6 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// </summary>
         protected override void Dispose(bool disposing)
         {
-            if (this.markdownViewerHtmlPanel != null)
-            {
-                this.markdownViewerHtmlPanel.ImageLoad -= OnImageLoad;
-            }
             base.Dispose(disposing);
         }
     }
