@@ -215,45 +215,34 @@ To put a blockquote within a list item, the blockquote's `>`
 delimiters need to be indented:
 
 *   A list item with a blockquote:
-
+ 
     > This is a blockquote
     > inside a list item.
 
 To put a code block within a list item, the code block needs
-to be indented *twice* -- 8 spaces or two tabs:
-
-*   A list item with a code block:
-
+to be indented *twice* -- 8 spaces or two tabs: 
+ 
+*   A list item with a code block: 
+ 
         <code goes here>
-
-### Tables
-Tables are used to organise tabular data. They are constructed using a header row seperated by pipes
-```
-Column 1 | Column 2 | Column 3
-- | - | -
-Item 1 | Item 2 | Item 3
-```
-When rendered, they look like this:
-Column 1 | Column 2 | Column 3
-- | - | -
-Item 1 | Item 2 | Item 3
 
 ### Task Lists
 Tasks list can be used to display a list of things which have (or have not) been completed.
 
 - [ ] Task 1
-- [ ] Task 2
+  - [ ] You can also indent task lists just like normal lists.
+- [ ] Task 2 
 - [x] Task 3
 		
 ### Code Blocks
-
+ 
 Pre-formatted code blocks are used for writing about programming or
 markup source code. Rather than forming normal paragraphs, the lines
 of a code block are interpreted literally. Markdown wraps a code block
 in both `<pre>` and `<code>` tags.
 
 To produce a code block in Markdown, simply indent every line of the
-block by at least 4 spaces or 1 tab.
+block by at least 4 spaces or 1 tab. 
 
 This is a normal paragraph:
 
@@ -287,6 +276,20 @@ tell application "Foo"
     beep
 end tell
 ```
+
+### Tables
+Tables are used to organise tabular data. They are constructed using a header row seperated by pipes
+```
+Column 1 | Column 2 | Column 3
+- | - | - 
+Item 1 | Item 2 | Item 3
+```
+When rendered, they look like this:
+
+Column 1 | Column 2 | Column 3 
+- | - | - 
+Item 1 | Item 2 | Item 3
+Row 2 Item 1 | Row 2  Item 2 | Row 2  Item 3
 
 ## Span Elements
 
