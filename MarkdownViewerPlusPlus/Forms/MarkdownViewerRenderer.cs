@@ -4,6 +4,7 @@ using Svg;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Net;
+using System.Linq;
 using System.Threading;
 using TheArtOfDev.HtmlRenderer.Core.Entities;
 using static com.insanitydesign.MarkdownViewerPlusPlus.MarkdownViewer;
@@ -20,6 +21,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
     public class MarkdownViewerRenderer : AbstractRenderer
     {
         public WebBrowser browser;
+        private int? _previousScrollYPosition = 0;
 
         /// <summary>
         /// 
@@ -56,7 +58,29 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         public override void Render(string text, FileInformation fileInfo)
         {
             base.Render(text, fileInfo);
+
+            var doc = this.browser.Document?.GetElementsByTagName("HTML")?.OfType<HtmlElement>();
+
+            if (doc != null && doc.Any())
+            {
+                var htmlElement = doc.First();
+
+                _previousScrollYPosition = htmlElement.ScrollTop;
+            }
+
             this.browser.DocumentText = BuildHtml(ConvertedText, fileInfo.FileName);
+
+            this.browser.DocumentCompleted += OnBrowserDocumentCompleted;
+        }
+
+        private void OnBrowserDocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            var browser = sender as WebBrowser;
+
+            if (_previousScrollYPosition != null)
+            {
+                browser.Document.Window.ScrollTo(0, (int)_previousScrollYPosition);
+            }
         }
 
         /// <summary>
