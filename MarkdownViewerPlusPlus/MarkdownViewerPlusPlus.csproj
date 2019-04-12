@@ -90,13 +90,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlRenderer, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlRenderer.Core.1.5.1-beta3\lib\net40-client\HtmlRenderer.dll</HintPath>
+      <HintPath>..\packages\HtmlRenderer.Core.1.5.1-beta1\lib\net40-client\HtmlRenderer.dll</HintPath>
     </Reference>
     <Reference Include="HtmlRenderer.PdfSharp, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlRenderer.PdfSharp.1.5.1-beta3\lib\net40-client\HtmlRenderer.PdfSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="HtmlRenderer.WinForms, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlRenderer.WinForms.1.5.1-beta3\lib\net40-client\HtmlRenderer.WinForms.dll</HintPath>
+      <HintPath>..\packages\HtmlRenderer.PdfSharp.1.5.1-beta1\lib\net40-client\HtmlRenderer.PdfSharp.dll</HintPath>
     </Reference>
     <Reference Include="Markdig, Version=0.15.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Markdig.0.15.0\lib\net40\Markdig.dll</HintPath>
@@ -105,11 +102,11 @@
     <Reference Include="Microsoft.Office.Interop.Outlook, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="PdfSharp, Version=1.50.4845.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\PDFsharp.1.50.4845-RC2a\lib\net20\PdfSharp.dll</HintPath>
+    <Reference Include="PdfSharp, Version=1.50.4000.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.50.4000-beta3b\lib\net20\PdfSharp.dll</HintPath>
     </Reference>
-    <Reference Include="PdfSharp.Charting, Version=1.50.4845.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\PDFsharp.1.50.4845-RC2a\lib\net20\PdfSharp.Charting.dll</HintPath>
+    <Reference Include="PdfSharp.Charting, Version=1.50.4000.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.50.4000-beta3b\lib\net20\PdfSharp.Charting.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -139,9 +136,6 @@
     </Compile>
     <Compile Include="Forms\AbstractRenderer.Designer.cs">
       <DependentUpon>AbstractRenderer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\MarkdownViewerHtmlPanel.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\MarkdownViewerOptions.cs">
       <SubType>Form</SubType>

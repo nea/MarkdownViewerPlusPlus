@@ -67,7 +67,10 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <summary>
         /// 
         /// </summary>
-        protected MarkdownPipeline markdownPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+        protected MarkdownPipeline markdownPipeline = new MarkdownPipelineBuilder()
+            .UseAdvancedExtensions()
+            .UseBootstrap()
+            .Build();
 
         /// <summary>
         /// 
@@ -192,6 +195,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         <meta charset=""UTF-8"" />
         <meta name=""author"" content=""{this.assemblyTitle}"" />
         <title>{title}</title>
+        <link rel=""stylesheet"" href=""https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"" type=""text/css""/>        
         <style type=""text/css"">
             {this.getCSS()}
         </style>
